@@ -9,6 +9,11 @@ public class RoomManager : MonoBehaviour
     private Room currentRoom;
     private List<Room> roomList;
 
+    [SerializeField]
+    private int roomWidth;
+    [SerializeField]
+    private int roomHeight;
+
 
     [SerializeField]
     private GameObject roomPrefab;
@@ -30,8 +35,8 @@ public class RoomManager : MonoBehaviour
         foreach (Door door in startingRoom.DoorList)
         {
             Vector3 newDoorDir = door.DoorDir;
-            newDoorDir.x *= 24;
-            newDoorDir.y *= 18;
+            newDoorDir.x *= roomWidth/2 + 8;
+            newDoorDir.y *= roomHeight/2 + 8;
 
             Room nextRoom = Instantiate(roomPrefab, door.transform.position + newDoorDir , Quaternion.identity).GetComponent<Room>(); // vytváøení místnosti
 

@@ -257,7 +257,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197dab3380e607a4992cacb39be94472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 20
+  cameraSpeed: 80
 --- !u!1 &547126925
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +590,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b518a132987c00c4096f704b4820fe80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
-  roomPrefab: {fileID: 4501728610439048400, guid: 30d7b19914ceff447afce3bf86502781, type: 3}
+  roomWidth: 18
+  roomHeight: 12
+  roomPrefab: {fileID: 4501728610439048400, guid: 44bfa87849051be48b3c079ab75609d1, type: 3}
 --- !u!1001 &3605837055276059773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -642,6 +644,10 @@ PrefabInstance:
     - target: {fileID: 3413601562855351675, guid: 7616f3c3415cbf9409740ae3b56f22ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234055100841786051, guid: 7616f3c3415cbf9409740ae3b56f22ef, type: 3}
+      propertyPath: movementSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

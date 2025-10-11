@@ -35,5 +35,6 @@ public class CameraController : MonoBehaviour
     public void ChangeCameraPosition(Vector3 position)
     {
         transform.position=position;
+        targetPosition=position;
     }
 }
