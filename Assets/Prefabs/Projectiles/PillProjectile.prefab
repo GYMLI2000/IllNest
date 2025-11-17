@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1447146362357629534}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PillProjectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,8 @@ GameObject:
   - component: {fileID: 6503421304418935708}
   - component: {fileID: 8653262587482921252}
   - component: {fileID: 4188791622118209355}
-  m_Layer: 0
+  - component: {fileID: 6574190481608560222}
+  m_Layer: 6
   m_Name: Pill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +119,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyParticlePrefab: {fileID: 256431252436652238}
+--- !u!50 &6574190481608560222
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526885679671037598}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &4970274708195705507
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4267472512073751845}
   - component: {fileID: 5305493336012025241}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1219341278213486081}
   - component: {fileID: 610293522001446678}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +308,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 7
   m_Sprite: {fileID: 8737391000113518833, guid: edc8d3b0cabccee4bad5da9d82289ce2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -303,6 +331,10 @@ PrefabInstance:
     - target: {fileID: 5597470530255270101, guid: a565aeeb4da4d484f8b7214e06e6e095, type: 3}
       propertyPath: m_Name
       value: PillHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5597470530255270101, guid: a565aeeb4da4d484f8b7214e06e6e095, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6704812073491564712, guid: a565aeeb4da4d484f8b7214e06e6e095, type: 3}
       propertyPath: m_LocalPosition.x

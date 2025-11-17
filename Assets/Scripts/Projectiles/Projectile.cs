@@ -11,6 +11,7 @@ public abstract class Projectile : MonoBehaviour
     protected float range;
     protected Vector2 lastPos;
     protected float distance;
+    protected float knockBack;
 
     protected GameObject parentObject;
 
@@ -74,10 +75,12 @@ public abstract class Projectile : MonoBehaviour
 
 
         }
-        else if (!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Enemy"))
+        else if (!collision.gameObject.CompareTag("Enemy") && !collision.gameObject.CompareTag("Player"))
         {
             DestroyProjectile();
         }
+
+
     }
 
     protected void DestroyProjectile()

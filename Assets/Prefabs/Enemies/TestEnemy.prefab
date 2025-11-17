@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 416875917911666092}
   - component: {fileID: 3238303196148043148}
   - component: {fileID: 2191565180120458583}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TestEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -137,11 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fec85e08c628ab4cb33666d27e00cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  speed: 2
-  damage: 1
   target: {fileID: 0}
   projectilePrefab: {fileID: 0}
+  killParticlePrefab: {fileID: 1659664361623080336, guid: 65e404c49300f954b9015ddebe17cb10, type: 3}
 --- !u!1 &1554634159965754939
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 992148814977469053}
   - component: {fileID: 4417231611179856547}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnviromentCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,8 +206,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.24}
-  m_Size: {x: 0.6, y: 0.2}
+  m_Offset: {x: 0, y: -0.2}
+  m_Size: {x: 0.7, y: 0.4}
   m_Direction: 1
 --- !u!1 &2628778328982888239
 GameObject:
@@ -221,7 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2985211444112061525}
   - component: {fileID: 531482409316184011}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9009384360840013718}
   - component: {fileID: 586365712848471933}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
