@@ -13,6 +13,9 @@ public abstract class Projectile : MonoBehaviour
     protected float distance;
     protected float knockBack;
 
+    protected string poolKey;
+    protected string partPoolKey;
+
     protected GameObject parentObject;
 
     [SerializeField]
@@ -41,15 +44,16 @@ public abstract class Projectile : MonoBehaviour
         if(distance > range) DestroyProjectile();
     }
 
-    public void SetStats(int damage, Vector2 direction, float speed, bool isHostile,float range)
+    public void SetStats(Vector2 position,int damage, Vector2 direction, float speed, bool isHostile,float range)
     {
         this.damage = damage;
         this.direction = direction;
         this.speed = speed;
         this.isHostile = isHostile;
         this.range = range;
+        this.distance = 0;
 
-        lastPos = transform.position;
+        lastPos = position;
     }
 
     protected abstract void AI();
@@ -85,11 +89,15 @@ public abstract class Projectile : MonoBehaviour
 
     protected void DestroyProjectile()
     {
-        ParticleSystem particles =Instantiate(destroyParticlePrefab, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+        //ParticleSystem particles =Instantiate(destroyParticlePrefab, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+        ParticleSystem particles = PoolManager.Instance.Get(partPoolKey).GetComponent<ParticleSystem>();
+        particles.transform.position = parentObject.transform.position;
         particles.Play();
 
-        Destroy(particles.gameObject,2f);
-        Destroy(parentObject);
+        //Destroy(particles.gameObject,2f);
+        PoolManager.Instance.Release(partPoolKey, particles.gameObject, 2f);
+        //Destroy(parentObject);
+        PoolManager.Instance.Release(poolKey, parentObject);
     }
 
 }

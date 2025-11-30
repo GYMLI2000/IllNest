@@ -43,8 +43,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6503421304418935708}
   - component: {fileID: 8653262587482921252}
-  - component: {fileID: 4188791622118209355}
   - component: {fileID: 6574190481608560222}
+  - component: {fileID: 4984213831227139424}
   m_Layer: 6
   m_Name: Pill
   m_TagString: Untagged
@@ -106,19 +106,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.3, y: 0.6}
   m_Direction: 0
---- !u!114 &4188791622118209355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3526885679671037598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19c0b10bdf2d00249a594be0f41ff1e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyParticlePrefab: {fileID: 256431252436652238}
 --- !u!50 &6574190481608560222
 Rigidbody2D:
   serializedVersion: 5
@@ -146,6 +133,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &4984213831227139424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526885679671037598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c0b10bdf2d00249a594be0f41ff1e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyParticlePrefab: {fileID: 256431252436652238}
 --- !u!1 &4970274708195705507
 GameObject:
   m_ObjectHideFlags: 0

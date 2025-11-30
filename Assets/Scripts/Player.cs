@@ -102,9 +102,9 @@ public class Player : MonoBehaviour
 
         StartCoroutine(AttackEffect());
 
-        GameObject projectile = Instantiate(projectilePrefab, firepoint.position, Quaternion.identity);
-        projectile.GetComponentInChildren<Pill>().SetStats(damage, firepoint.right,projSpeed,false,range);
-
+        GameObject projectile = PoolManager.Instance.Get("PillProjectile");
+        projectile.GetComponentInChildren<Pill>().SetStats(firepoint.position,damage, firepoint.right,projSpeed,false,range);
+        projectile.transform.position = firepoint.position;
 
     }
 
@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        rb.MovePosition(rb.position +moveValue * movementSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position +moveValue * movementSpeed * Time.fixedDeltaTime);
 
     }
 

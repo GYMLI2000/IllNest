@@ -5,14 +5,23 @@ public abstract class Enemy : MonoBehaviour
 {
     protected int health;
     public float speed { get; protected set; }
-    public int damage {get; protected set;}
+    public int damage { get; protected set; }
     public float chaseRange { get; protected set; }
+    public float attackCooldown { get; protected set; }
+    public float lastAttack;
+    public bool isAttacking;
+    public float attackDuration { get; protected set; }
+
 
     public GameObject target;
 
-    protected Rigidbody2D rb;
+    public Rigidbody2D rb { get; protected set; }
 
+    public State idleState;
+    public AttackState attackState;
 
+    protected string partPoolKey = "EnemyDeath";
+    public string poolKey {get;protected set;}
 
     [SerializeField]
     protected GameObject projectilePrefab;
@@ -29,8 +38,12 @@ public abstract class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentsInChildren<SpriteRenderer>();
-        currentState = new IdleState(this);
-        Debug.Log("start");
+
+        idleState = new IdleState(this);
+
+
+        currentState = idleState;
+        
     }
 
 
@@ -39,15 +52,18 @@ public abstract class Enemy : MonoBehaviour
 
     protected void Update()
     {
+        Debug.Log(currentState.GetType().ToString());
         if (target != null)
         {
             if (transform.position.x < target.transform.position.x)
             {
-                transform.rotation = new Quaternion(0, 180, 0, 0);
+                transform.localScale = new Vector3(-1, 1, 1);
+
             }
             else
             {
-                transform.rotation = Quaternion.identity;
+                transform.localScale = new Vector3(1, 1, 1);
+
             }
         }
 
@@ -99,16 +115,17 @@ public abstract class Enemy : MonoBehaviour
 
     protected abstract void InitializeStats();
 
-    protected void KillEnemy()
+    public virtual void KillEnemy()
     {
-        ParticleSystem particles = Instantiate(killParticlePrefab, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
-
+        ParticleSystem particles = PoolManager.Instance.Get(partPoolKey).GetComponent<ParticleSystem>();
+        particles.transform.position = transform.position;
         var main = particles.main;
         main.startColor = killParticleColor;
 
         particles.Play();
 
-        Destroy(particles.gameObject, 2f);
-        Destroy(gameObject);
+        PoolManager.Instance.Release(partPoolKey, particles.gameObject, 2f);
+
+        PoolManager.Instance.Release(poolKey, gameObject);
     }
 }

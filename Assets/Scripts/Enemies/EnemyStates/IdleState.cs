@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class IdleState : State
 {
-    private Enemy enemy;
 
     public IdleState(Enemy enemy) 
     {

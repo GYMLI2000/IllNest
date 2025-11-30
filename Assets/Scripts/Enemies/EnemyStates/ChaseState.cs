@@ -1,8 +1,8 @@
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class ChaseState : State
 {
-    private Enemy enemy;
     private Rigidbody2D rb;
     private float speed;
 
@@ -10,7 +10,7 @@ public class ChaseState : State
     {
         this.enemy = enemy;
         this.speed = enemy.speed;
-        rb = enemy.GetComponent<Rigidbody2D>();
+        rb = enemy.rb;
 
     }
 
@@ -24,24 +24,25 @@ public class ChaseState : State
     {
         if (enemy.target == null) 
         {
-            return new IdleState(enemy);
+            return enemy.idleState;
         }
-        if (Vector2.Distance(enemy.transform.position,enemy.target.transform.position) < enemy.chaseRange)
+        if (Vector2.Distance(enemy.transform.position,enemy.target.transform.position) < enemy.chaseRange - 1) // -1 zabranuje rychlemu switchovani statetu
         {
-            return new AttackState(enemy);
+            return enemy.attackState;
         }
         return this;
     }
 
     public override void FixedAI()
     {
+
         if (enemy.target == null) return;
 
         Vector2 moveDir = (enemy.target.transform.position - enemy.transform.position).normalized;
 
 
-        rb.MovePosition(rb.position +moveDir * speed * Time.deltaTime);
+        rb.MovePosition(rb.position +moveDir * speed * Time.fixedDeltaTime);
 
-        Debug.Log("Movin");
+
     }
 }
