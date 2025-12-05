@@ -46,6 +46,9 @@ public class Player : MonoBehaviour
     public int damage;
     [SerializeField]
     private float invFrames;
+    private bool isStaggered;
+    [SerializeField]
+    private float knockback;
     private float lastHit = 0;
     [SerializeField]
     private GameObject projectilePrefab;
@@ -112,7 +115,12 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage(collision.gameObject.GetComponent<Enemy>().damage);
+            var enemy = collision.gameObject.GetComponent<Enemy>();
+            TakeDamage(enemy.damage);
+
+            isStaggered = true;
+            Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
+            rb.AddForce(knockbackDirection * enemy.knockback, ForceMode2D.Impulse);
         }
     }
 
@@ -166,7 +174,10 @@ public class Player : MonoBehaviour
             s.color = Color.red;
         }
         
+        
+
         yield return new WaitForSeconds(0.1f);
+
 
         foreach (SpriteRenderer s in spriteRenderer)
         {
@@ -188,7 +199,14 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        rb.MovePosition(rb.position +moveValue * movementSpeed * Time.fixedDeltaTime);
+        if (!isStaggered)
+        {
+            rb.linearVelocity = moveValue * movementSpeed;
+        }
+        else if (Time.time + invFrames >= lastHit)
+        {
+            isStaggered = false;
+        }
 
     }
 

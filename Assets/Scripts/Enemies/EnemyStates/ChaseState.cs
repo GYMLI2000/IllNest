@@ -17,7 +17,14 @@ public class ChaseState : State
 
     public override void AI()
     {
-        
+        if (enemy.rb.linearVelocity.magnitude > 0)
+        {
+            enemy.animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            enemy.animator.SetBool("isWalking", false);
+        }
     }
 
     public override State ChangeState()
@@ -41,7 +48,8 @@ public class ChaseState : State
         Vector2 moveDir = (enemy.target.transform.position - enemy.transform.position).normalized;
 
 
-        rb.MovePosition(rb.position +moveDir * speed * Time.fixedDeltaTime);
+        
+        rb.linearVelocity = moveDir * speed;
 
 
     }

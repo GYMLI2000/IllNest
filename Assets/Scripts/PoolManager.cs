@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -55,6 +56,19 @@ public class PoolManager : MonoBehaviour
         return poolDictionary[key].Get();
     }
 
+    public void Get(string key, float delay, System.Action<GameObject> callback)
+    {
+        StartCoroutine(GetAfterDelay(key, delay, callback));
+    }
+
+    private IEnumerator GetAfterDelay(string key, float delay, System.Action<GameObject> callback)
+    {
+        yield return new WaitForSeconds(delay);
+
+        GameObject result = Get(key); 
+        callback?.Invoke(result);
+    }
+
     public void Release(string key, GameObject obj)
     {
         if (!poolDictionary.ContainsKey(key))
@@ -81,4 +95,6 @@ public class PoolManager : MonoBehaviour
             Release(key, obj);
         }
     }
+
+
 }

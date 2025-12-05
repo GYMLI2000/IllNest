@@ -7,13 +7,19 @@ public abstract class Enemy : MonoBehaviour
     public float speed { get; protected set; }
     public int damage { get; protected set; }
     public float chaseRange { get; protected set; }
-    public float attackCooldown { get; protected set; }
+    public float attackCooldown;
     public float lastAttack;
     public bool isAttacking;
+    public bool isCharging;
+    public float chargeStart;
+    public float chargeTime;
     public float attackDuration { get; protected set; }
+    public float knockback;
+    public Animator animator;
 
 
     public GameObject target;
+    public Vector2 targetPosition;
 
     public Rigidbody2D rb { get; protected set; }
 
@@ -36,10 +42,10 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
+        InitializeStats();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentsInChildren<SpriteRenderer>();
-
-        idleState = new IdleState(this);
+        animator = GetComponent<Animator>();
 
 
         currentState = idleState;
@@ -47,15 +53,25 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
-
-
-
     protected void Update()
     {
-        Debug.Log(currentState.GetType().ToString());
         if (target != null)
         {
-            if (transform.position.x < target.transform.position.x)
+            targetPosition = target.transform.position;
+            if (transform.position.x < targetPosition.x)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+
+            }
+        }
+        else if (targetPosition != null)
+        {
+            if (transform.position.x < targetPosition.x)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
 
@@ -83,11 +99,14 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    private IEnumerator HitEffect()
+    protected IEnumerator HitEffect(bool didDamage)
     {
         foreach (SpriteRenderer s in spriteRenderer)
         {
-            s.color = Color.red;
+            if (didDamage)
+                s.color = Color.red;
+            else
+                s.color = Color.black;
         }
 
         yield return new WaitForSeconds(0.1f);
@@ -109,7 +128,7 @@ public abstract class Enemy : MonoBehaviour
         }
         else
         {
-            StartCoroutine(HitEffect());
+            StartCoroutine(HitEffect(true));
         }
     }
 

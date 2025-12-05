@@ -21,7 +21,7 @@ public class IdleState : State
             return new ChaseState(enemy);
         }
 
-        return this;
+        return enemy.idleState;
     }
 
     public override void FixedAI()

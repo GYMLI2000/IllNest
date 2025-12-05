@@ -10,30 +10,60 @@ public abstract class AttackState : State
 
     public override void AI()
     {
+        // Když dokonèil útok pøepnout zpìt
         if (enemy.isAttacking && enemy.lastAttack + enemy.attackDuration <= Time.time)
         {
             enemy.isAttacking = false;
+            enemy.animator.SetTrigger("Idle");
         }
 
-
-        if (!enemy.isAttacking && enemy.attackCooldown + enemy.lastAttack <= Time.time )
+        // ==== 1) Zaèátek charging ====
+        if (!enemy.isAttacking && !enemy.isCharging &&
+            enemy.lastAttack + enemy.attackCooldown <= Time.time)
         {
-            enemy.isAttacking = true;
-            enemy.lastAttack = Time.time;
 
-            Attack();
+            enemy.isCharging = true;
+            enemy.chargeStart = Time.time;
+            enemy.animator.SetTrigger("Charge");
+
+            OnCharge(); // vizuální efekty
+            return;
         }
+
+        // ==== 2) Bìhem charge ====
+        if (enemy.isCharging)
+        {
+            if (enemy.chargeStart + enemy.chargeTime <= Time.time)
+            {
+                // Charge dokonèen  spustit útok
+                enemy.isCharging = false;
+                enemy.isAttacking = true;
+                enemy.lastAttack = Time.time;
+                enemy.animator.SetTrigger("Attack");
+
+
+                Attack();
+            }
+
+            return; // nic jiného bìhem charge
+        }
+
     }
 
     public abstract void Attack();
 
+    public virtual void OnCharge()
+    {
+
+    }
+
     public override State ChangeState()
     {
-        if (enemy.target == null && !enemy.isAttacking)
+        if (enemy.target == null && !enemy.isAttacking && !enemy.isCharging)
         {
             return enemy.idleState;
         }
-        if (Vector2.Distance(enemy.transform.position, enemy.target.transform.position) > enemy.chaseRange && !enemy.isAttacking)
+        if (Vector2.Distance(enemy.transform.position, enemy.target.transform.position) > enemy.chaseRange && !enemy.isAttacking && !enemy.isCharging)
         {
             return new ChaseState(enemy);
         }

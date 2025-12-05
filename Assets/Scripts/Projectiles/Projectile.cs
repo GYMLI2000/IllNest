@@ -62,7 +62,6 @@ public abstract class Projectile : MonoBehaviour
 
     virtual protected void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject);
 
         if (collision.gameObject.CompareTag("Player") && isHostile)
         {
