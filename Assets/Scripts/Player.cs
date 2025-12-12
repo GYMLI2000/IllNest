@@ -1,7 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
+using static UnityEngine.EventSystems.EventTrigger;
 
 
 public class Player : MonoBehaviour
@@ -11,18 +12,16 @@ public class Player : MonoBehaviour
 
 
 
-    [SerializeField]
-    private float movementSpeed;
+    public float movementSpeed;
     private InputAction moveAction;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Vector2 moveValue;
-    private Vector2 mousePosition;
     private bool isAttacking;
     private Vector2 aimDir;
 
     private PlayerControls playerControls;
-    private SpriteRenderer[] spriteRenderer;
-    private Animator animator;
+    public SpriteRenderer[] spriteRenderer;
+    public Animator animator { get; private set; }
 
     [SerializeField]
     private Transform gloveSprite;
@@ -37,8 +36,7 @@ public class Player : MonoBehaviour
     private int maxHp;
     [SerializeField]
     private float range;
-    [SerializeField]
-    private float projSpeed;
+    public float projSpeed;
     [SerializeField]
     private float atkCooldown;
     private float lastAtk;
@@ -50,14 +48,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float knockback;
     private float lastHit = 0;
+
     [SerializeField]
-    private GameObject projectilePrefab;
+    private string projectileKey;
 
     [SerializeField]
     private Transform firepointCenter;
     [SerializeField]
     private Transform firepoint;
 
+    public int shootAngle = 1;
 
     private void Start()
     {
@@ -105,23 +105,28 @@ public class Player : MonoBehaviour
 
         StartCoroutine(AttackEffect());
 
-        GameObject projectile = PoolManager.Instance.Get("PillProjectile");
-        projectile.GetComponentInChildren<Pill>().SetStats(firepoint.position,damage, firepoint.right,projSpeed,false,range);
+        GameObject projectile = PoolManager.Instance.Get(projectileKey);
+        projectile.GetComponentInChildren<Pill>().SetStats(firepoint.position,damage, Quaternion.Euler(0, 0, shootAngle) * firepoint.right, projSpeed,false,range,gameObject,knockback);
         projectile.transform.position = firepoint.position;
 
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             var enemy = collision.gameObject.GetComponent<Enemy>();
-            TakeDamage(enemy.damage);
-
-            isStaggered = true;
-            Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
-            rb.AddForce(knockbackDirection * enemy.knockback, ForceMode2D.Impulse);
+            TakeHit(enemy, enemy.damage, enemy.knockback);
         }
+    }
+
+    public void TakeHit(Enemy enemy, int damage, float knockback)
+    {
+        TakeDamage(damage);
+
+        isStaggered = true;
+        Vector2 knockbackDirection = (transform.position - enemy.transform.position).normalized;
+        rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
     }
 
     private void MoveFirePoint()
@@ -201,7 +206,9 @@ public class Player : MonoBehaviour
     {
         if (!isStaggered)
         {
-            rb.linearVelocity = moveValue * movementSpeed;
+            //rb.linearVelocity = moveValue * movementSpeed;
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, moveValue * movementSpeed, 0.1f);
+            rb.position += rb.linearVelocity * Time.deltaTime;
         }
         else if (Time.time + invFrames >= lastHit)
         {

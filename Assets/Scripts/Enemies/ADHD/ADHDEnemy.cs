@@ -25,7 +25,7 @@ public class ADHDEnemy : Enemy
         chaseRange =  4; 
         damage = 1;
         speed = 7;
-        health = 3;
+        health = 7;
         poolKey = "ADHDEnemy";
         isAttacking = false;
         attackCooldown = 2;
@@ -35,8 +35,9 @@ public class ADHDEnemy : Enemy
         clones = new List<Enemy>();
         attackState = new ADHDAttackState(this);
         idleState = new IdleState(this);
+        chaseState = new ChaseState(this);
         dashPower = 20;
-        knockback = 10f;
+        knockback = 2f;
 
     }
 

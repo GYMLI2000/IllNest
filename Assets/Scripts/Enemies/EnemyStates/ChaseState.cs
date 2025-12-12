@@ -1,10 +1,12 @@
 using System.Runtime.Serialization;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ChaseState : State
 {
-    private Rigidbody2D rb;
-    private float speed;
+    protected Rigidbody2D rb;
+    protected float speed;
+    private Vector2 moveDir;
 
     public ChaseState(Enemy enemy)
     {
@@ -25,6 +27,8 @@ public class ChaseState : State
         {
             enemy.animator.SetBool("isWalking", false);
         }
+        moveDir = (enemy.target.transform.position - enemy.transform.position).normalized;
+
     }
 
     public override State ChangeState()
@@ -45,11 +49,12 @@ public class ChaseState : State
 
         if (enemy.target == null) return;
 
-        Vector2 moveDir = (enemy.target.transform.position - enemy.transform.position).normalized;
 
 
-        
-        rb.linearVelocity = moveDir * speed;
+        enemy.rb.linearVelocity = Vector2.Lerp(enemy.rb.linearVelocity, moveDir * speed, 0.1f);
+        enemy.rb.position += enemy.rb.linearVelocity * Time.deltaTime;
+
+        //rb.linearVelocity = moveDir * speed;
 
 
     }

@@ -17,6 +17,8 @@ public abstract class Projectile : MonoBehaviour
     protected string partPoolKey;
 
     protected GameObject parentObject;
+    protected GameObject owner;
+    protected Debuff debuff;
 
     [SerializeField]
     protected GameObject destroyParticlePrefab;
@@ -44,7 +46,7 @@ public abstract class Projectile : MonoBehaviour
         if(distance > range) DestroyProjectile();
     }
 
-    public void SetStats(Vector2 position,int damage, Vector2 direction, float speed, bool isHostile,float range)
+    public virtual void SetStats(Vector2 position,int damage, Vector2 direction, float speed, bool isHostile,float range,GameObject owner, float knockback)
     {
         this.damage = damage;
         this.direction = direction;
@@ -52,9 +54,12 @@ public abstract class Projectile : MonoBehaviour
         this.isHostile = isHostile;
         this.range = range;
         this.distance = 0;
+        this.owner = owner;
+        this.knockBack = knockback;
 
         lastPos = position;
     }
+
 
     protected abstract void AI();
 
@@ -65,7 +70,14 @@ public abstract class Projectile : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player") && isHostile)
         {
-            collision.gameObject.GetComponent<Player>().TakeDamage(damage); // damage to player
+            var player = collision.gameObject.GetComponent<Player>();
+            player.TakeHit(owner.GetComponent<Enemy>(),damage,knockBack);// damage to player
+            if (!debuff.Equals(null))
+            {
+                collision.gameObject.GetComponent<DebuffManager>().AddDebuff(debuff);
+            }
+            
+
             DestroyProjectile();
 
 
@@ -73,7 +85,8 @@ public abstract class Projectile : MonoBehaviour
         else if (collision.gameObject.CompareTag("Enemy") && !isHostile)
         {
 
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage); // damage to enemy
+            var enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.TakeHit(owner.GetComponent<Player>(),damage,knockBack);// damage to enemy
             DestroyProjectile();
 
 

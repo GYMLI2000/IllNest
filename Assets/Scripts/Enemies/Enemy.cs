@@ -16,6 +16,8 @@ public abstract class Enemy : MonoBehaviour
     public float attackDuration { get; protected set; }
     public float knockback;
     public Animator animator;
+    public Transform firepoint;
+
 
 
     public GameObject target;
@@ -25,12 +27,12 @@ public abstract class Enemy : MonoBehaviour
 
     public State idleState;
     public AttackState attackState;
+    public ChaseState chaseState;
+    public FleeState fleeState;
 
     protected string partPoolKey = "EnemyDeath";
     public string poolKey {get;protected set;}
-
-    [SerializeField]
-    protected GameObject projectilePrefab;
+    public string projKey { get; protected set; }
 
     [SerializeField]
     protected GameObject killParticlePrefab;
@@ -40,11 +42,16 @@ public abstract class Enemy : MonoBehaviour
 
     protected State currentState;
 
+    protected virtual void Awake()
+    {
+        
+    }
+
     protected virtual void Start()
     {
-        InitializeStats();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponentsInChildren<SpriteRenderer>();
+        InitializeStats();
+        spriteRenderer = GetComponentsInChildren<SpriteRenderer>(true);
         animator = GetComponent<Animator>();
 
 
@@ -53,7 +60,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (target != null)
         {
@@ -130,6 +137,14 @@ public abstract class Enemy : MonoBehaviour
         {
             StartCoroutine(HitEffect(true));
         }
+    }
+
+    public void TakeHit(Player player,int damage,float knockback)
+    {
+        TakeDamage(damage);
+
+        Vector2 knockbackDirection = (transform.position - player.transform.position).normalized;
+        rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
     }
 
     protected abstract void InitializeStats();

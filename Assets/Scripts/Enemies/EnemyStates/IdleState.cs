@@ -16,10 +16,15 @@ public class IdleState : State
 
     public override State ChangeState()
     {
-        if (enemy.target != null)
+        if (enemy.target != null && enemy.chaseState != null)
         {
-            return new ChaseState(enemy);
+            return enemy.chaseState;
         }
+        else if (enemy.target != null && enemy.fleeState != null)
+        {
+            return enemy.attackState;
+        }
+
 
         return enemy.idleState;
     }

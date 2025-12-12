@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 7234055100841786051}
   - component: {fileID: 5908385637991096095}
   - component: {fileID: 3341613787237929872}
+  - component: {fileID: 160094290420818111}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -116,7 +117,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 5
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -143,6 +144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
+  rb: {fileID: 0}
+  spriteRenderer: []
   gloveSprite: {fileID: 6678510163856146167}
   gloveOpen: {fileID: 3920698031004421160}
   gloveClosed: {fileID: 5725270595664074564}
@@ -153,10 +156,11 @@ MonoBehaviour:
   atkCooldown: 0.5
   damage: 1
   invFrames: 1
-  knockback: 0
-  projectilePrefab: {fileID: 2883238415205802255, guid: 0a08ce03fd54e324a9ee04ffd9e4b15f, type: 3}
+  knockback: 10
+  projectileKey: PillProjectile
   firepointCenter: {fileID: 4579367572232082271}
   firepoint: {fileID: 1290428547625152091}
+  shootAngle: 1
 --- !u!60 &5908385637991096095
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -245,6 +249,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &160094290420818111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924095657065222925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f4a6bf9789a034bb42360f70fb2496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7234055100841786051}
 --- !u!1 &2953073063296109370
 GameObject:
   m_ObjectHideFlags: 0

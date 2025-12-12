@@ -35,11 +35,11 @@ public class ADHDAttackState : AttackState
 
         if (!enemy.isAttacking)
         {
-            enemy.knockback = 10f;
+            enemy.knockback = 2f;
         }
         else
         {
-            enemy.knockback = 50f;
+            enemy.knockback = 10f;
         }
 
     }
