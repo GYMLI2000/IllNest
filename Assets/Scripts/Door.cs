@@ -2,27 +2,40 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [HideInInspector] public Room connectedRoom;
+    [HideInInspector] public Door connectedDoor;
 
-    public Room connectedRoom;
-    public Door connectedDoor;
+    [SerializeField] private Vector2 doorDir;   
+    [SerializeField] private Transform entryPoint;
+    [SerializeField] private Collider2D doorLock;
+    [SerializeField] private Animator doorAnimator;
 
+    public GameObject doorWall;
 
-    [SerializeField]
-    private Vector3 doorDir;
+    public Vector2 DoorDir => doorDir;
+    public Transform EntryPoint => entryPoint;
 
-    [SerializeField]
-    private Transform exitPoint;
-    
-    public Vector3 DoorDir => doorDir;
-
-    
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Player") && connectedDoor != null && connectedRoom != null)
-        {
-            RoomManager.RM.MovePlayer(collision.gameObject, connectedRoom , connectedDoor.exitPoint);
-            //Debug.Log($"{collision.gameObject.name}, {connectedRoom.name}, {connectedDoor.exitPoint.position}");
-        }
+        if (!other.CompareTag("Player"))
+            return;
+
+        Debug.Log("Player entered door");
+
+        if (connectedRoom == null || connectedDoor == null)
+            return;
+
+        RoomManager.RM.MovePlayer(
+            other.transform.parent.gameObject,
+            connectedRoom,
+            connectedDoor.EntryPoint
+        );
+    }
+
+    public void ChangeLock(bool doLock)
+    {
+
+        doorAnimator.SetTrigger(doLock ? "Lock" : "Unlock");
+        doorLock.enabled = doLock;
     }
 }

@@ -6,7 +6,7 @@ public class ChaseState : State
 {
     protected Rigidbody2D rb;
     protected float speed;
-    private Vector2 moveDir;
+    protected Vector2 moveDir;
 
     public ChaseState(Enemy enemy)
     {

@@ -32,6 +32,9 @@ public class ADHDDistractionState : IdleState
 
     public override void FixedAI()
     {
-        enemy.rb.linearVelocity =  moveDir * enemy.speed;
+        //enemy.rb.linearVelocity =  moveDir * enemy.speed;
+
+        enemy.rb.linearVelocity = Vector2.Lerp(enemy.rb.linearVelocity, moveDir * enemy.speed, 0.1f);
+        enemy.rb.position += enemy.rb.linearVelocity * Time.deltaTime;
     }
 }

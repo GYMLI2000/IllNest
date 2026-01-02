@@ -26,7 +26,7 @@ public class ParkinsonDebuff : Debuff
             lowSpeedTimer = 0f;
         }
 
-        if (lowSpeedTimer < 1.5f)
+        if (lowSpeedTimer < 1f)
         {
             float value;
             if (Random.value < 0.5f)

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class ADHDDistraction : Enemy
 {
-    protected override void Start()
+    public override void EnableEnemy()
     {
         InitializeStats();
-        base.Start();
+        base.EnableEnemy();
     }
 
     protected override void InitializeStats()
@@ -22,6 +22,5 @@ public class ADHDDistraction : Enemy
         lastAttack = Time.time;
         idleState = new ADHDDistractionState(this);
         knockback = 5f;
-
     }
 }

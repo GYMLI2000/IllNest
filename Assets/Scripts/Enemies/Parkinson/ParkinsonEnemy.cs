@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class ParkinsonEnemy : Enemy
 {
+    protected override void SetPoolKeys()
+    {
+        poolKey = "ParkinsonEnemy";
+        projKey = "ParkinsonProjectile";
+
+    }
+
     protected override void InitializeStats()
     {
         killParticleColor = new Color(168f / 255f, 137f / 255f, 68f /255f, 0.2f);
@@ -10,8 +17,6 @@ public class ParkinsonEnemy : Enemy
         damage = 1;
         speed = 7;
         health = 5;
-        poolKey = "ParkinsonEnemy";
-        projKey = "ParkinsonProjectile";
         isAttacking = false;
         attackCooldown = 2;
         attackDuration = 0.5f;

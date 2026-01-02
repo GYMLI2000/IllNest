@@ -3,31 +3,55 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    [HideInInspector]
     protected int health;
+    [HideInInspector]
     public float speed { get; protected set; }
+    [HideInInspector]
     public int damage { get; protected set; }
+    [HideInInspector]
+
     public float chaseRange { get; protected set; }
+    [HideInInspector]
     public float attackCooldown;
+    [HideInInspector]
     public float lastAttack;
+    [HideInInspector]
     public bool isAttacking;
+    [HideInInspector]
     public bool isCharging;
+    [HideInInspector]
     public float chargeStart;
+    [HideInInspector]
     public float chargeTime;
+
+    [HideInInspector]
     public float attackDuration { get; protected set; }
+    [HideInInspector]
     public float knockback;
+    [HideInInspector]
+    public float knockbackReduction = 0f;
     public Animator animator;
     public Transform firepoint;
 
 
+    protected bool looksATarget = true;
+    protected bool turns = true;
 
+    [HideInInspector]
     public GameObject target;
+    [HideInInspector]
     public Vector2 targetPosition;
 
     public Rigidbody2D rb { get; protected set; }
 
+    [HideInInspector]
     public State idleState;
+    [HideInInspector]
     public AttackState attackState;
+    [HideInInspector]
     public ChaseState chaseState;
+    [HideInInspector]
     public FleeState fleeState;
 
     protected string partPoolKey = "EnemyDeath";
@@ -38,7 +62,11 @@ public abstract class Enemy : MonoBehaviour
     protected GameObject killParticlePrefab;
     protected Color killParticleColor;
 
-    protected SpriteRenderer[] spriteRenderer;
+    [HideInInspector]
+    public SpriteRenderer[] spriteRenderer;
+
+    [HideInInspector]
+    EnemySpawner enemySpawner;
 
     protected State currentState;
 
@@ -47,22 +75,27 @@ public abstract class Enemy : MonoBehaviour
         
     }
 
-    protected virtual void Start()
+    public virtual void EnableEnemy()
     {
+        SetPoolKeys();
         rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag("Player");
         InitializeStats();
         spriteRenderer = GetComponentsInChildren<SpriteRenderer>(true);
         animator = GetComponent<Animator>();
+        animator.Rebind();
+        animator.Update(0f);
 
 
         currentState = idleState;
         
     }
 
+    protected virtual void SetPoolKeys() { }
 
     protected virtual void Update()
     {
-        if (target != null)
+        if (target != null && looksATarget)
         {
             targetPosition = target.transform.position;
             if (transform.position.x < targetPosition.x)
@@ -76,7 +109,7 @@ public abstract class Enemy : MonoBehaviour
 
             }
         }
-        else if (targetPosition != null)
+        else if (targetPosition != null && looksATarget)
         {
             if (transform.position.x < targetPosition.x)
             {
@@ -87,6 +120,17 @@ public abstract class Enemy : MonoBehaviour
             {
                 transform.localScale = new Vector3(1, 1, 1);
 
+            }
+        }
+        else if (!looksATarget && turns)
+        {
+            if (rb.linearVelocityX > 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
             }
         }
 
@@ -139,12 +183,12 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeHit(Player player,int damage,float knockback)
+    public virtual void TakeHit(Player player,int damage,float knockback)
     {
         TakeDamage(damage);
 
         Vector2 knockbackDirection = (transform.position - player.transform.position).normalized;
-        rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+        rb.AddForce(knockbackDirection * (knockback - knockbackReduction*knockback), ForceMode2D.Impulse);
     }
 
     protected abstract void InitializeStats();
@@ -158,8 +202,26 @@ public abstract class Enemy : MonoBehaviour
 
         particles.Play();
 
+        if (enemySpawner != null)
+        {
+            enemySpawner.RemoveEnemy(this);
+        }
+
         PoolManager.Instance.Release(partPoolKey, particles.gameObject, 2f);
 
         PoolManager.Instance.Release(poolKey, gameObject);
+
+    }
+
+
+    public Enemy SpawnEnemy(EnemySpawner spawner,Vector2 position)
+    {
+        SetPoolKeys();
+        GameObject enemyObj = PoolManager.Instance.Get(poolKey);
+        enemyObj.transform.position = position;
+        Enemy enemy = enemyObj.GetComponent<Enemy>();
+        enemy.EnableEnemy();
+        enemy.enemySpawner = spawner;
+        return enemy;
     }
 }

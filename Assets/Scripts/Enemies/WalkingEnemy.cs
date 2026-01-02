@@ -4,11 +4,6 @@ using UnityEngine.EventSystems;
 public class WalkingEnemy : Enemy
 {
 
-    protected override void Start()
-    {
-        InitializeStats();
-        base.Start();
-    }
 
     protected override void InitializeStats()
     {

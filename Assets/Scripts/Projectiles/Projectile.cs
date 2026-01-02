@@ -7,7 +7,7 @@ public abstract class Projectile : MonoBehaviour
     protected int damage;
     protected Vector2 direction;
     protected float speed;
-    protected bool isHostile;
+    public bool isHostile {protected set; get; }
     protected float range;
     protected Vector2 lastPos;
     protected float distance;
@@ -22,6 +22,7 @@ public abstract class Projectile : MonoBehaviour
 
     [SerializeField]
     protected GameObject destroyParticlePrefab;
+    private bool destroyed = false;
 
 
     private void Start()
@@ -57,6 +58,7 @@ public abstract class Projectile : MonoBehaviour
         this.owner = owner;
         this.knockBack = knockback;
 
+        destroyed = false;
         lastPos = position;
     }
 
@@ -72,7 +74,7 @@ public abstract class Projectile : MonoBehaviour
         {
             var player = collision.gameObject.GetComponent<Player>();
             player.TakeHit(owner.GetComponent<Enemy>(),damage,knockBack);// damage to player
-            if (!debuff.Equals(null))
+            if ( debuff != null)//!debuff.Equals(null))
             {
                 collision.gameObject.GetComponent<DebuffManager>().AddDebuff(debuff);
             }
@@ -82,11 +84,13 @@ public abstract class Projectile : MonoBehaviour
 
 
         }
-        else if (collision.gameObject.CompareTag("Enemy") && !isHostile)
+        else if (collision.gameObject.CompareTag("Enemy") && !isHostile) //mozna chybya??
         {
-
-            var enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.TakeHit(owner.GetComponent<Player>(),damage,knockBack);// damage to enemy
+            Enemy enemy;
+            if ((enemy = collision.gameObject.GetComponent<Enemy>()) != null)
+            {
+                enemy.TakeHit(owner.GetComponent<Player>(),damage,knockBack);// damage to enemy
+            }
             DestroyProjectile();
 
 
@@ -101,14 +105,15 @@ public abstract class Projectile : MonoBehaviour
 
     protected void DestroyProjectile()
     {
-        //ParticleSystem particles =Instantiate(destroyParticlePrefab, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+        if (destroyed) return;
+        else destroyed = true;
+
         ParticleSystem particles = PoolManager.Instance.Get(partPoolKey).GetComponent<ParticleSystem>();
         particles.transform.position = parentObject.transform.position;
         particles.Play();
 
-        //Destroy(particles.gameObject,2f);
         PoolManager.Instance.Release(partPoolKey, particles.gameObject, 2f);
-        //Destroy(parentObject);
+
         PoolManager.Instance.Release(poolKey, parentObject);
     }
 

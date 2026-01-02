@@ -10,13 +10,18 @@ public class ADHDEnemy : Enemy
     public float dashPower {get;private set;}
     public List<Material> enemyMaterial;
 
-    protected override void Start()
+    public override void EnableEnemy()
     {
         foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
         {
             enemyMaterial.Add(sr.material);
         }
-        base.Start();
+        base.EnableEnemy();
+    }
+
+    protected override void SetPoolKeys()
+    {
+        poolKey = "ADHDEnemy";
     }
 
     protected override void InitializeStats()
@@ -26,7 +31,6 @@ public class ADHDEnemy : Enemy
         damage = 1;
         speed = 7;
         health = 7;
-        poolKey = "ADHDEnemy";
         isAttacking = false;
         attackCooldown = 2;
         attackDuration = .5f;

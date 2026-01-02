@@ -66,6 +66,7 @@ public class ADHDAttackState : AttackState
             {
                 cloneObj.transform.position = pos;
                 var clone = cloneObj.GetComponent<ADHDDistraction>();
+                clone.EnableEnemy();
                 enemy.clones.Add(clone);
             }
             

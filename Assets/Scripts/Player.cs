@@ -206,7 +206,6 @@ public class Player : MonoBehaviour
     {
         if (!isStaggered)
         {
-            //rb.linearVelocity = moveValue * movementSpeed;
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, moveValue * movementSpeed, 0.1f);
             rb.position += rb.linearVelocity * Time.deltaTime;
         }

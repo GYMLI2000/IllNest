@@ -17,6 +17,13 @@ public class BipolarEnemy : Enemy
     [SerializeField]
     protected GameObject manicState;
 
+    protected override void SetPoolKeys()
+    {
+        poolKey = "BipolarEnemy";
+        projKey = "BipolarProjectile";
+
+    }
+
     protected override void InitializeStats()
     {
         killParticleColor = new Color( 0, 50 / 255f, 200f /255f, 0.2f);
@@ -24,8 +31,6 @@ public class BipolarEnemy : Enemy
         damage = 1;
         speed = 5;
         health = 10;
-        poolKey = "BipolarEnemy";
-        projKey = "BipolarProjectile";
         isAttacking = false;
         attackCooldown = 2;
         attackDuration = 0.5f;
