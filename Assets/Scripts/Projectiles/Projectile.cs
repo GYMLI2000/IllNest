@@ -12,6 +12,7 @@ public abstract class Projectile : MonoBehaviour
     protected Vector2 lastPos;
     protected float distance;
     protected float knockBack;
+    protected int passThrough;
 
     protected string poolKey;
     protected string partPoolKey;
@@ -47,7 +48,7 @@ public abstract class Projectile : MonoBehaviour
         if(distance > range) DestroyProjectile();
     }
 
-    public virtual void SetStats(Vector2 position,int damage, Vector2 direction, float speed, bool isHostile,float range,GameObject owner, float knockback)
+    public virtual void SetStats(Vector2 position,int damage, Vector2 direction, float speed, bool isHostile,float range,GameObject owner, float knockback, int passThrough)
     {
         this.damage = damage;
         this.direction = direction;
@@ -57,6 +58,7 @@ public abstract class Projectile : MonoBehaviour
         this.distance = 0;
         this.owner = owner;
         this.knockBack = knockback;
+        this.passThrough = passThrough;
 
         destroyed = false;
         lastPos = position;
@@ -69,38 +71,36 @@ public abstract class Projectile : MonoBehaviour
 
     virtual protected void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.gameObject.CompareTag("Player") && isHostile)
         {
             var player = collision.gameObject.GetComponent<Player>();
-            player.TakeHit(owner.GetComponent<Enemy>(),damage,knockBack);// damage to player
-            if ( debuff != null)//!debuff.Equals(null))
+            player.TakeHit(owner.GetComponent<Enemy>(),damage,knockBack);
+            if ( debuff != null)
             {
                 collision.gameObject.GetComponent<DebuffManager>().AddDebuff(debuff);
             }
-            
-
             DestroyProjectile();
-
-
         }
-        else if (collision.gameObject.CompareTag("Enemy") && !isHostile) //mozna chybya??
+        else if (collision.gameObject.CompareTag("Enemy") && !isHostile)
         {
             Enemy enemy;
             if ((enemy = collision.gameObject.GetComponent<Enemy>()) != null)
             {
-                enemy.TakeHit(owner.GetComponent<Player>(),damage,knockBack);// damage to enemy
+                enemy.TakeHit(owner.GetComponent<Player>(),damage,knockBack);
             }
             DestroyProjectile();
-
-
         }
         else if (!collision.gameObject.CompareTag("Enemy") && !collision.gameObject.CompareTag("Player"))
         {
-            DestroyProjectile();
+            if (passThrough > 0 && collision.gameObject.layer != LayerMask.NameToLayer("Wall"))
+            {
+                passThrough--;
+            }
+            else
+            {
+                DestroyProjectile();
+            }
         }
-
-
     }
 
     protected void DestroyProjectile()

@@ -19,8 +19,8 @@ TagManager:
   - Movement
   - Floor
   - Particle
-  - 
-  - 
+  - Obstacle
+  - MovementFlying
   - 
   - 
   - 

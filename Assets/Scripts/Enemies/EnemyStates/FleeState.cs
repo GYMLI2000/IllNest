@@ -38,7 +38,7 @@ public class FleeState : State
 
         Vector2 preferredDir;
 
-        Collider2D wallColliders = Physics2D.OverlapCircle(enemy.transform.position, 2f, LayerMask.GetMask("Wall"));
+        Collider2D wallColliders = Physics2D.OverlapCircle(enemy.transform.position, 2f, LayerMask.GetMask("Wall","Obstacle"));
         if (wallColliders)
         {
             Vector2 wallPos = wallColliders.ClosestPoint(enemy.transform.position);

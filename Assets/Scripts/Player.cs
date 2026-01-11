@@ -106,7 +106,16 @@ public class Player : MonoBehaviour
         StartCoroutine(AttackEffect());
 
         GameObject projectile = PoolManager.Instance.Get(projectileKey);
-        projectile.GetComponentInChildren<Pill>().SetStats(firepoint.position,damage, Quaternion.Euler(0, 0, shootAngle) * firepoint.right, projSpeed,false,range,gameObject,knockback);
+        projectile.GetComponentInChildren<Projectile>().SetStats(
+            firepoint.position
+            , damage,
+            Quaternion.Euler(0, 0, shootAngle) * firepoint.right
+            , projSpeed
+            , false
+            , range
+            , gameObject,
+            knockback,
+            0);
         projectile.transform.position = firepoint.position;
 
     }
@@ -131,21 +140,21 @@ public class Player : MonoBehaviour
 
     private void MoveFirePoint()
     {
-        Vector2 delta =  Mouse.current.delta.ReadValue() * 0.01f;
+        Vector2 delta =  Mouse.current.delta.ReadValue() * 0.01f; // posun mysi
 
         aimDir += delta;
         aimDir = aimDir.normalized; 
 
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
 
-        // otaceni hrace
+        // otaceni hrace podle toho kam míøí
         if (angle > 90f || angle < -90f)
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
 
-        if (angle >= -50f && angle <= 50f) //otaceni rukavice
+        if (angle >= -50f && angle <= 50f) //otaceni spritu rukavice
         {
             gloveSprite.localScale = new Vector3(1f, 1f, 1f);
             firepointCenter.rotation = Quaternion.Euler(0f, 0f, angle);

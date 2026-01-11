@@ -129,7 +129,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &5094561681241051544
 MonoBehaviour:
@@ -150,11 +150,13 @@ MonoBehaviour:
   chargeStart: 0
   chargeTime: 0
   knockback: 0
+  knockbackReduction: 0
   animator: {fileID: 7221705022383921573}
   firepoint: {fileID: 4104894725814184932}
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0}
   killParticlePrefab: {fileID: 0}
+  spriteRenderer: []
 --- !u!95 &7221705022383921573
 Animator:
   serializedVersion: 7
@@ -305,7 +307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4267507076334062167}
   - component: {fileID: 6081310847460351254}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: EnviromentCollider
   m_TagString: Enemy
   m_Icon: {fileID: 0}

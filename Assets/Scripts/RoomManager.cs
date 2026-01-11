@@ -14,6 +14,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] int roomHeight = 18;
     [SerializeField] int roomGap = 6;
     [SerializeField] GameObject roomPrefab;
+    [SerializeField] List<GameObject> roomLayouts;
 
     private Dictionary<Vector2Int, RoomNode> map = new();
     private Dictionary<Vector2Int, Room> spawnedRooms = new();
@@ -88,7 +89,21 @@ public class RoomManager : MonoBehaviour
             );
 
 
-            Room room = Instantiate(roomPrefab, worldPos, Quaternion.identity).GetComponent<Room>();
+            Room room = Instantiate(roomPrefab, worldPos, Quaternion.identity, this.transform).GetComponent<Room>();
+
+            if (gridPos == Vector2Int.zero) // startovni mistnost
+            {
+                room.ClearRoom();
+                room.enemySpawner = null;
+            }
+            else
+            { 
+                int layoutIndex = Random.Range(0, roomLayouts.Count); //pøidìlení nahodnyho layoutu a propojeni s nim
+                EnemySpawner roomLayout = Instantiate(roomLayouts[layoutIndex], room.grid).GetComponent<EnemySpawner>();
+                room.enemySpawner = roomLayout;
+                roomLayout.parentRoom = room;
+            }   
+
             spawnedRooms[gridPos] = room;
         }
     }
@@ -139,7 +154,10 @@ public class RoomManager : MonoBehaviour
             room.ActivateRoom();
         }
 
-        CameraController.Instance.MoveCamera(room.transform.position);
+        if (CameraController.Instance != null)
+        {
+            CameraController.Instance.MoveCamera(room.transform.position);
+        }
 
         yield return null; // 1 frame ochrana
 

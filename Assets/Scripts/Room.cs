@@ -8,7 +8,8 @@ public class Room : MonoBehaviour
     private List<Door> doorList;
     public List<Door> DoorList => doorList;
 
-    [SerializeField] private EnemySpawner enemySpawner;
+    public EnemySpawner enemySpawner;
+    public Transform grid;
 
     public bool isCleared { get; private set; } = false;
 
@@ -27,7 +28,8 @@ public class Room : MonoBehaviour
             }
         }
 
-        enemySpawner.SpawnEnemies();
+        if (enemySpawner != null)
+            enemySpawner.SpawnEnemies();
     }
 
     public void ClearRoom()

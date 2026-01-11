@@ -1012,6 +1012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5137913634343039619}
+  - component: {fileID: -2062489126289461954}
   m_Layer: 0
   m_Name: BipolarVisual
   m_TagString: Untagged
@@ -1036,6 +1037,18 @@ Transform:
   - {fileID: 932862730161946067}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &-2062489126289461954
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7728836972213801628}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &8067217961874942625
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class DebuffManager : MonoBehaviour
     private List<Debuff> activeDebuffs = new List<Debuff>();
 
     [SerializeField]
-    private Player player;
+    private Player target;
 
     
 
@@ -23,13 +23,13 @@ public class DebuffManager : MonoBehaviour
             activeDebuffs.Add(debuff);
             debuff.isApplied = true;
             debuff.applyTime = Time.time;
-            debuff.OnAdd(player);
+            debuff.OnAdd(target);
         }
     }
 
     public void RemoveDebuff(Debuff debuff)
     {
-        debuff.OnRemove(player);
+        debuff.OnRemove(target);
         activeDebuffs.Remove(debuff);
     }
 
@@ -46,7 +46,7 @@ public class DebuffManager : MonoBehaviour
             }
             else
             {
-                debuff.Effect(player);
+                debuff.Effect(target);
             }
         }
     }

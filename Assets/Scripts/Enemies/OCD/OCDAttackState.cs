@@ -35,7 +35,7 @@ public class OCDAttackState : AttackState
             GameObject projObj = PoolManager.Instance.Get(enemy.projKey);
             var projectile = projObj.GetComponentInChildren<OCDProjectile>();
 
-            projectile.SetStats(enemy.firepoint.position, 1, baseDir, 5f, true, -1, enemy.gameObject, enemy.knockback);
+            projectile.SetStats(enemy.firepoint.position, 1, baseDir, 5f, true, -1, enemy.gameObject, enemy.knockback,5);
             projectile.target = enemy.target;
             projObj.GetComponentInChildren<SpriteRenderer>().color = enemy.hitpoints.Find(hitpoint => hitpoint.sequenceIndex == b).hitpointColor;
 

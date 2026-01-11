@@ -12,6 +12,7 @@ public class ADHDEnemy : Enemy
 
     public override void EnableEnemy()
     {
+        enemyMaterial.Clear();
         foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
         {
             enemyMaterial.Add(sr.material);

@@ -23,9 +23,9 @@ public class AlzheimerProjectile : Projectile
 
     }
 
-    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback)
+    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough)
     {
-        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback);
+        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback, passThrough);
 
         debuff = new AlzheimerDebuff(60, 3);
 

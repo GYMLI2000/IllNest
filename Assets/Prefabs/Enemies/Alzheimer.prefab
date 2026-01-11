@@ -107,6 +107,7 @@ MonoBehaviour:
   chargeStart: 0
   chargeTime: 0
   knockback: 0
+  knockbackReduction: 0
   animator: {fileID: 0}
   firepoint: {fileID: 5902493134946373374}
   target: {fileID: 0}
@@ -185,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 992148814977469053}
   - component: {fileID: 4417231611179856547}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: EnviromentCollider
   m_TagString: Enemy
   m_Icon: {fileID: 0}

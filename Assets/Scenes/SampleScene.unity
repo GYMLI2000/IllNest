@@ -543,7 +543,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.2
+  orthographic size: 8.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1649,11 +1649,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b518a132987c00c4096f704b4820fe80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
-  roomCount: 20
-  roomWidth: 18
-  roomHeight: 12
+  roomCount: 15
+  roomWidth: 24
+  roomHeight: 16
   roomGap: 6
-  roomPrefab: {fileID: 4501728610439048400, guid: d62b293ffffd706469b5329315ba255d, type: 3}
+  roomPrefab: {fileID: 4501728610439048400, guid: ed3ec7c4bd0a05540ac6d59b6aa70665, type: 3}
+  roomLayouts:
+  - {fileID: 4918294143956135199, guid: d1e22cdd5e410164688301b93a2ea6d7, type: 3}
+  - {fileID: 6215548654637669934, guid: e51018fd298ffc14697215d2872f6046, type: 3}
+  - {fileID: 2442191230641552728, guid: 8624aa919bb116d46825243c4d56c9b7, type: 3}
+  - {fileID: 269293141154019578, guid: 63bcb08ec8803d140b7cb78b4c26ab4a, type: 3}
 --- !u!1 &2088411063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,6 +1729,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 160094290420818111, guid: 7616f3c3415cbf9409740ae3b56f22ef, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 3605837055276059774}
     - target: {fileID: 1924095657065222925, guid: 7616f3c3415cbf9409740ae3b56f22ef, type: 3}
       propertyPath: m_Name
       value: Player

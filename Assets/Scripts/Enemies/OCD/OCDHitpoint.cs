@@ -20,4 +20,6 @@ public class OCDHitpoint : Enemy
 
     protected override void Update() { }
 
+    public override void EnableEnemy() { }
+
 }

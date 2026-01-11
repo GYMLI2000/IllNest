@@ -226,6 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5198087248116530745}
+  - component: {fileID: 7794109779900459400}
   m_Layer: 0
   m_Name: ParkinsonVisual
   m_TagString: Untagged
@@ -249,6 +250,18 @@ Transform:
   - {fileID: 1635018604190920124}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &7794109779900459400
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2648564561832441119}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &3950927997405352012
 GameObject:
   m_ObjectHideFlags: 0

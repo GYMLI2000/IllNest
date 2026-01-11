@@ -77,7 +77,7 @@ public class AlzheimerAttackState : AttackState
                     Random.Range(-1f, 1f),
                     Random.Range(-1f, 1f)
                 ).normalized;
-            projectile.SetStats(enemy.firepoint.position, enemy.damage,shootDir,6,true,-1,enemy.gameObject,enemy.knockback);
+            projectile.SetStats(enemy.firepoint.position, enemy.damage,shootDir,6,true,-1,enemy.gameObject,enemy.knockback,20);
             projObj.transform.position = enemy.firepoint.position;
 
 

@@ -80,11 +80,35 @@ public abstract class Enemy : MonoBehaviour
         SetPoolKeys();
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player");
+        isAttacking = false;
+        isCharging = false;
         InitializeStats();
         spriteRenderer = GetComponentsInChildren<SpriteRenderer>(true);
+
         animator = GetComponent<Animator>();
         animator.Rebind();
         animator.Update(0f);
+        foreach (var p in animator.parameters)
+        {
+            switch (p.type)
+            {
+                case AnimatorControllerParameterType.Bool:
+                    animator.SetBool(p.name, false);
+                    break;
+                case AnimatorControllerParameterType.Float:
+                    animator.SetFloat(p.name, 0f);
+                    break;
+                case AnimatorControllerParameterType.Int:
+                    animator.SetInteger(p.name, 0);
+                    break;
+                case AnimatorControllerParameterType.Trigger:
+                    animator.ResetTrigger(p.name);
+                    break;
+            }
+        }
+
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
 
 
         currentState = idleState;
@@ -93,7 +117,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void SetPoolKeys() { }
 
-    protected virtual void Update()
+    private void TurnToTarget()
     {
         if (target != null && looksATarget)
         {
@@ -133,6 +157,11 @@ public abstract class Enemy : MonoBehaviour
                 transform.localScale = new Vector3(1, 1, 1);
             }
         }
+    }
+
+    protected virtual void Update()
+    {
+        TurnToTarget();
 
         if (currentState != null)
         {
@@ -207,12 +236,18 @@ public abstract class Enemy : MonoBehaviour
             enemySpawner.RemoveEnemy(this);
         }
 
+        StopAllCoroutines();
+
         PoolManager.Instance.Release(partPoolKey, particles.gameObject, 2f);
 
         PoolManager.Instance.Release(poolKey, gameObject);
 
     }
 
+    private void OnEnable()
+    {
+        EnableEnemy();
+    }
 
     public Enemy SpawnEnemy(EnemySpawner spawner,Vector2 position)
     {
@@ -220,7 +255,6 @@ public abstract class Enemy : MonoBehaviour
         GameObject enemyObj = PoolManager.Instance.Get(poolKey);
         enemyObj.transform.position = position;
         Enemy enemy = enemyObj.GetComponent<Enemy>();
-        enemy.EnableEnemy();
         enemy.enemySpawner = spawner;
         return enemy;
     }

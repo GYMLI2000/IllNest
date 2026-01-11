@@ -7,18 +7,43 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Enemy[] enemies;
 
-    [SerializeField]
-    private Transform[] spawnPoints;
 
-    [SerializeField] private Room parentRoom;
+    [SerializeField]
+    private Transform spawnPoint;
+    
+    private List<Transform> spawnPoints = new();
+
+    public Room parentRoom;
 
     private List<Enemy> currentEnemies = new();
+
+    private void Awake()
+    {
+        if (spawnPoint == null)
+        {
+            return;
+        }
+
+        foreach (Transform child in spawnPoint)
+        {
+            if (child != spawnPoint)
+            {
+                spawnPoints.Add(child);
+            }
+        }
+    }
 
     public void SpawnEnemies()
     {
 
-        foreach (Transform spawnPoint in spawnPoints)
+        List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
+
+        for (int i = 0; i < 2 && availableSpawnPoints.Count > 0; i++)
         {
+            int index = Random.Range(0, availableSpawnPoints.Count);
+            Transform spawnPoint = availableSpawnPoints[index];
+            availableSpawnPoints.RemoveAt(index);
+
             Enemy enemy = enemies[Random.Range(0, enemies.Length)];
             currentEnemies.Add(enemy.SpawnEnemy(this, spawnPoint.position));
         }

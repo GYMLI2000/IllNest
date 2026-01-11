@@ -11,6 +11,7 @@ public class OCDEnemy : Enemy
 
     public override void EnableEnemy()
     {
+        enemyMaterial.Clear();
         foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
         {
             enemyMaterial.Add(sr.material);
@@ -40,7 +41,7 @@ public class OCDEnemy : Enemy
         attackState = new OCDAttackState(this);
         idleState = new IdleState(this);
         chaseState = new OCDChaseState(this);
-        knockback = 1f;
+        knockback = 2f;
         looksATarget = false;
         turns = false;
         knockbackReduction = 1f;
