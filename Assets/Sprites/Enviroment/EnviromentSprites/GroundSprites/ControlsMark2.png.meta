@@ -1,0 +1,1599 @@
+fileFormatVersion: 2
+guid: d3cb40bb3fb15fa4fbca476ebc2a5341
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 702649601315431651
+    second: ControlsMark2_0
+  - first:
+      213: -1852488239968933607
+    second: ControlsMark2_1
+  - first:
+      213: 6942362860171269387
+    second: ControlsMark2_2
+  - first:
+      213: 3276745122047377508
+    second: ControlsMark2_3
+  - first:
+      213: 5357202308702127111
+    second: ControlsMark2_4
+  - first:
+      213: -2418360773655918375
+    second: ControlsMark2_5
+  - first:
+      213: -5875378762157116253
+    second: ControlsMark2_6
+  - first:
+      213: 6531051728761987022
+    second: ControlsMark2_7
+  - first:
+      213: 4386459172235893961
+    second: ControlsMark2_8
+  - first:
+      213: 7719566861141291667
+    second: ControlsMark2_9
+  - first:
+      213: -3188745684931565119
+    second: ControlsMark2_10
+  - first:
+      213: 6391220967149789796
+    second: ControlsMark2_11
+  - first:
+      213: -1282156885472972214
+    second: ControlsMark2_12
+  - first:
+      213: -8668602395879847223
+    second: ControlsMark2_13
+  - first:
+      213: 4119573437571220847
+    second: ControlsMark2_14
+  - first:
+      213: -5032558547821082848
+    second: ControlsMark2_15
+  - first:
+      213: 100100763826894385
+    second: ControlsMark2_16
+  - first:
+      213: 1090712081525092651
+    second: ControlsMark2_17
+  - first:
+      213: 5240595599033880402
+    second: ControlsMark2_18
+  - first:
+      213: -4844908722400909521
+    second: ControlsMark2_19
+  - first:
+      213: -3936306945844657536
+    second: ControlsMark2_20
+  - first:
+      213: 5736940178410502141
+    second: ControlsMark2_21
+  - first:
+      213: -8519816083568413774
+    second: ControlsMark2_22
+  - first:
+      213: -3140433950329300384
+    second: ControlsMark2_23
+  - first:
+      213: -5435710844135300751
+    second: ControlsMark2_24
+  - first:
+      213: -7860178367271427489
+    second: ControlsMark2_25
+  - first:
+      213: -2871018560005241236
+    second: ControlsMark2_26
+  - first:
+      213: -8233401666620364127
+    second: ControlsMark2_27
+  - first:
+      213: 4209048763566787420
+    second: ControlsMark2_28
+  - first:
+      213: -707813859047106012
+    second: ControlsMark2_29
+  - first:
+      213: 7940761284293983092
+    second: ControlsMark2_30
+  - first:
+      213: 1577964116384255775
+    second: ControlsMark2_31
+  - first:
+      213: 1209196667702205078
+    second: ControlsMark2_32
+  - first:
+      213: 629576888937122074
+    second: ControlsMark2_33
+  - first:
+      213: 150636569868905439
+    second: ControlsMark2_34
+  - first:
+      213: -363344332666732126
+    second: ControlsMark2_35
+  - first:
+      213: 363464941777141640
+    second: ControlsMark2_36
+  - first:
+      213: 2355127840641607499
+    second: ControlsMark2_37
+  - first:
+      213: 4950112076236246277
+    second: ControlsMark2_38
+  - first:
+      213: 2472889283014783964
+    second: ControlsMark2_39
+  - first:
+      213: -7838321059646258795
+    second: ControlsMark2_40
+  - first:
+      213: -5613770962019876294
+    second: ControlsMark2_41
+  - first:
+      213: -5703182505173861781
+    second: ControlsMark2_42
+  - first:
+      213: 4991253818207709534
+    second: ControlsMark2_43
+  - first:
+      213: 4003409585773862750
+    second: ControlsMark2_44
+  - first:
+      213: -3323346922218500620
+    second: ControlsMark2_45
+  - first:
+      213: 4473488990389354795
+    second: ControlsMark2_46
+  - first:
+      213: -7092149131688122000
+    second: ControlsMark2_47
+  - first:
+      213: 191653699969654095
+    second: ControlsMark2_48
+  - first:
+      213: -237735785540707146
+    second: ControlsMark2_49
+  - first:
+      213: 5473540792270646971
+    second: ControlsMark2_50
+  - first:
+      213: -3601344154566028301
+    second: ControlsMark2_51
+  - first:
+      213: 6778148847896203340
+    second: ControlsMark2_52
+  - first:
+      213: -7448730869076203211
+    second: ControlsMark2_53
+  - first:
+      213: -7448618511155960807
+    second: ControlsMark2_54
+  - first:
+      213: 8776315686660311251
+    second: ControlsMark2_55
+  - first:
+      213: -265841954248495537
+    second: ControlsMark2_56
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ControlsMark2_0
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 651
+        width: 558
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e4e9ffe61050c900800000000000000
+      internalID: 702649601315431651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 936
+        width: 143
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 919201ab2c3aa46e0800000000000000
+      internalID: -1852488239968933607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_2
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 966
+        width: 114
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b059f563d3a385060800000000000000
+      internalID: 6942362860171269387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_3
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 919
+        width: 128
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 460c02bd356597d20800000000000000
+      internalID: 3276745122047377508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_4
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 897
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704c718bd1b985a40800000000000000
+      internalID: 5357202308702127111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_5
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 907
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d8008b70b1407ed0800000000000000
+      internalID: -2418360773655918375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_6
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 806
+        width: 109
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a430c81526767ea0800000000000000
+      internalID: -5875378762157116253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_7
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 878
+        width: 31
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecf1f8eb1f4f2aa50800000000000000
+      internalID: 6531051728761987022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_8
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 797
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ccdfde6065dfdc30800000000000000
+      internalID: 4386459172235893961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_9
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 799
+        width: 55
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39234320929612b60800000000000000
+      internalID: 7719566861141291667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_10
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 813
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c9289ab1bc4fb3d0800000000000000
+      internalID: -3188745684931565119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_11
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 802
+        width: 54
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 462edf38b9d22b850800000000000000
+      internalID: 6391220967149789796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_12
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 817
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42ff071b1dd43ee0800000000000000
+      internalID: -1282156885472972214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_13
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 793
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ca4b769c00f2b780800000000000000
+      internalID: -8668602395879847223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_14
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 783
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f65419c073aab2930800000000000000
+      internalID: 4119573437571220847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_15
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 796
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 027c4c51aa2c82ab0800000000000000
+      internalID: -5032558547821082848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_16
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 767
+        width: 33
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 136b5a54d11a36100800000000000000
+      internalID: 100100763826894385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_17
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 783
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b21b78bfbdcf22f00800000000000000
+      internalID: 1090712081525092651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_18
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 777
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25fc3e37ee55ab840800000000000000
+      internalID: 5240595599033880402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_19
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 785
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f272a18bf2d63ccb0800000000000000
+      internalID: -4844908722400909521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_20
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 579
+        width: 276
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 082c60e20bd6f59c0800000000000000
+      internalID: -3936306945844657536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_21
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 772
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df7f2d752b4bd9f40800000000000000
+      internalID: 5736940178410502141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_22
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 461
+        width: 252
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b3be33796883c980800000000000000
+      internalID: -8519816083568413774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_23
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 719
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a9b0ef5ffea64d0800000000000000
+      internalID: -3140433950329300384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_24
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 0
+        width: 595
+        height: 666
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 171a39179c97094b0800000000000000
+      internalID: -5435710844135300751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_25
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 633
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f52a3938b690be290800000000000000
+      internalID: -7860178367271427489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_26
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 443
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c66855bb4d71828d0800000000000000
+      internalID: -2871018560005241236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_27
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 226
+        width: 194
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aaebff7ec41dbd80800000000000000
+      internalID: -8233401666620364127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_28
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 424
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5b02bacc8b896a30800000000000000
+      internalID: 4209048763566787420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_29
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 408
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42a166c9b075d26f0800000000000000
+      internalID: -707813859047106012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_30
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 397
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47b748ce050433e60800000000000000
+      internalID: 7940761284293983092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_31
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 400
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1f8561e00e06e510800000000000000
+      internalID: 1577964116384255775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_32
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 372
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69ad9f176fde7c010800000000000000
+      internalID: 1209196667702205078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_33
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 387
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1984e748d4bcb800800000000000000
+      internalID: 629576888937122074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_34
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 368
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdb2835892b271200800000000000000
+      internalID: 150636569868905439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_35
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 354
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a18f38214425faf0800000000000000
+      internalID: -363344332666732126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_36
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 354
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88f3fe650794b0500800000000000000
+      internalID: 363464941777141640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_37
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 335
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4763160b481fa020800000000000000
+      internalID: 2355127840641607499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_38
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 356
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50dce6ed4b452b440800000000000000
+      internalID: 4950112076236246277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_39
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 309
+        width: 52
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd377f273b7715220800000000000000
+      internalID: 2472889283014783964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_40
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 0
+        width: 296
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59142548680b83390800000000000000
+      internalID: -7838321059646258795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_41
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 278
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3207669d01e712b0800000000000000
+      internalID: -5613770962019876294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_42
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 256
+        width: 95
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6ab3e17ab93ad0b0800000000000000
+      internalID: -5703182505173861781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_43
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 240
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e59251227ee744540800000000000000
+      internalID: 4991253818207709534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_44
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 227
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5fd17aaec7fe8730800000000000000
+      internalID: 4003409585773862750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_45
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 220
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd47c3059911e1d0800000000000000
+      internalID: -3323346922218500620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_46
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 209
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2147c20986051e30800000000000000
+      internalID: 4473488990389354795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_47
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 215
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07962a7c0ff939d90800000000000000
+      internalID: -7092149131688122000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_48
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 186
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4d94925604e8a200800000000000000
+      internalID: 191653699969654095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_49
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 177
+        width: 28
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bc9278009463bcf0800000000000000
+      internalID: -237735785540707146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_50
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 161
+        width: 19
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbee6eab95ce5fb40800000000000000
+      internalID: 5473540792270646971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_51
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 138
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f399297294750ec0800000000000000
+      internalID: -3601344154566028301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_52
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 146
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4093990772d01e50800000000000000
+      internalID: 6778148847896203340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_53
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 140
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 539e9395dbac0a890800000000000000
+      internalID: -7448730869076203211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_54
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 125
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9146627bde031a890800000000000000
+      internalID: -7448618511155960807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_55
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 97
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d8831c3e9cbbc970800000000000000
+      internalID: 8776315686660311251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControlsMark2_56
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 89
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4e6f9ea62a8f4cf0800000000000000
+      internalID: -265841954248495537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ControlsMark2_0: 702649601315431651
+      ControlsMark2_1: -1852488239968933607
+      ControlsMark2_10: -3188745684931565119
+      ControlsMark2_11: 6391220967149789796
+      ControlsMark2_12: -1282156885472972214
+      ControlsMark2_13: -8668602395879847223
+      ControlsMark2_14: 4119573437571220847
+      ControlsMark2_15: -5032558547821082848
+      ControlsMark2_16: 100100763826894385
+      ControlsMark2_17: 1090712081525092651
+      ControlsMark2_18: 5240595599033880402
+      ControlsMark2_19: -4844908722400909521
+      ControlsMark2_2: 6942362860171269387
+      ControlsMark2_20: -3936306945844657536
+      ControlsMark2_21: 5736940178410502141
+      ControlsMark2_22: -8519816083568413774
+      ControlsMark2_23: -3140433950329300384
+      ControlsMark2_24: -5435710844135300751
+      ControlsMark2_25: -7860178367271427489
+      ControlsMark2_26: -2871018560005241236
+      ControlsMark2_27: -8233401666620364127
+      ControlsMark2_28: 4209048763566787420
+      ControlsMark2_29: -707813859047106012
+      ControlsMark2_3: 3276745122047377508
+      ControlsMark2_30: 7940761284293983092
+      ControlsMark2_31: 1577964116384255775
+      ControlsMark2_32: 1209196667702205078
+      ControlsMark2_33: 629576888937122074
+      ControlsMark2_34: 150636569868905439
+      ControlsMark2_35: -363344332666732126
+      ControlsMark2_36: 363464941777141640
+      ControlsMark2_37: 2355127840641607499
+      ControlsMark2_38: 4950112076236246277
+      ControlsMark2_39: 2472889283014783964
+      ControlsMark2_4: 5357202308702127111
+      ControlsMark2_40: -7838321059646258795
+      ControlsMark2_41: -5613770962019876294
+      ControlsMark2_42: -5703182505173861781
+      ControlsMark2_43: 4991253818207709534
+      ControlsMark2_44: 4003409585773862750
+      ControlsMark2_45: -3323346922218500620
+      ControlsMark2_46: 4473488990389354795
+      ControlsMark2_47: -7092149131688122000
+      ControlsMark2_48: 191653699969654095
+      ControlsMark2_49: -237735785540707146
+      ControlsMark2_5: -2418360773655918375
+      ControlsMark2_50: 5473540792270646971
+      ControlsMark2_51: -3601344154566028301
+      ControlsMark2_52: 6778148847896203340
+      ControlsMark2_53: -7448730869076203211
+      ControlsMark2_54: -7448618511155960807
+      ControlsMark2_55: 8776315686660311251
+      ControlsMark2_56: -265841954248495537
+      ControlsMark2_6: -5875378762157116253
+      ControlsMark2_7: 6531051728761987022
+      ControlsMark2_8: 4386459172235893961
+      ControlsMark2_9: 7719566861141291667
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

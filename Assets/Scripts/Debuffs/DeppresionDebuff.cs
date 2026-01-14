@@ -8,6 +8,7 @@ public class DeppresionDebuff : Debuff
     {
         this.duration = duration;
         this.magnitude = magnitude;
+        debuffID =2;
     }
 
     public override void Effect(Player player)

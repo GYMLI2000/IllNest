@@ -6,6 +6,7 @@ public class AlzheimerDebuff : Debuff
     {
         this.duration = duration;
         this.magnitude = magnitude;
+        debuffID =3;
     }
 
 

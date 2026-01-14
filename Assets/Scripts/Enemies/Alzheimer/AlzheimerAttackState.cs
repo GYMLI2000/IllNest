@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class AlzheimerAttackState : AttackState
 {
     private new AlzheimerEnemy enemy;
-    private float alpha = 1f;
     private bool isFading = false;
     private Vector2 moveDir;
 

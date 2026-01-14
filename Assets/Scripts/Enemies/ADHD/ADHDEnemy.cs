@@ -48,7 +48,7 @@ public class ADHDEnemy : Enemy
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isAttacking && (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Player")))
+        if (isAttacking && (collision.gameObject.CompareTag("Wall") ||  collision.gameObject.CompareTag("Player")))
         {
             dashDirection = dashDirection/3 * -1;
         }

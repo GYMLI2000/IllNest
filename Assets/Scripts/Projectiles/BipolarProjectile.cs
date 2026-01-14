@@ -23,7 +23,7 @@ public class BipolarProjectile : Projectile
     {
         base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback, passThrough);
 
-        debuff = new DeppresionDebuff(15, 3);
+        debuff = new DeppresionDebuff(15, 2);
 
 
     }

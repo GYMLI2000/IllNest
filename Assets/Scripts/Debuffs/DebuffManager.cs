@@ -1,10 +1,12 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class DebuffManager : MonoBehaviour
 {
+    public event Action<List<Debuff>> changeDebuff;
     private List<Debuff> activeDebuffs = new List<Debuff>();
 
     [SerializeField]
@@ -24,6 +26,7 @@ public class DebuffManager : MonoBehaviour
             debuff.isApplied = true;
             debuff.applyTime = Time.time;
             debuff.OnAdd(target);
+            changeDebuff?.Invoke(activeDebuffs);
         }
     }
 
@@ -31,6 +34,7 @@ public class DebuffManager : MonoBehaviour
     {
         debuff.OnRemove(target);
         activeDebuffs.Remove(debuff);
+        changeDebuff?.Invoke(activeDebuffs);
     }
 
     private void Update()
@@ -49,5 +53,15 @@ public class DebuffManager : MonoBehaviour
                 debuff.Effect(target);
             }
         }
+    }
+
+    public void ClearDebuffs()
+    {
+        foreach (var debuff in activeDebuffs)
+        {
+            debuff.OnRemove(target);
+        }
+        activeDebuffs.Clear();
+        changeDebuff?.Invoke(activeDebuffs);
     }
 }

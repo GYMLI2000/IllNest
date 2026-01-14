@@ -6,7 +6,9 @@ public class ParkinsonDebuff : Debuff
     private float lowSpeedTimer = 0f;
     public ParkinsonDebuff(int duration, float magnitude) : base(duration, magnitude)
     {
-        
+        this.duration = duration;
+        this.magnitude = magnitude;
+        debuffID =1;
     }
 
     public override void OnAdd(Player player)
@@ -26,7 +28,7 @@ public class ParkinsonDebuff : Debuff
             lowSpeedTimer = 0f;
         }
 
-        if (lowSpeedTimer < 1f)
+        if (lowSpeedTimer < 0.1f)
         {
             float value;
             if (Random.value < 0.5f)

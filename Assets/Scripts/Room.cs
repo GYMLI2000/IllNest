@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Room : MonoBehaviour
 {
@@ -38,6 +39,13 @@ public class Room : MonoBehaviour
         foreach (Door door in doorList)
         {
             door.ChangeLock(false);
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null && player.GetComponent<DebuffManager>() != null)
+        {
+            player.GetComponent<DebuffManager>().ClearDebuffs();
         }
     }
 }

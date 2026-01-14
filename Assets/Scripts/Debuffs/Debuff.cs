@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class Debuff
 {
+    public int debuffID { protected set; get; }
     protected int duration;
     protected float magnitude;
     public float applyTime = 0;

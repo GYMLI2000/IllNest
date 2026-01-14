@@ -10,14 +10,14 @@ public abstract class AttackState : State
 
     public override void AI()
     {
-        // Když dokonèil útok pøepnout zpìt
+        // po skonceni utoku
         if (enemy.isAttacking && enemy.lastAttack + enemy.attackDuration <= Time.time)
         {
             enemy.isAttacking = false;
             enemy.animator.SetTrigger("Idle");
         }
 
-        // ==== 1) Zaèátek charging ====
+        // charge
         if (!enemy.isAttacking && !enemy.isCharging &&
             enemy.lastAttack + enemy.attackCooldown <= Time.time)
         {
@@ -26,16 +26,16 @@ public abstract class AttackState : State
             enemy.chargeStart = Time.time;
             enemy.animator.SetTrigger("Charge");
 
-            OnCharge(); // vizuální efekty
+            OnCharge();
             return;
         }
 
-        // ==== 2) Bìhem charge ====
+
         if (enemy.isCharging)
         {
             if (enemy.chargeStart + enemy.chargeTime <= Time.time)
             {
-                // Charge dokonèen  spustit útok
+
                 enemy.isCharging = false;
                 enemy.isAttacking = true;
                 enemy.lastAttack = Time.time;
@@ -45,7 +45,7 @@ public abstract class AttackState : State
                 Attack();
             }
 
-            return; // nic jiného bìhem charge
+            return; 
         }
 
     }

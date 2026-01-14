@@ -59,7 +59,7 @@ public class ADHDAttackState : AttackState
 
 
 
-        if (enemy.clones.Count < 3)
+        if (enemy.clones.Count < 2)
         {
             var pos = enemy.transform.position;
             PoolManager.Instance.Get("ADHDDistraction",0.05f, cloneObj =>

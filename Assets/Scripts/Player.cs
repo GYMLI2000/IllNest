@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public event Action<int> changeHp;
     public event Action<int> changeMaxHp;
 
+    [SerializeField]
+    private DebuffManager debuffManager;
 
 
     public float movementSpeed;
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         moveAction = playerControls.Player.Move;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentsInChildren<SpriteRenderer>();
@@ -174,11 +177,31 @@ public class Player : MonoBehaviour
 
         StartCoroutine(HitEffect());
 
-        if (currentHp <= 0) Debug.Log("Jses mrtvej");
+        if (currentHp <= 0) 
+        { 
+            Debug.Log("Jses mrtvej");
+            Die();
+        }
 
 
         changeHp?.Invoke(currentHp);
         lastHit = Time.time;
+    }
+
+    private void Die()
+    {
+        animator.SetTrigger("Die");
+        StopAllCoroutines();
+        foreach (SpriteRenderer s in spriteRenderer)
+        {
+            s.color = Color.white;
+        }
+        DeathScreen.Instance.Show();
+        rb.simulated = false;
+        gloveSprite.rotation = Quaternion.Euler(0f, 90f, 0f);
+        debuffManager.ClearDebuffs();
+        debuffManager.enabled = false;
+        this.enabled = false;
     }
 
     private IEnumerator HitEffect()

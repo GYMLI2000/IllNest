@@ -38,7 +38,7 @@ public class FleeState : State
 
         Vector2 preferredDir;
 
-        Collider2D wallColliders = Physics2D.OverlapCircle(enemy.transform.position, 2f, LayerMask.GetMask("Wall","Obstacle"));
+        Collider2D wallColliders = Physics2D.OverlapCircle(enemy.transform.position, 2f, LayerMask.GetMask("Wall")); //pridat rozdil mezi flying enemy a normal
         if (wallColliders)
         {
             Vector2 wallPos = wallColliders.ClosestPoint(enemy.transform.position);
