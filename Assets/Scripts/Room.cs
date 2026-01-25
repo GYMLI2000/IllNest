@@ -41,11 +41,5 @@ public class Room : MonoBehaviour
             door.ChangeLock(false);
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        if (player != null && player.GetComponent<DebuffManager>() != null)
-        {
-            player.GetComponent<DebuffManager>().ClearDebuffs();
-        }
     }
 }

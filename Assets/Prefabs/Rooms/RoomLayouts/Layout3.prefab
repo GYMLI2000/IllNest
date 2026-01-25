@@ -514,9 +514,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 631898165382986192, guid: 82e736bb8e9fca844957fc7fa105ca4e, type: 3}
   - {fileID: 7243394891610419173, guid: 0654c4ac7b90a754daadd211f9f76b68, type: 3}
   - {fileID: 5094561681241051544, guid: 7405035a0f582894e8dc9800a0fb1ef2, type: 3}
+  - {fileID: 6824236967652251927, guid: 6e564b93fd1fed249b48cf82e5bf3ec3, type: 3}
   spawnPoint: {fileID: 1766237942397005821}
   parentRoom: {fileID: 0}
 --- !u!50 &2910399709596383094

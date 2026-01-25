@@ -147,7 +147,7 @@ public class AlzheimerAttackState : AttackState
         Vector2 dir = Random.insideUnitCircle.normalized;
         float dist = Random.Range(5f, 10f);
 
-        RaycastHit2D hit = Physics2D.CircleCast(origin, .5f, dir, dist, LayerMask.GetMask("Wall"));
+        RaycastHit2D hit = Physics2D.CircleCast(origin, .5f, dir, dist, LayerMask.GetMask("Wall","HightObstacle"));
 
         Vector2 targetPos;
 

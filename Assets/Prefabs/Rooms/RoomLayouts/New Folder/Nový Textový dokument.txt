@@ -1,0 +1,1 @@
+Dobrý ted jde o jinou věc ze to razeni spritu v tilemap je trosku goofy kvůli tomu ze to je jako jeden velkej objekt a nemaj svůj vlastní center ty objektym usi doresit yikes (ye reference??????)

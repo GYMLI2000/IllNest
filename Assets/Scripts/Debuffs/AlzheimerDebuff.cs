@@ -50,4 +50,11 @@ public class AlzheimerDebuff : Debuff
             isApplied = false;
         }
     }
+
+    public override void OnEnterRoom()
+    {
+    }
+    public override void OnClearRoom()
+    {
+    }
 }

@@ -12,7 +12,27 @@ public class DebuffManager : MonoBehaviour
     [SerializeField]
     private Player target;
 
-    
+    private void Awake()
+    {
+        RoomManager.RM.roomEnter += OnRoomEnter;
+        RoomManager.RM.roomClear += OnRoomClear;
+    }
+
+    public void OnRoomEnter()
+    {
+        foreach (var debuff in activeDebuffs)
+        {
+            debuff.OnEnterRoom();
+        }
+    }
+
+    private void OnRoomClear()
+    {
+        foreach (var debuff in activeDebuffs)
+        {
+            debuff.OnClearRoom();
+        }
+    }
 
     public void AddDebuff(Debuff debuff)
     {

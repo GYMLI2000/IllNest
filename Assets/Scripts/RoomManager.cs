@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RoomManager : MonoBehaviour
 {
@@ -18,6 +20,9 @@ public class RoomManager : MonoBehaviour
 
     private Dictionary<Vector2Int, RoomNode> map = new();
     private Dictionary<Vector2Int, Room> spawnedRooms = new();
+
+    public event Action roomClear;
+    public event Action roomEnter;
 
     private void Awake()
     {
@@ -161,6 +166,11 @@ public class RoomManager : MonoBehaviour
 
         yield return null; // 1 frame ochrana
 
+    }
+
+    public void ClearRoom(Room room)
+    {
+        room.ClearRoom();
     }
 
 }

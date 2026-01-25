@@ -57,4 +57,11 @@ public class ParkinsonDebuff : Debuff
         player.animator.SetBool("ParkinsonDebuff", false);
     }
 
+
+    public override void OnEnterRoom()
+    {
+    }
+    public override void OnClearRoom()
+    {
+    }
 }

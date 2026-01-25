@@ -2947,6 +2947,16 @@ MonoBehaviour:
   - {fileID: 6215548654637669934, guid: e51018fd298ffc14697215d2872f6046, type: 3}
   - {fileID: 2442191230641552728, guid: 8624aa919bb116d46825243c4d56c9b7, type: 3}
   - {fileID: 269293141154019578, guid: 63bcb08ec8803d140b7cb78b4c26ab4a, type: 3}
+  - {fileID: 3532060429795076089, guid: d261403198ddef24689112e242fac595, type: 3}
+  - {fileID: 6656812761582093007, guid: 29c67f29b58ea1c418bdd2c51ff087df, type: 3}
+  - {fileID: 8358156075693045384, guid: 800eb5050a12a6b44828b2369c79fe60, type: 3}
+  - {fileID: 2259051507090336231, guid: 3a725bc1ad9af3a4087b5eb1fd190e46, type: 3}
+  - {fileID: 3248328437425501164, guid: 9b2872c446a866a46bb79dce93b915e0, type: 3}
+  - {fileID: 5815140452225351876, guid: c78c2792f50a64944b199fe562625f0c, type: 3}
+  - {fileID: 2059177842633119273, guid: bee2877128bdd3246aa9b1903842d603, type: 3}
+  - {fileID: 5635714000583770703, guid: 8abe565dcb6990046917c66ca5d11540, type: 3}
+  - {fileID: 3131889757108514931, guid: 0eecfc3a47856b54e929f5a33ace416f, type: 3}
+  - {fileID: 3332269625222765212, guid: 14ccb08a141d7e24e83b4e68d41707a1, type: 3}
 --- !u!1 &2088411063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,6 +3151,10 @@ PrefabInstance:
     - target: {fileID: 1924095657065222925, guid: 7616f3c3415cbf9409740ae3b56f22ef, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924095657065222925, guid: 7616f3c3415cbf9409740ae3b56f22ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3413601562855351675, guid: 7616f3c3415cbf9409740ae3b56f22ef, type: 3}
       propertyPath: m_LocalPosition.x

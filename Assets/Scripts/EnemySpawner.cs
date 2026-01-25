@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    private Enemy[] enemies;
+    private List<Enemy> enemies;
 
 
     [SerializeField]
@@ -44,7 +44,8 @@ public class EnemySpawner : MonoBehaviour
             Transform spawnPoint = availableSpawnPoints[index];
             availableSpawnPoints.RemoveAt(index);
 
-            Enemy enemy = enemies[Random.Range(0, enemies.Length)];
+            Enemy enemy = enemies[Random.Range(0, enemies.Count)];
+            enemies.Remove(enemy);
             currentEnemies.Add(enemy.SpawnEnemy(this, spawnPoint.position));
         }
     }
@@ -56,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
         currentEnemies.Remove(enemy);
         if (currentEnemies.Count == 0)
         {
-            parentRoom.ClearRoom();
+            RoomManager.RM.ClearRoom(parentRoom);
         }
 
         Debug.Log("Checked   " + currentEnemies.Count);

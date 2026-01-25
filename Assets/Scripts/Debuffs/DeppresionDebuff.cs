@@ -38,4 +38,11 @@ public class DeppresionDebuff : Debuff
             s.color = Color.white;
         }
     }
+
+    public override void OnEnterRoom()
+    {
+    }
+    public override void OnClearRoom()
+    {
+    }
 }

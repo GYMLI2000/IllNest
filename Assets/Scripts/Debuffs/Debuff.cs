@@ -31,4 +31,7 @@ public abstract class Debuff
 
     public abstract void OnRemove(Player player);
 
+    public abstract void OnEnterRoom();
+    public abstract void OnClearRoom();
+
 }

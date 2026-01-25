@@ -61,11 +61,16 @@ public class Player : MonoBehaviour
 
     public int shootAngle = 1;
 
+
+    private bool isInvincible = false;
+
     private void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         moveAction = playerControls.Player.Move;
+
+
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentsInChildren<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -169,13 +174,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
-        if (Time.time <= lastHit + invFrames) return;
+        if (Time.time <= lastHit + invFrames) return false;
 
+        if (isInvincible) // tohle potom zmenit jenom pro ukazku abych neumiral
+        {
+            damage = 0;
+        }
+        
         currentHp -= damage;
 
+
         StartCoroutine(HitEffect());
+
 
         if (currentHp <= 0) 
         { 
@@ -186,6 +198,7 @@ public class Player : MonoBehaviour
 
         changeHp?.Invoke(currentHp);
         lastHit = Time.time;
+        return damage > 0;
     }
 
     private void Die()
@@ -251,6 +264,12 @@ public class Player : MonoBehaviour
     private void Update()
     {
         moveValue = moveAction.ReadValue<Vector2>().normalized;
+
+        if (Keyboard.current.iKey.wasPressedThisFrame)
+        {
+            Debug.Log("Invincibility toggled"); // tohle potom zmenit jenom pro ukazku abych neumiral
+            isInvincible = !isInvincible; // tohle potom zmenit jenom pro ukazku abych neumiral
+        }
 
         if (moveValue.magnitude > 0)
         {
