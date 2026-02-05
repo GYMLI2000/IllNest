@@ -13,7 +13,7 @@ public class AlzheimerDebuff : Debuff
     AlzheimerFogController fog;
 
     public float minRadius = 0.4f;
-    public float maxRadius = 15f;
+    public float maxRadius = 12f;
     public float shrinkSpeed = 4f;
     public float expandSpeed = 2f;
 
@@ -23,13 +23,11 @@ public class AlzheimerDebuff : Debuff
     public override void OnAdd(Player player)
     {
         fog = Camera.main.GetComponentInChildren<AlzheimerFogController>();
+        player.passThrough++;
         if (fog != null)
         {
             fog.minRadius = minRadius;
-            fog.maxRadius = maxRadius;
-            fog.shrinkSpeed = shrinkSpeed * magnitude;
-            fog.expandSpeed = expandSpeed;
-            fog.currentRadius = fog.maxRadius-1;
+            fog.currentRadius = (fog.maxRadius-2f/duration) * (currentDuration+1f) + 2f;
             fog.SetActive(true);
         }
     }
@@ -37,6 +35,7 @@ public class AlzheimerDebuff : Debuff
     public override void OnRemove(Player player)
     {
         var fog = Camera.main.GetComponentInChildren<AlzheimerFogController>();
+        player.passThrough--;
         if (fog != null)
         {
             fog.SetActive(false);
@@ -45,10 +44,7 @@ public class AlzheimerDebuff : Debuff
 
     public override void Effect(Player player)
     {
-        if (fog.currentRadius == fog.maxRadius)
-        {
-            isApplied = false;
-        }
+        fog.currentRadius = (fog.maxRadius-2f/duration) * (currentDuration+1f) + 2f;
     }
 
     public override void OnEnterRoom()
@@ -56,5 +52,6 @@ public class AlzheimerDebuff : Debuff
     }
     public override void OnClearRoom()
     {
+        currentDuration++;
     }
 }

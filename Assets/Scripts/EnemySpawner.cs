@@ -35,17 +35,26 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemies()
     {
-
+        bool spawnedMainEnemy = false;
         List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
 
-        for (int i = 0; i < 2 && availableSpawnPoints.Count > 0; i++)
+        for (int i = 0; i < 4 && availableSpawnPoints.Count > 0; i++)
         {
             int index = Random.Range(0, availableSpawnPoints.Count);
             Transform spawnPoint = availableSpawnPoints[index];
             availableSpawnPoints.RemoveAt(index);
 
-            Enemy enemy = enemies[Random.Range(0, enemies.Count)];
-            enemies.Remove(enemy);
+            Enemy enemy;
+
+            if (!spawnedMainEnemy)
+            {
+                enemy = enemies[Random.Range(0, enemies.Count)];
+                spawnedMainEnemy = true;
+            }
+            else
+            {
+                enemy = RoomManager.RM.lesserEnemies[Random.Range(0, RoomManager.RM.lesserEnemies.Count)];
+            }
             currentEnemies.Add(enemy.SpawnEnemy(this, spawnPoint.position));
         }
     }

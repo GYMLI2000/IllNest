@@ -32,19 +32,19 @@ public class DebuffManager : MonoBehaviour
         {
             debuff.OnClearRoom();
         }
+        changeDebuff?.Invoke(activeDebuffs);
     }
 
     public void AddDebuff(Debuff debuff)
     {
         if (activeDebuffs.FirstOrDefault(d => d.GetType() == debuff.GetType()) != null)
         {
-            debuff.applyTime = Time.time;
+            //debuff uz je na hracovi
         }
         else
         {
             activeDebuffs.Add(debuff);
             debuff.isApplied = true;
-            debuff.applyTime = Time.time;
             debuff.OnAdd(target);
             changeDebuff?.Invoke(activeDebuffs);
         }

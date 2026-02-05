@@ -4,10 +4,11 @@ using UnityEngine;
 public abstract class Debuff
 {
     public int debuffID { protected set; get; }
-    protected int duration;
+    public int duration;
+    public int currentDuration = 0;
     protected float magnitude;
-    public float applyTime = 0;
     public bool isApplied = false;
+
 
 
     public Debuff(int duration, float magnitude)
@@ -19,7 +20,7 @@ public abstract class Debuff
 
     public void CheckDuration()
     {
-        if (isApplied && Time.time >= applyTime + duration)
+        if (currentDuration >= duration)
         {
             isApplied = false;
         }

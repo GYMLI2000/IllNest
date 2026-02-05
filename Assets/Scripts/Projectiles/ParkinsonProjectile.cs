@@ -25,7 +25,7 @@ public class ParkinsonProjectile : Projectile
     {
         base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback,passThrough);
 
-        debuff = new ParkinsonDebuff(120, 60f);
+        debuff = new ParkinsonDebuff(2, 45f);
 
 
     }

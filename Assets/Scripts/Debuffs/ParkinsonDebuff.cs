@@ -3,7 +3,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class ParkinsonDebuff : Debuff
 {
-    private float lowSpeedTimer = 0f;
+    private bool hasMissed = false;
     public ParkinsonDebuff(int duration, float magnitude) : base(duration, magnitude)
     {
         this.duration = duration;
@@ -14,21 +14,31 @@ public class ParkinsonDebuff : Debuff
     public override void OnAdd(Player player)
     {
         player.animator.SetBool("ParkinsonDebuff", true);
+        if (player.atkCooldown - 0.2f > 0f)
+        {
+            player.atkCooldown -= 0.2f;
+        }
         Debug.Log(player.animator.GetCurrentAnimatorStateInfo(1).IsName("ParkinsonDebuff"));
+        Projectile.ProjectileHit += OnProjectileHit;
+    }
+
+    private void OnProjectileHit(bool hasHit)
+    {
+        if (!hasHit)
+        {
+            hasMissed = true;
+        }
+        Debug.Log("Projectile hit: " + hasHit);
     }
 
     public override void Effect(Player player)
     {
         if (player.rb.linearVelocity.magnitude <= 0.01f)
         {
-            lowSpeedTimer += Time.deltaTime;
+            player.shootAngle = 0;
+            player.animator.SetBool("ParkinsonDebuff", false);
         }
         else
-        {
-            lowSpeedTimer = 0f;
-        }
-
-        if (lowSpeedTimer < 0.1f)
         {
             float value;
             if (Random.value < 0.5f)
@@ -41,27 +51,29 @@ public class ParkinsonDebuff : Debuff
             }
             player.shootAngle = (int)(value * magnitude);
             player.animator.SetBool("ParkinsonDebuff", true);
+        }
 
-        }
-        else
-        {
-            player.shootAngle = 0;
-            player.animator.SetBool("ParkinsonDebuff", false);
-        }
 
     }
     
     public override void OnRemove(Player player)
     {
         player.shootAngle = 0;
+        player.atkCooldown += 0.2f;
         player.animator.SetBool("ParkinsonDebuff", false);
+        Projectile.ProjectileHit -= OnProjectileHit;
     }
 
 
     public override void OnEnterRoom()
     {
+        hasMissed = false;
     }
     public override void OnClearRoom()
     {
+        if (!hasMissed)
+        {
+            currentDuration++;
+        }
     }
 }

@@ -17,6 +17,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] int roomGap = 6;
     [SerializeField] GameObject roomPrefab;
     [SerializeField] List<GameObject> roomLayouts;
+    public List<Enemy> lesserEnemies;
 
     private Dictionary<Vector2Int, RoomNode> map = new();
     private Dictionary<Vector2Int, Room> spawnedRooms = new();
@@ -157,6 +158,7 @@ public class RoomManager : MonoBehaviour
         if (!room.isCleared)
         {
             room.ActivateRoom();
+            roomEnter?.Invoke();
         }
 
         if (CameraController.Instance != null)
@@ -171,6 +173,7 @@ public class RoomManager : MonoBehaviour
     public void ClearRoom(Room room)
     {
         room.ClearRoom();
+        roomClear?.Invoke();
     }
 
 }

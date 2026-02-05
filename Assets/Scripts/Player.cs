@@ -39,8 +39,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float range;
     public float projSpeed;
-    [SerializeField]
-    private float atkCooldown;
+    public float atkCooldown;
     private float lastAtk;
     [SerializeField]
     public int damage;
@@ -50,6 +49,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float knockback;
     private float lastHit = 0;
+    public int passThrough = 0;
 
     [SerializeField]
     private string projectileKey;
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
             , range
             , gameObject,
             knockback,
-            0);
+            passThrough);
         projectile.transform.position = firepoint.position;
 
     }

@@ -63,7 +63,7 @@ public abstract class AttackState : State
         {
             return enemy.idleState;
         }
-        if (enemy.chaseState != null && Vector2.Distance(enemy.transform.position, enemy.target.transform.position) > enemy.chaseRange && !enemy.isAttacking && !enemy.isCharging)
+        if (enemy.chaseState != null  && !enemy.isAttacking && !enemy.isCharging)
         {
             return enemy.chaseState;
         }

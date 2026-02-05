@@ -1,6 +1,8 @@
+using System;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class Projectile : MonoBehaviour
 {
@@ -25,6 +27,7 @@ public abstract class Projectile : MonoBehaviour
     protected GameObject destroyParticlePrefab;
     private bool destroyed = false;
 
+    public static event Action<bool> ProjectileHit;
 
     private void Start()
     {
@@ -75,9 +78,10 @@ public abstract class Projectile : MonoBehaviour
         {
             var player = collision.gameObject.GetComponent<Player>();
             player.TakeHit(owner.GetComponent<Enemy>(),damage,knockBack);
-            if ( debuff != null)
+            if ( debuff != null && Random.Range(0f, 1f) <= 0.33f)
             {
                 collision.gameObject.GetComponent<DebuffManager>().AddDebuff(debuff);
+                ProjectileHit?.Invoke(true);
             }
             DestroyProjectile();
         }
@@ -98,6 +102,10 @@ public abstract class Projectile : MonoBehaviour
             }
             else
             {
+                if (!isHostile)
+                {
+                    ProjectileHit?.Invoke(false);
+                }
                 DestroyProjectile();
             }
         }

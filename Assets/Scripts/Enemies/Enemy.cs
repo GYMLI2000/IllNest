@@ -58,8 +58,6 @@ public abstract class Enemy : MonoBehaviour
     public string poolKey {get;protected set;}
     public string projKey { get; protected set; }
 
-    [SerializeField]
-    protected GameObject killParticlePrefab;
     protected Color killParticleColor;
 
     [HideInInspector]

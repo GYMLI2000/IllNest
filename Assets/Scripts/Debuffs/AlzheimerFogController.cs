@@ -44,6 +44,7 @@ public class AlzheimerFogController : MonoBehaviour
 
     void Update()
     {
+        /* Starej system
         if (!active) return;
 
         if (currentRadius == minRadius)
@@ -56,6 +57,15 @@ public class AlzheimerFogController : MonoBehaviour
 
         currentRadius += (moving && canExpand ? expandSpeed : -shrinkSpeed) * Time.deltaTime;
         currentRadius = Mathf.Clamp(currentRadius, minRadius, maxRadius);
+        */
+
+        if (!active) return;
+
+        if (currentRadius == minRadius)
+        {
+            canExpand = true;
+            shrinkSpeed = 0.3f;
+        }
 
         UpdateMaterial();
     }

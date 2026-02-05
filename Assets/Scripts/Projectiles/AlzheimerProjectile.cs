@@ -27,7 +27,7 @@ public class AlzheimerProjectile : Projectile
     {
         base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback, passThrough);
 
-        debuff = new AlzheimerDebuff(60, 3);
+        debuff = new AlzheimerDebuff(3, 3);
 
 
     }
