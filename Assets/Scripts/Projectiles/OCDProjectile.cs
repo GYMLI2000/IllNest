@@ -19,7 +19,7 @@ public class OCDProjectile : Projectile
     protected override void AI()
     {
         Turn();
-        parentObject.transform.Translate(direction * speed * Time.deltaTime, Space.World);
+        parentObject.transform.Translate(direction * currentSpeed * Time.deltaTime, Space.World);
 
     }
 
@@ -46,9 +46,9 @@ public class OCDProjectile : Projectile
         }
     }
 
-    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough)
+    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough, float size)
     {
-        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback, passThrough);
+        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback, passThrough, size);
         debuff = null;
         lastTurnTime = 0f;
     }

@@ -3,70 +3,100 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    [Header("Health / Core Stats")]
     [HideInInspector]
-    protected int health;
+    public int health;
+
     [HideInInspector]
     public float speed { get; protected set; }
+
     [HideInInspector]
     public int damage { get; protected set; }
-    [HideInInspector]
 
+    [HideInInspector]
     public float chaseRange { get; protected set; }
-    [HideInInspector]
-    public float attackCooldown;
-    [HideInInspector]
-    public float lastAttack;
-    [HideInInspector]
-    public bool isAttacking;
-    [HideInInspector]
-    public bool isCharging;
-    [HideInInspector]
-    public float chargeStart;
-    [HideInInspector]
-    public float chargeTime;
 
     [HideInInspector]
     public float attackDuration { get; protected set; }
+
     [HideInInspector]
     public float knockback;
+
     [HideInInspector]
     public float knockbackReduction = 0f;
-    public Animator animator;
-    public Transform firepoint;
 
+
+    [Header("Attack Runtime")]
+    [HideInInspector]
+    public float attackCooldown;
+
+    [HideInInspector]
+    public float lastAttack;
+
+    [HideInInspector]
+    public bool isAttacking;
+
+    [HideInInspector]
+    public bool isCharging;
+
+    [HideInInspector]
+    public float chargeStart;
+
+    [HideInInspector]
+    public float chargeTime;
+
+
+    [Header("Targeting")]
+    [HideInInspector]
+    public GameObject target;
+
+    [HideInInspector]
+    public Vector2 targetPosition;
 
     protected bool looksATarget = true;
     protected bool turns = true;
 
-    [HideInInspector]
-    public GameObject target;
-    [HideInInspector]
-    public Vector2 targetPosition;
 
+    [Header("Movement / Physics")]
     public Rigidbody2D rb { get; protected set; }
 
+
+    [Header("State Machine")]
     [HideInInspector]
     public State idleState;
+
     [HideInInspector]
     public AttackState attackState;
+
     [HideInInspector]
     public ChaseState chaseState;
+
     [HideInInspector]
     public FleeState fleeState;
 
+    protected State currentState;
+
+
+    [Header("Projectiles / Pools")]
     protected string partPoolKey = "EnemyDeath";
-    public string poolKey {get;protected set;}
+    public string poolKey { get; protected set; }
     public string projKey { get; protected set; }
 
-    protected Color killParticleColor;
+
+    [Header("Visuals / Animation")]
+    public Animator animator;
+    public Transform firepoint;
 
     [HideInInspector]
     public SpriteRenderer[] spriteRenderer;
 
+    protected Color killParticleColor;
+
+
+    [Header("Spawner / Systems")]
     [HideInInspector]
     EnemySpawner enemySpawner;
 
-    protected State currentState;
 
     protected virtual void Awake()
     {

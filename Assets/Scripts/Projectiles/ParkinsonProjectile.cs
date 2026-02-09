@@ -10,7 +10,7 @@ public class ParkinsonProjectile : Projectile
 
     protected override void AI()
     {
-        parentObject.transform.Translate(direction * speed * Time.deltaTime, Space.World);
+        parentObject.transform.Translate(direction * currentSpeed * Time.deltaTime, Space.World);
 
         Vector2 perpendicular = new Vector2(-direction.y, direction.x);
 
@@ -21,9 +21,9 @@ public class ParkinsonProjectile : Projectile
         parentObject.transform.Translate(perpendicular * shake, Space.World);
     }
 
-    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback,int passThrough)
+    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback,int passThrough, float size)
     {
-        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback,passThrough);
+        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback,passThrough,size);
 
         debuff = new ParkinsonDebuff(2, 45f);
 

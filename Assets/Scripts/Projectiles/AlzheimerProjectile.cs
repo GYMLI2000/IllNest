@@ -19,13 +19,13 @@ public class AlzheimerProjectile : Projectile
         {
             s.color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time, 1f));
         }
-        parentObject.transform.Translate(direction * speed * Time.deltaTime, Space.World);
+        parentObject.transform.Translate(direction * currentSpeed * Time.deltaTime, Space.World);
 
     }
 
-    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough)
+    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough, float size)
     {
-        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback, passThrough);
+        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback, passThrough, size);
 
         debuff = new AlzheimerDebuff(3, 3);
 

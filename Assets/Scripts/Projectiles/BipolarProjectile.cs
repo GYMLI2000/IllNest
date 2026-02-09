@@ -11,7 +11,7 @@ public class BipolarProjectile : Projectile
 
     protected override void AI()
     {
-        parentObject.transform.Translate(direction * speed * Time.deltaTime, Space.World);
+        parentObject.transform.Translate(direction * currentSpeed * Time.deltaTime, Space.World);
 
         float pulse = 2f + Mathf.Sin(Time.time * 2) * 0.5f;
         transform.localScale = Vector2.one * pulse;
@@ -19,9 +19,9 @@ public class BipolarProjectile : Projectile
 
     }
 
-    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough)
+    public override void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough,float size)
     {
-        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback, passThrough);
+        base.SetStats(position, damage, direction, speed, isHostile, range, owner, knockback, passThrough, size);
 
         debuff = new DeppresionDebuff(2, 2);
 

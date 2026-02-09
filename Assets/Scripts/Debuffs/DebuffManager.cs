@@ -2,12 +2,13 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class DebuffManager : MonoBehaviour
 {
     public event Action<List<Debuff>> changeDebuff;
-    private List<Debuff> activeDebuffs = new List<Debuff>();
+    public List<Debuff> activeDebuffs { get; private set; } = new List<Debuff>();
 
     [SerializeField]
     private Player target;

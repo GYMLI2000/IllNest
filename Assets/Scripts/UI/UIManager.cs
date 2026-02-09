@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,8 @@ public class UIManager : MonoBehaviour
     private Sprite healthHalf;
     [SerializeField]
     private Sprite healthFull;
+    private List<Image> hearts = new();
+
 
     private void Awake()
     {
@@ -28,9 +31,9 @@ public class UIManager : MonoBehaviour
 
     private void UpdateHealth(int currentHp)
     {
-        foreach (var heart in healthBar.GetComponentsInChildren<Image>())
+        foreach (var heart in hearts)
         {
-            if (currentHp > 1)
+            if (currentHp >= 2)
             {
                 heart.sprite = healthFull;
                 currentHp -= 2;
@@ -38,7 +41,7 @@ public class UIManager : MonoBehaviour
             else if (currentHp == 1)
             {
                 heart.sprite = healthHalf;
-                currentHp--;
+                currentHp = 0;
             }
             else
             {
@@ -49,10 +52,18 @@ public class UIManager : MonoBehaviour
 
     private void UpdateMaxHealth(int maxHp)
     {
+        foreach (Transform child in healthBar.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        hearts.Clear();
+
         for (int i = 0; i < maxHp/2; i++)
         {
             Image heart = Instantiate(heartPrefab, healthBar.transform.position+Vector3.right*80*i, Quaternion.identity,healthBar.transform);
             heart.sprite = healthEmpty;
+            hearts.Add(heart);
         }
     }
 }

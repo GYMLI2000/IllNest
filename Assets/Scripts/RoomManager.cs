@@ -16,8 +16,10 @@ public class RoomManager : MonoBehaviour
     [SerializeField] int roomHeight = 18;
     [SerializeField] int roomGap = 6;
     [SerializeField] GameObject roomPrefab;
+    [SerializeField] GameObject itemPedestalPrefab;
     [SerializeField] List<GameObject> roomLayouts;
     public List<Enemy> lesserEnemies;
+    public List<Item> items;
 
     private Dictionary<Vector2Int, RoomNode> map = new();
     private Dictionary<Vector2Int, Room> spawnedRooms = new();
@@ -84,6 +86,8 @@ public class RoomManager : MonoBehaviour
 
     void SpawnRooms()
     {
+        AssignRoomTypes();
+
         foreach (var kvp in map)
         {
             Vector2Int gridPos = kvp.Key;
@@ -97,13 +101,24 @@ public class RoomManager : MonoBehaviour
 
             Room room = Instantiate(roomPrefab, worldPos, Quaternion.identity, this.transform).GetComponent<Room>();
 
-            if (gridPos == Vector2Int.zero) // startovni mistnost
+            RoomNode node = map[gridPos];
+            room.roomType = node.roomType;
+
+
+            if (room.roomType == RoomType.Start) // startovni mistnost
             {
                 room.ClearRoom();
                 room.enemySpawner = null;
             }
+            else if (room.roomType == RoomType.Item) // item room
+            {
+                room.ClearRoom();
+                room.enemySpawner = null;
+
+                Instantiate(itemPedestalPrefab, worldPos, Quaternion.identity, room.grid);
+            }
             else
-            { 
+            {
                 int layoutIndex = Random.Range(0, roomLayouts.Count); //pøidìlení nahodnyho layoutu a propojeni s nim
                 EnemySpawner roomLayout = Instantiate(roomLayouts[layoutIndex], room.grid).GetComponent<EnemySpawner>();
                 room.enemySpawner = roomLayout;
@@ -176,6 +191,36 @@ public class RoomManager : MonoBehaviour
         roomClear?.Invoke();
     }
 
+    private void AssignRoomTypes()
+    {
+        // start
+        map[Vector2Int.zero].roomType = RoomType.Start;
+
+        // item room – dead end
+        var candidates = new List<Vector2Int>();
+
+        foreach (var kvp in map)
+        {
+            if (kvp.Key == Vector2Int.zero)
+                continue;
+
+            int connections =
+                (kvp.Value.up ? 1 : 0) +
+                (kvp.Value.down ? 1 : 0) +
+                (kvp.Value.left ? 1 : 0) +
+                (kvp.Value.right ? 1 : 0);
+
+            if (connections == 1)
+                candidates.Add(kvp.Key);
+        }
+
+        if (candidates.Count > 0)
+        {
+            Vector2Int itemPos = candidates[Random.Range(0, candidates.Count)];
+            map[itemPos].roomType = RoomType.Item;
+        }
+    }
+
 }
 
 public class RoomNode
@@ -186,4 +231,13 @@ public class RoomNode
     public bool down;
     public bool left;
     public bool right;
+
+    public RoomType roomType = RoomType.Normal;
+}
+
+public enum RoomType
+{
+    Start,
+    Normal,
+    Item
 }

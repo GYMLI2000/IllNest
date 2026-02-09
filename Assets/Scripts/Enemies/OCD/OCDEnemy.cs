@@ -69,18 +69,19 @@ public class OCDEnemy : Enemy
         }
         else
         {
-
+            /* Kdyz hráè trefí spatnej hitpoint ale to pak blbe funguje s ruznyma typama projektilu a je to spis otravny
             foreach (OCDHitpoint hitpoint in hitpoints)
             {
                 hitpoint.sprite.color = hitpoint.hitpointColor;
             }
             currentSequenceIndex = 0;
-
             if (sequenceIndex == currentSequenceIndex)
             {
                 hitpoints.Find(hitpoint => hitpoint.sequenceIndex == sequenceIndex).sprite.color = Color.gray;
                 currentSequenceIndex++;
             }
+
+            */
         }
 
     }

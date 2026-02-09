@@ -1,65 +1,78 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using static UnityEngine.EventSystems.EventTrigger;
 
 
 public class Player : MonoBehaviour
 {
+
     public event Action<int> changeHp;
     public event Action<int> changeMaxHp;
 
-    [SerializeField]
-    private DebuffManager debuffManager;
+    [Header("Managers / Systems")]
+    [SerializeField] public DebuffManager debuffManager;
+    [SerializeField] public ItemManager itemManager;
 
-
-    public float movementSpeed;
+    [Header("Input")]
+    private PlayerControls playerControls;
     private InputAction moveAction;
-    public Rigidbody2D rb;
     private Vector2 moveValue;
     private bool isAttacking;
     private Vector2 aimDir;
 
-    private PlayerControls playerControls;
+    [Header("Movement Stats")]
+    public float movementSpeed;
+    public float invFrames;
+    public float knockback;
+
+    [Header("Movement Runtime")]
+    public Rigidbody2D rb;
+    private bool isStaggered;
+
+    [Header("Health Stats")]
+    public int currentHp;
+    public int maxHp;
+
+    [Header("Combat Stats")]
+    public int damage;
+    public float damageMult;
+    public float range;
+    public float projSpeed;
+    public float projSize = 1;
+    public float atkCooldown;
+    public float firerateMult = 1;
+    public int passThrough = 0;
+    public int shootAngle = 1;
+    public float diseaseImunity = 0;
+
+
+    [Header("Combat Runtime")]
+    private float lastAtk;
+    private float lastHit = 0;
+
+    [Header("Projectile Settings")]
+    public string projectileKey;
+    public List<IProjectileEffect> projEffects = new List<IProjectileEffect>();
+
+    [Header("Fire Points")]
+    [SerializeField] public Transform firepointCenter;
+    [SerializeField] public Transform firepoint;
+
+    [Header("Visuals / Animation")]
     public SpriteRenderer[] spriteRenderer;
     public Animator animator { get; private set; }
+    public Light2D playerLight;
 
-    [SerializeField]
-    private Transform gloveSprite;
-    [SerializeField]
-    private SpriteRenderer gloveOpen;
-    [SerializeField] 
-    private SpriteRenderer gloveClosed;
+    [Header("Glove Visuals")]
+    [SerializeField] public Transform gloveSprite;
+    [SerializeField] public SpriteRenderer gloveOpen;
+    [SerializeField] public SpriteRenderer gloveClosed;
 
-    [SerializeField]
-    private int currentHp;
-    [SerializeField]
-    private int maxHp;
-    [SerializeField]
-    private float range;
-    public float projSpeed;
-    public float atkCooldown;
-    private float lastAtk;
-    [SerializeField]
-    public int damage;
-    [SerializeField]
-    private float invFrames;
-    private bool isStaggered;
-    [SerializeField]
-    private float knockback;
-    private float lastHit = 0;
-    public int passThrough = 0;
-
-    [SerializeField]
-    private string projectileKey;
-
-    [SerializeField]
-    private Transform firepointCenter;
-    [SerializeField]
-    private Transform firepoint;
-
-    public int shootAngle = 1;
 
 
     private bool isInvincible = false;
@@ -78,8 +91,7 @@ public class Player : MonoBehaviour
         gloveOpen.enabled = false;
 
         currentHp = maxHp;
-        changeMaxHp?.Invoke(maxHp);
-        changeHp?.Invoke(currentHp);
+        UpdateHp();
     }
 
     private void Awake()
@@ -106,7 +118,7 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
-        if (Time.time <= lastAtk + atkCooldown || !isAttacking)
+        if (Time.time <= lastAtk + (atkCooldown / firerateMult) || !isAttacking)
             return;
 
         lastAtk = Time.time;
@@ -116,14 +128,17 @@ public class Player : MonoBehaviour
         GameObject projectile = PoolManager.Instance.Get(projectileKey);
         projectile.GetComponentInChildren<Projectile>().SetStats(
             firepoint.position
-            , damage,
+            , (int)(damage * damageMult),
             Quaternion.Euler(0, 0, shootAngle) * firepoint.right
             , projSpeed
             , false
             , range
             , gameObject,
             knockback,
-            passThrough);
+            passThrough,
+            projSize,
+            projEffects
+            );
         projectile.transform.position = firepoint.position;
 
     }
@@ -259,6 +274,23 @@ public class Player : MonoBehaviour
             isStaggered = false;
         }
 
+    }
+
+    public void UpdateHp()
+    {
+        changeMaxHp?.Invoke(maxHp);
+
+        if(maxHp <= 0 || currentHp <= 0)
+        {
+            Die();
+        }
+
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
+
+        changeHp?.Invoke(currentHp);
     }
 
     private void Update()

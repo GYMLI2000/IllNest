@@ -28,7 +28,7 @@ public class BipolarAttackStateDeppresion : AttackState
             GameObject projObj = PoolManager.Instance.Get(enemy.projKey);
             var projectile = projObj.GetComponentInChildren<BipolarProjectile>();
 
-            projectile.SetStats(enemy.firepoint.position, 1, rotatedDir, 2f, true, -1, enemy.gameObject, enemy.knockback,0);
+            projectile.SetStats(enemy.firepoint.position, 1, rotatedDir, 2f, true, -1, enemy.gameObject, enemy.knockback,0,1);
 
 
             projObj.transform.position = enemy.firepoint.position;

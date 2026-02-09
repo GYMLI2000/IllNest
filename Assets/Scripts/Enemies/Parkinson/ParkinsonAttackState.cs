@@ -20,7 +20,7 @@ public class ParkinsonAttackState : AttackState
             GameObject projObj = PoolManager.Instance.Get(enemy.projKey);
             var projectile = projObj.GetComponentInChildren<ParkinsonProjectile>();
 
-            projectile.SetStats(enemy.firepoint.position, 1, rotatedDir, 5f, true, 10,enemy.gameObject,enemy.knockback,0);
+            projectile.SetStats(enemy.firepoint.position, 1, rotatedDir, 5f, true, 10,enemy.gameObject,enemy.knockback,0, 1);
 
 
             projObj.transform.position = enemy.firepoint.position;

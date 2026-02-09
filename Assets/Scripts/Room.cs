@@ -13,6 +13,7 @@ public class Room : MonoBehaviour
     public Transform grid;
 
     public bool isCleared { get; private set; } = false;
+    public RoomType roomType;
 
     private void Awake()
     {

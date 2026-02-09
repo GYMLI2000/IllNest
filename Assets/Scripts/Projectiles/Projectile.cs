@@ -1,27 +1,33 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 using Random = UnityEngine.Random;
 
 public abstract class Projectile : MonoBehaviour
 {
-    protected int damage;
-    protected Vector2 direction;
-    protected float speed;
+    public int damage { protected set; get; }
+    public Vector2 direction { protected set; get; }
+    public float speed { protected set; get; }
+    public float currentSpeed;
     public bool isHostile {protected set; get; }
-    protected float range;
+    public float range { protected set; get; }
     protected Vector2 lastPos;
     protected float distance;
-    protected float knockBack;
-    protected int passThrough;
+    public float knockBack { protected set; get; }
+    public float size { protected set; get; }
+    public int passThrough { protected set; get; }
+    public int bounceAmount;
 
-    protected string poolKey;
+    public string poolKey { protected set; get; }
     protected string partPoolKey;
 
     protected GameObject parentObject;
-    protected GameObject owner;
+    public GameObject owner { protected set; get; }
     protected Debuff debuff;
+    public List<IProjectileEffect> effects = null;
 
     [SerializeField]
     protected GameObject destroyParticlePrefab;
@@ -29,7 +35,7 @@ public abstract class Projectile : MonoBehaviour
 
     public static event Action<bool> ProjectileHit;
 
-    private void Start()
+    private void Awake()
     {
         parentObject = transform.parent.gameObject;
     }
@@ -38,6 +44,14 @@ public abstract class Projectile : MonoBehaviour
     { 
         AI();
         CheckRange();
+
+        if (effects != null && effects.Count > 0)
+        {
+            foreach (var effect in effects)
+            {
+                effect.OnUpdate(this);
+            }
+        }
     }
 
     protected void CheckRange()
@@ -48,23 +62,74 @@ public abstract class Projectile : MonoBehaviour
         distance += Vector2.Distance(lastPos, (Vector2)transform.position);
         lastPos = transform.position;
 
-        if(distance > range) DestroyProjectile();
+        if (distance > range)
+        {
+            bool handled = false;
+
+            if (effects != null)
+            {
+                foreach (var effect in effects)
+                {
+                    if (effect.OnRangeExpired(this))
+                    {
+                        handled = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!handled)
+                DestroyProjectile();
+        }
     }
 
-    public virtual void SetStats(Vector2 position,int damage, Vector2 direction, float speed, bool isHostile,float range,GameObject owner, float knockback, int passThrough)
+    public virtual void SetStats(Vector2 position,int damage, Vector2 direction, float speed, bool isHostile,float range,GameObject owner, float knockback, int passThrough,float size)
     {
         this.damage = damage;
         this.direction = direction;
         this.speed = speed;
+        this.currentSpeed = speed;
         this.isHostile = isHostile;
         this.range = range;
         this.distance = 0;
         this.owner = owner;
         this.knockBack = knockback;
         this.passThrough = passThrough;
+        this.size = size;
 
         destroyed = false;
         lastPos = position;
+        parentObject = transform.parent.gameObject;
+        parentObject.transform.localScale = size * Vector3.one;
+        this.effects = null;
+
+    }
+
+    public virtual void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough, float size, List<IProjectileEffect> effects)
+    {
+        SetStats(position,damage, direction, speed, isHostile, range, owner, knockback, passThrough, size);
+
+        if (effects != null && effects.Count > 0)
+        {
+            this.effects = new List<IProjectileEffect>(effects.Count);
+
+            foreach (var effect in effects)
+            {
+                this.effects.Add(effect.Clone());
+            }
+        }
+        else
+        {
+            this.effects = null;
+        }
+
+        if (this.effects != null && this.effects.Count > 0)
+        {
+            foreach (var effect in this.effects)
+            {
+                effect.OnSpawn(this);
+            }
+        }
     }
 
 
@@ -78,7 +143,7 @@ public abstract class Projectile : MonoBehaviour
         {
             var player = collision.gameObject.GetComponent<Player>();
             player.TakeHit(owner.GetComponent<Enemy>(),damage,knockBack);
-            if ( debuff != null && Random.Range(0f, 1f) <= 0.33f)
+            if ( debuff != null && Random.Range(0f, 1f) <= 0.5f - player.diseaseImunity*0.1f)
             {
                 collision.gameObject.GetComponent<DebuffManager>().AddDebuff(debuff);
                 ProjectileHit?.Invoke(true);
@@ -91,6 +156,14 @@ public abstract class Projectile : MonoBehaviour
             if ((enemy = collision.gameObject.GetComponent<Enemy>()) != null)
             {
                 enemy.TakeHit(owner.GetComponent<Player>(),damage,knockBack);
+
+                if (effects != null && effects.Count > 0)
+                {
+                    foreach (var effect in effects)
+                    {
+                        effect.OnHit(this,enemy);
+                    }
+                }
             }
             DestroyProjectile();
         }
@@ -105,16 +178,40 @@ public abstract class Projectile : MonoBehaviour
                 if (!isHostile)
                 {
                     ProjectileHit?.Invoke(false);
+                    if (effects != null && effects.Count > 0)
+                    {
+                        foreach (var effect in effects)
+                        {
+                            effect.OnCollide(this,collision);
+                        }
+                    }
                 }
-                DestroyProjectile();
+                if (bounceAmount <= 0)
+                {
+                    DestroyProjectile();
+                }
             }
         }
     }
 
-    protected void DestroyProjectile()
+    public void SetDir(Vector2 dir, bool resetRange)
+    {
+        direction = dir;
+        if (resetRange) { distance = 0; }
+    }
+
+    public void DestroyProjectile()
     {
         if (destroyed) return;
         else destroyed = true;
+
+        if (effects != null && effects.Count > 0)
+        {
+            foreach (var effect in effects)
+            {
+                effect.OnDestroy(this);
+            }
+        }
 
         ParticleSystem particles = PoolManager.Instance.Get(partPoolKey).GetComponent<ParticleSystem>();
         particles.transform.position = parentObject.transform.position;
