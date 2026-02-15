@@ -4,6 +4,11 @@ using UnityEngine;
 public class Vaccine : PassiveItem
 {
 
+    public Vaccine()
+    {
+        itemName = "Vaccine";
+    }
+
     public override void Effect(Player player)
     {
 

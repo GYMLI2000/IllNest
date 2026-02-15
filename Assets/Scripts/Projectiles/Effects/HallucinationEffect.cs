@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class HallucinationEffect : IProjectileEffect
 {
-    private List<Projectile> linkedProjectiles; // all projectiles in this group
-    private int spawnCount = 3; // number of projectiles to spawn
-    private float spreadAngle = 15f; // degrees
+    private List<Projectile> linkedProjectiles; 
+    private int spawnCount = 3; 
+    private float spreadAngle = 30f; 
 
     public IProjectileEffect Clone()
     {
@@ -14,21 +14,21 @@ public class HallucinationEffect : IProjectileEffect
 
     public void OnSpawn(Projectile p)
     {
-        if (linkedProjectiles != null)
-            return; // already spawned
+        if (linkedProjectiles != null || p.isOriginal == false)
+            return; 
 
         linkedProjectiles = new List<Projectile>();
-        linkedProjectiles.Add(p); // include the original
+        linkedProjectiles.Add(p); 
 
         Vector2 baseDir = p.direction;
 
-        for (int i = 1; i < spawnCount; i++)
+        for (int i = -1; i < spawnCount; i+=2)
         {
             GameObject cloneGO = PoolManager.Instance.Get(p.poolKey);
             Projectile cloneProj = cloneGO.GetComponentInChildren<Projectile>();
 
-            // rotate direction for spread
-            float angleOffset = ((i - (spawnCount - 1) / 2f) * spreadAngle);
+
+            float angleOffset = (i * spreadAngle);
             Vector2 dir = Quaternion.Euler(0, 0, angleOffset) * baseDir;
 
             cloneProj.SetStats(
@@ -42,14 +42,22 @@ public class HallucinationEffect : IProjectileEffect
                 p.knockBack,
                 p.passThrough,
                 p.size,
-                p.effects // pass same effect list
+                p.effects,
+                false
             );
 
+            cloneProj.isOriginal = false;
             linkedProjectiles.Add(cloneProj);
         }
+
     }
 
-    public void OnUpdate(Projectile p) { }
+    public void OnUpdate(Projectile p)
+    {
+        if (linkedProjectiles == null) return;
+
+        linkedProjectiles.RemoveAll(proj => proj == null || !proj.isActiveAndEnabled);
+    }
 
     public void OnHit(Projectile p, Enemy enemy) { }
 
@@ -57,13 +65,13 @@ public class HallucinationEffect : IProjectileEffect
 
     public void OnDestroy(Projectile p)
     {
-        if (linkedProjectiles == null)
+        if (linkedProjectiles == null || !p.isOriginal)
             return;
 
-        // destroy all linked projectiles except this one
+
         foreach (var proj in linkedProjectiles)
         {
-            if (proj != null && proj != p)
+            if (proj != null && proj != p && proj.isActiveAndEnabled)
             {
                 proj.DestroyProjectile();
             }
@@ -73,5 +81,5 @@ public class HallucinationEffect : IProjectileEffect
         linkedProjectiles = null;
     }
 
-    public bool OnRangeExpired(Projectile p) => false; // don't block range logic
+    public bool OnRangeExpired(Projectile p) { return false; }
 }

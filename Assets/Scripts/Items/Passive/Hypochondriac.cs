@@ -5,6 +5,12 @@ public class Hypochondriac : PassiveItem
 {
     private int currentCount;
 
+
+    public Hypochondriac()
+    {
+        itemName = "Hypochondriac";
+    }
+
     public override void Effect(Player player)
     {
         if (player.debuffManager.activeDebuffs.Count != currentCount)

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private Player player;
+    [SerializeField]
+    private ItemManager itemManager;
 
 
     [SerializeField]
@@ -21,12 +24,35 @@ public class UIManager : MonoBehaviour
     private Sprite healthFull;
     private List<Image> hearts = new();
 
+    [SerializeField]
+    private Image ActiveItemImg;
+    [SerializeField]
+    private Image ActiveItemChargeFill;
+
+
+
 
     private void Awake()
     {
         player.changeHp += UpdateHealth;
         player.changeMaxHp += UpdateMaxHealth;
+        itemManager.PickupActive += UpdateActiveItemImage;
+        itemManager.ChangeActiveCharge += UpdateActiveItemCharge;
 
+    }
+
+    private void UpdateActiveItemImage(Sprite img)
+    {
+        if (!ActiveItemImg.isActiveAndEnabled)
+        {
+            ActiveItemImg.enabled = true;
+        }
+        ActiveItemImg.sprite = img;
+    }
+
+    private void UpdateActiveItemCharge(int currentCharge, int maxCharge)
+    {
+        ActiveItemChargeFill.fillAmount = (float)currentCharge/(float)maxCharge;
     }
 
     private void UpdateHealth(int currentHp)
@@ -59,9 +85,11 @@ public class UIManager : MonoBehaviour
 
         hearts.Clear();
 
-        for (int i = 0; i < maxHp/2; i++)
+        int heartCount = Mathf.CeilToInt(maxHp / 2f);
+
+        for (int i = 0; i < heartCount; i++)
         {
-            Image heart = Instantiate(heartPrefab, healthBar.transform.position+Vector3.right*80*i, Quaternion.identity,healthBar.transform);
+            Image heart = Instantiate(heartPrefab, healthBar.transform);
             heart.sprite = healthEmpty;
             hearts.Add(heart);
         }

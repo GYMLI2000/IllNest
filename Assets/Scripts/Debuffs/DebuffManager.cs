@@ -9,6 +9,7 @@ public class DebuffManager : MonoBehaviour
 {
     public event Action<List<Debuff>> changeDebuff;
     public List<Debuff> activeDebuffs { get; private set; } = new List<Debuff>();
+    private bool debuffEnabled;
 
     [SerializeField]
     private Player target;
@@ -38,6 +39,8 @@ public class DebuffManager : MonoBehaviour
 
     public void AddDebuff(Debuff debuff)
     {
+        if (!debuffEnabled) return;
+
         if (activeDebuffs.FirstOrDefault(d => d.GetType() == debuff.GetType()) != null)
         {
             //debuff uz je na hracovi
@@ -84,5 +87,10 @@ public class DebuffManager : MonoBehaviour
         }
         activeDebuffs.Clear();
         changeDebuff?.Invoke(activeDebuffs);
+    }
+
+    public void ChangeDebuffs(bool enabled)
+    {
+        debuffEnabled = enabled;
     }
 }

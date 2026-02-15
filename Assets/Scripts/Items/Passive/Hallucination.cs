@@ -5,6 +5,11 @@ public class Hallucination : PassiveItem
 {
     HallucinationEffect effect = new HallucinationEffect();
 
+    public Hallucination()
+    {
+        itemName = "Hallucination";
+    }
+
     public override void Effect(Player player) { }
 
     public override void OnAdd(Player player)

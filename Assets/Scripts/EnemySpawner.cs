@@ -1,6 +1,8 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -33,6 +35,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    
     public void SpawnEnemies()
     {
         bool spawnedMainEnemy = false;
@@ -55,16 +58,32 @@ public class EnemySpawner : MonoBehaviour
             {
                 enemy = RoomManager.RM.lesserEnemies[Random.Range(0, RoomManager.RM.lesserEnemies.Count)];
             }
-            currentEnemies.Add(enemy.SpawnEnemy(this, spawnPoint.position));
+
+
+            Enemy spawnedEnemy = enemy.SpawnEnemy(this, spawnPoint.position);
+
+            if (currentEnemies.Contains(spawnedEnemy))
+            {
+                Debug.LogWarning($"Spawned enemy {spawnedEnemy.name} is already in the list!"); 
+            }
+            currentEnemies.Add(spawnedEnemy);
+
         }
-    }
+    } 
+
+
+
+
+
 
     public void RemoveEnemy(Enemy enemy)
     {
         Debug.Log("Checking Enemies  " + currentEnemies.Count);
 
+        currentEnemies.RemoveAll(e => e == null || !e.isActiveAndEnabled);
+
         currentEnemies.Remove(enemy);
-        if (currentEnemies.Count == 0)
+        if (currentEnemies.Count <= 0)
         {
             RoomManager.RM.ClearRoom(parentRoom);
         }

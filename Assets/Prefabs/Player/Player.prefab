@@ -157,9 +157,12 @@ MonoBehaviour:
   damageMult: 1
   range: 6
   projSpeed: 12
+  projSize: 1
   atkCooldown: 0.5
+  firerateMult: 1
   passThrough: 0
   shootAngle: 1
+  diseaseImunity: 0
   projectileKey: PillProjectile
   firepointCenter: {fileID: 4579367572232082271}
   firepoint: {fileID: 1290428547625152091}

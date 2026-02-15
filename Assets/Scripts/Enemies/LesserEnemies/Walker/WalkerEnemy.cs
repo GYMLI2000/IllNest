@@ -21,4 +21,5 @@ public class WalkerEnemy : Enemy
         knockback = 2f;
 
     }
+
 }

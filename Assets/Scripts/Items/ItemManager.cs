@@ -6,21 +6,51 @@ using static UnityEditor.Progress;
 
 public class ItemManager : MonoBehaviour
 {
-    private List<PassiveItem> passiveItems = new List<PassiveItem>();
-    private ActiveItem activeItem;
+    public List<PassiveItem> passiveItems { get; private set; }
+    = new List<PassiveItem>();
+    private ActiveItem activeItem = null;
+    public event Action<string> OnPickup;
+    public event Action<Sprite> PickupActive;
+    public event Action<int,int> ChangeActiveCharge;
+
 
     [SerializeField]
     private Player player;
 
-
-    public void AddActiveItem(ActiveItem item)
+    private void Start()
     {
+        Enemy.EnemyDeath += AddCharge;
+    }
+
+    private void AddCharge(Enemy e)
+    {
+        if (activeItem !=null)
+        {
+            activeItem.AddCharge(1);
+            ChangeActiveCharge?.Invoke(activeItem.currentCharge, activeItem.chargeRequired);
+        }
+    }
+
+    public ActiveItem AddActiveItem(ActiveItem item)
+    {
+
+        ActiveItem oldItem = activeItem;
+        if (oldItem != null) oldItem.OnRemove();
+
         activeItem = item;
+        activeItem.OnAdd();
+        PickupActive?.Invoke(activeItem.itemSprite);
+        ChangeActiveCharge?.Invoke(activeItem.currentCharge, activeItem.chargeRequired);
+
+        return oldItem;
     }
 
     public void UseActiveItem()
     {
-        // pøi stistku nejakyho tlacitka = efekt
+        if (activeItem == null) return;
+        activeItem.Use(player);
+        ChangeActiveCharge?.Invoke(activeItem.currentCharge,activeItem.chargeRequired);
+
     }
 
     public void AddItem(PassiveItem item)
@@ -33,6 +63,7 @@ public class ItemManager : MonoBehaviour
         {
             passiveItems.Add(item);
             item.OnAdd(player);
+            OnPickup?.Invoke(item.itemName);
         }
     }
 
@@ -49,6 +80,11 @@ public class ItemManager : MonoBehaviour
             var item = passiveItems[i];
 
             item.Effect(player);
+        }
+
+        if (activeItem != null)
+        {
+            activeItem.UpdateItem(player);
         }
     }
 

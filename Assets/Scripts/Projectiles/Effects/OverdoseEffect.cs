@@ -18,7 +18,9 @@ public class OverdoseEffect : IProjectileEffect
                 , p.owner,
                 p.knockBack,
                 p.passThrough,
-                p.size/2
+                p.size/2,
+                null,
+                false
                 );
 
             projectile.transform.position = p.transform.position;

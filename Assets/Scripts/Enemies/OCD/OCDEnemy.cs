@@ -17,6 +17,8 @@ public class OCDEnemy : Enemy
             enemyMaterial.Add(sr.material);
         }
         base.EnableEnemy();
+
+        
     }
 
     protected override void SetPoolKeys()
@@ -45,6 +47,7 @@ public class OCDEnemy : Enemy
         looksATarget = false;
         turns = false;
         knockbackReduction = 1f;
+        currentSequenceIndex = 0;
         AsignHitpoints();
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -96,6 +97,7 @@ public abstract class Enemy : MonoBehaviour
     [Header("Spawner / Systems")]
     [HideInInspector]
     EnemySpawner enemySpawner;
+    public static event Action<Enemy> EnemyDeath;
 
 
     protected virtual void Awake()
@@ -110,8 +112,14 @@ public abstract class Enemy : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         isAttacking = false;
         isCharging = false;
-        InitializeStats();
         spriteRenderer = GetComponentsInChildren<SpriteRenderer>(true);
+
+        foreach (var spriteRenderer in spriteRenderer)
+        {
+            spriteRenderer.color = Color.white;
+        }
+
+        InitializeStats();
 
         animator = GetComponent<Animator>();
         animator.Rebind();
@@ -264,6 +272,8 @@ public abstract class Enemy : MonoBehaviour
             enemySpawner.RemoveEnemy(this);
         }
 
+        EnemyDeath?.Invoke(this);
+
         StopAllCoroutines();
 
         PoolManager.Instance.Release(partPoolKey, particles.gameObject, 2f);
@@ -281,8 +291,22 @@ public abstract class Enemy : MonoBehaviour
     {
         SetPoolKeys();
         GameObject enemyObj = PoolManager.Instance.Get(poolKey);
+
+        if (!enemyObj.activeSelf)
+        {
+            Debug.LogWarning($"Object from pool '{poolKey}' was not active! Forcing activation.");
+            enemyObj.SetActive(true);
+        }
+
         enemyObj.transform.position = position;
         Enemy enemy = enemyObj.GetComponent<Enemy>();
+
+        if (enemy == null)
+        {
+            Debug.LogError("Spawned object missing Enemy component!");
+            return null;
+        }
+
         enemy.enemySpawner = spawner;
         return enemy;
     }

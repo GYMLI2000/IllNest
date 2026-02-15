@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -217,6 +218,11 @@ public class RoomManager : MonoBehaviour
         if (candidates.Count > 0)
         {
             Vector2Int itemPos = candidates[Random.Range(0, candidates.Count)];
+            map[itemPos].roomType = RoomType.Item;
+        }
+        else
+        {
+            Vector2Int itemPos = map.LastOrDefault(room => room.Value.roomType == RoomType.Normal).Key;
             map[itemPos].roomType = RoomType.Item;
         }
     }

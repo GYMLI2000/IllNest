@@ -3,6 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Vitamins", menuName = "Items/Passive/Vitamins")]
 public class Vitamins : PassiveItem
 {
+    public Vitamins()
+    {
+        itemName = "Vitamins";
+    }
+
     public override void Effect(Player player) { }
 
     public override void OnAdd(Player player)

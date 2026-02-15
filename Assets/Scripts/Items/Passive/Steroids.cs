@@ -1,9 +1,15 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "Steroids", menuName = "Items/Passive/Steroids")]
 public class Steroids : PassiveItem
 {
+    public Steroids()
+    {
+        itemName = "Steroids";
+    }
+
     public override void Effect(Player player)
     {
     }

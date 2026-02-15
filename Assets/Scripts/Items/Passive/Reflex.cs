@@ -5,6 +5,11 @@ public class Reflex : PassiveItem
 {
     ReflexEffect effect = new ReflexEffect();
 
+    public Reflex()
+    {
+        itemName = "Reflex";
+    }
+
     public override void Effect(Player player)
     {
 

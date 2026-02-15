@@ -9,7 +9,7 @@ public class AlzheimerFogController : MonoBehaviour
     public float maxRadius = 2f;
     public float shrinkSpeed = 1f;
     public float expandSpeed = 2f;
-    private bool canExpand = false;
+    //private bool canExpand = false;
 
     public float currentRadius;
     private Material fogMaterial;
@@ -63,7 +63,7 @@ public class AlzheimerFogController : MonoBehaviour
 
         if (currentRadius == minRadius)
         {
-            canExpand = true;
+            //canExpand = true;
             shrinkSpeed = 0.3f;
         }
 
@@ -80,6 +80,6 @@ public class AlzheimerFogController : MonoBehaviour
     {
         active = value;
         fogSprite.enabled = value;
-        canExpand = false;
+        //canExpand = false;
     }
 }

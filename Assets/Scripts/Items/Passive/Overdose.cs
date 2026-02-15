@@ -5,6 +5,11 @@ public class Overdose : PassiveItem
 {
     OverdoseEffect effect = new OverdoseEffect();
 
+    public Overdose()
+    {
+        itemName = "Overdose";
+    }
+
     public override void Effect(Player player) { }
 
     public override void OnAdd(Player player)

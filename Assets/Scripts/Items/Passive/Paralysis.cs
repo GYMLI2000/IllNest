@@ -6,6 +6,11 @@ public class Paralysis : PassiveItem
 
     ParalysisEffect effect = new ParalysisEffect();
 
+    public Paralysis()
+    {
+        itemName = "Paralysis";
+    }
+
     public override void Effect(Player player) { }
 
     public override void OnAdd(Player player)

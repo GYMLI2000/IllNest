@@ -20,6 +20,7 @@ public abstract class Projectile : MonoBehaviour
     public float size { protected set; get; }
     public int passThrough { protected set; get; }
     public int bounceAmount;
+    public bool isOriginal = true;
 
     public string poolKey { protected set; get; }
     protected string partPoolKey;
@@ -96,18 +97,21 @@ public abstract class Projectile : MonoBehaviour
         this.knockBack = knockback;
         this.passThrough = passThrough;
         this.size = size;
+        isOriginal = true;
 
         destroyed = false;
         lastPos = position;
         parentObject = transform.parent.gameObject;
         parentObject.transform.localScale = size * Vector3.one;
+        parentObject.transform.position = position;
         this.effects = null;
 
     }
 
-    public virtual void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough, float size, List<IProjectileEffect> effects)
+    public virtual void SetStats(Vector2 position, int damage, Vector2 direction, float speed, bool isHostile, float range, GameObject owner, float knockback, int passThrough, float size, List<IProjectileEffect> effects, bool isOriginal)
     {
         SetStats(position,damage, direction, speed, isHostile, range, owner, knockback, passThrough, size);
+        this.isOriginal = isOriginal;
 
         if (effects != null && effects.Count > 0)
         {
@@ -130,6 +134,7 @@ public abstract class Projectile : MonoBehaviour
                 effect.OnSpawn(this);
             }
         }
+
     }
 
 
@@ -146,7 +151,6 @@ public abstract class Projectile : MonoBehaviour
             if ( debuff != null && Random.Range(0f, 1f) <= 0.5f - player.diseaseImunity*0.1f)
             {
                 collision.gameObject.GetComponent<DebuffManager>().AddDebuff(debuff);
-                ProjectileHit?.Invoke(true);
             }
             DestroyProjectile();
         }
@@ -156,6 +160,7 @@ public abstract class Projectile : MonoBehaviour
             if ((enemy = collision.gameObject.GetComponent<Enemy>()) != null)
             {
                 enemy.TakeHit(owner.GetComponent<Player>(),damage,knockBack);
+                ProjectileHit?.Invoke(true);
 
                 if (effects != null && effects.Count > 0)
                 {
@@ -177,7 +182,7 @@ public abstract class Projectile : MonoBehaviour
             {
                 if (!isHostile)
                 {
-                    ProjectileHit?.Invoke(false);
+                    ProjectileHit?.Invoke(!isOriginal);
                     if (effects != null && effects.Count > 0)
                     {
                         foreach (var effect in effects)

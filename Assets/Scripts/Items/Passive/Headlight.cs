@@ -3,6 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Headlight", menuName = "Items/Passive/Headlight")]
 public class Headlight : PassiveItem
 {
+    public Headlight()
+    {
+        itemName = "Headlight";
+    }
+
     public override void Effect(Player player)
     {
     }

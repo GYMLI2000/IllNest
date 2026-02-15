@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public event Action<int> changeHp;
     public event Action<int> changeMaxHp;
+    public event Action openMenu;
 
     [Header("Managers / Systems")]
     [SerializeField] public DebuffManager debuffManager;
@@ -79,9 +80,10 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        moveAction = playerControls.Player.Move;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
-        moveAction = playerControls.Player.Move;
 
 
         rb = GetComponent<Rigidbody2D>();
@@ -104,6 +106,8 @@ public class Player : MonoBehaviour
         playerControls.Enable();
         playerControls.Player.Attack.performed += context => isAttacking = true;
         playerControls.Player.Attack.canceled += context => isAttacking = false;
+        playerControls.Player.ActiveItem.performed += OnActiveItem;
+        playerControls.Player.OpenMenu.performed += OpenMenu;
 
     }
 
@@ -111,6 +115,8 @@ public class Player : MonoBehaviour
     {
         playerControls.Player.Attack.performed -= context => isAttacking = true;
         playerControls.Player.Attack.canceled -= context => isAttacking = false;
+        playerControls.Player.ActiveItem.performed -= OnActiveItem;
+        playerControls.Player.OpenMenu.performed -= OpenMenu;
 
         playerControls.Disable();
     }
@@ -137,7 +143,8 @@ public class Player : MonoBehaviour
             knockback,
             passThrough,
             projSize,
-            projEffects
+            projEffects,
+            true
             );
         projectile.transform.position = firepoint.position;
 
@@ -274,6 +281,22 @@ public class Player : MonoBehaviour
             isStaggered = false;
         }
 
+    }
+
+    public void OnActiveItem(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            itemManager.UseActiveItem();
+        }
+    }
+
+    public void OpenMenu(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            openMenu?.Invoke();
+        }
     }
 
     public void UpdateHp()
