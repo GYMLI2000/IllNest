@@ -423,6 +423,10 @@ MonoBehaviour:
   - {fileID: 7243394891610419173, guid: 0654c4ac7b90a754daadd211f9f76b68, type: 3}
   - {fileID: 1249262843880455734, guid: bf6e7ead61a8d814e88639068bdc14f4, type: 3}
   - {fileID: 5094561681241051544, guid: 7405035a0f582894e8dc9800a0fb1ef2, type: 3}
+  lesserEnemies:
+  - {fileID: 3143907200565226573, guid: 2f247321f7291e5408d7c86ec1a28c86, type: 3}
+  - {fileID: 5332685894768363276, guid: 6178c2d774449664a9b0cdb7fa61ae2e, type: 3}
+  - {fileID: -70177622617781871, guid: 2ccef04d7c1cef945b210117a6ad74a3, type: 3}
   spawnPoint: {fileID: 9018420354648309690}
   parentRoom: {fileID: 0}
 --- !u!50 &5604444510646003505

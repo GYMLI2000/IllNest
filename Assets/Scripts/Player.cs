@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] public ItemManager itemManager;
 
     [Header("Input")]
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
     private InputAction moveAction;
     private Vector2 moveValue;
     private bool isAttacking;
@@ -99,6 +99,24 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+        LoadBindingOverrides();
+    }
+
+    public void LoadBindingOverrides()
+    {
+        string rebinds = PlayerPrefs.GetString("InputOverrides", string.Empty);
+
+        if (!string.IsNullOrEmpty(rebinds))
+        {
+            playerControls.LoadBindingOverridesFromJson(rebinds);
+        }
+        else
+        {
+            foreach (var map in playerControls.asset.actionMaps)
+            {
+                map.RemoveAllBindingOverrides();
+            }
+        }
     }
 
     private void OnEnable()

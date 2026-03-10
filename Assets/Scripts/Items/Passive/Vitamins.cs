@@ -13,7 +13,7 @@ public class Vitamins : PassiveItem
     public override void OnAdd(Player player)
     {
         player.maxHp += 4;
-        player.diseaseImunity += 1f;
+        player.diseaseImunity += .5f;
         player.currentHp = player.maxHp;
         player.UpdateHp();
     }
@@ -21,7 +21,7 @@ public class Vitamins : PassiveItem
     public override void OnRemove(Player player)
     {
         player.maxHp -= 4;
-        player.diseaseImunity -= 1f;
+        player.diseaseImunity -= .5f;
         player.UpdateHp();
     }
 }

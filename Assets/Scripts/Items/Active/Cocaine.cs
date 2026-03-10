@@ -14,10 +14,18 @@ public class Cocaine : ActiveItem
         chargeRequired = 6;
         duration = 5;
         activateTime = 0;
-        currentCharge = chargeRequired;
+        currentCharge = 0;
         itemName = "Cocaine";
     }
 
+    private void OnEnable()
+    {
+        chargeRequired = 6;
+        duration = 5;
+        activateTime = 0;
+        currentCharge = 0;
+        itemName = "Cocaine";
+    }
 
     public override void OnAdd() { }
 
@@ -35,6 +43,7 @@ public class Cocaine : ActiveItem
     protected override void Activate(Player player)
     {
         if (isActive) return;
+        player.playerLight.color = new Color(1f, .5f, .5f);
         player.firerateMult += 2;
         player.movementSpeed += 6;
         player.projSpeed += 6;
@@ -44,6 +53,7 @@ public class Cocaine : ActiveItem
 
     protected override void RemoveEffect()
     {
+        player.playerLight.color = Color.white;
         player.firerateMult -= 2;
         player.movementSpeed -= 6;
         player.projSpeed -= 6;

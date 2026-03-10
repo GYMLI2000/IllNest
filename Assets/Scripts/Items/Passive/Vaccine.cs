@@ -16,11 +16,11 @@ public class Vaccine : PassiveItem
 
     public override void OnAdd(Player player)
     {
-        player.diseaseImunity += 3;
+        player.diseaseImunity += 2.5f;
     }
 
     public override void OnRemove(Player player)
     {
-        player.diseaseImunity -= 3;
+        player.diseaseImunity -= 2.5f;
     }
 }

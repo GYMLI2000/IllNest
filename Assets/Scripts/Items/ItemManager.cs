@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ItemManager : MonoBehaviour
 {
@@ -41,6 +40,8 @@ public class ItemManager : MonoBehaviour
         activeItem.OnAdd();
         PickupActive?.Invoke(activeItem.itemSprite);
         ChangeActiveCharge?.Invoke(activeItem.currentCharge, activeItem.chargeRequired);
+
+        OnPickup?.Invoke(item.itemName);
 
         return oldItem;
     }

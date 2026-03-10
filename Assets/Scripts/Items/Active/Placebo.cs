@@ -13,7 +13,14 @@ public class Placebo : ActiveItem
     public Placebo()
     {
         chargeRequired = 3;
-        currentCharge = chargeRequired;
+        currentCharge = 0;
+        itemName = "Placebo";
+    }
+
+    private void OnEnable()
+    {
+        chargeRequired = 3;
+        currentCharge = 0;
         itemName = "Placebo";
     }
 
@@ -33,6 +40,7 @@ public class Placebo : ActiveItem
     {
         this.player = player;
         debuffs.Clear();
+        player.playerLight.color = new Color(.5f, 1f, .5f);
 
         for (int i = player.debuffManager.activeDebuffs.Count-1; i>= 0; i--)
         {
@@ -47,6 +55,8 @@ public class Placebo : ActiveItem
     protected override void RemoveEffect()
     {
         if(player == null) return;
+        player.playerLight.color = Color.white;
+
 
         player.debuffManager.ChangeDebuffs(true);
 

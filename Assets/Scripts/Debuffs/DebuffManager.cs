@@ -9,7 +9,7 @@ public class DebuffManager : MonoBehaviour
 {
     public event Action<List<Debuff>> changeDebuff;
     public List<Debuff> activeDebuffs { get; private set; } = new List<Debuff>();
-    private bool debuffEnabled;
+    private bool debuffEnabled = true;
 
     [SerializeField]
     private Player target;

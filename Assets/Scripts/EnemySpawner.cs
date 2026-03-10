@@ -2,13 +2,14 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
     private List<Enemy> enemies;
 
+    [SerializeField]
+    private List<Enemy> lesserEnemies;
 
     [SerializeField]
     private Transform spawnPoint;
@@ -18,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
     public Room parentRoom;
 
     private List<Enemy> currentEnemies = new();
+
+    private bool spawnedEnemies = false;
 
     private void Awake()
     {
@@ -35,9 +38,20 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    
+    private void Update()
+    {
+        if(!spawnedEnemies) return;
+        currentEnemies.RemoveAll(e => e == null || !e.isActiveAndEnabled);
+        if (currentEnemies.Count <= 0)
+        {
+            RoomManager.RM.ClearRoom(parentRoom);
+            spawnedEnemies = false;
+        }
+    }
+
     public void SpawnEnemies()
     {
+        currentEnemies.Clear();
         bool spawnedMainEnemy = false;
         List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
 
@@ -69,6 +83,8 @@ public class EnemySpawner : MonoBehaviour
             currentEnemies.Add(spawnedEnemy);
 
         }
+
+        spawnedEnemies = true;
     } 
 
 
@@ -80,13 +96,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Debug.Log("Checking Enemies  " + currentEnemies.Count);
 
-        currentEnemies.RemoveAll(e => e == null || !e.isActiveAndEnabled);
-
         currentEnemies.Remove(enemy);
-        if (currentEnemies.Count <= 0)
-        {
-            RoomManager.RM.ClearRoom(parentRoom);
-        }
 
         Debug.Log("Checked   " + currentEnemies.Count);
 
