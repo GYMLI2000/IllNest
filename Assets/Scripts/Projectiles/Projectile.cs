@@ -24,6 +24,7 @@ public abstract class Projectile : MonoBehaviour
 
     public string poolKey { protected set; get; }
     protected string partPoolKey;
+    protected string hitSound;
 
     protected GameObject parentObject;
     public GameObject owner { protected set; get; }
@@ -218,6 +219,11 @@ public abstract class Projectile : MonoBehaviour
             }
         }
 
+        if (hitSound != null)
+        {
+            AudioManager.Instance.PlaySFX(hitSound);
+        }
+
         ParticleSystem particles = PoolManager.Instance.Get(partPoolKey).GetComponent<ParticleSystem>();
         particles.transform.position = parentObject.transform.position;
         particles.Play();
@@ -225,6 +231,7 @@ public abstract class Projectile : MonoBehaviour
         PoolManager.Instance.Release(partPoolKey, particles.gameObject, 2f);
 
         PoolManager.Instance.Release(poolKey, parentObject);
+
     }
 
 }

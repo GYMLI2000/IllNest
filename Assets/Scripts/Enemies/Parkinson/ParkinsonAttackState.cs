@@ -11,6 +11,7 @@ public class ParkinsonAttackState : AttackState
     public override void Attack()
     {
         Vector2 baseDir = (enemy.target.transform.position - enemy.transform.position).normalized;
+        AudioManager.Instance.PlaySFX("ParkinsonAttack");
 
         for (int i = -1; i <= 1; i++)
         {

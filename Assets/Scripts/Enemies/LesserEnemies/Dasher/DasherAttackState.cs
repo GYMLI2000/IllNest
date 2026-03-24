@@ -38,6 +38,8 @@ public class DasherAttackState : AttackState
 
     public override void Attack()
     {
+        AudioManager.Instance.PlaySFX("DasherAttack");
+
         enemy.dashDirection =
                (enemy.target.transform.position - enemy.transform.position).normalized;
     }

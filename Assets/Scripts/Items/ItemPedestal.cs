@@ -26,6 +26,8 @@ public class ItemPedestal : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponentInParent<ItemManager>() != null && !isPicked)
         {
+            AudioManager.Instance.PlaySFX("Collect");
+
             isPicked = true;
             itemSprite.sprite = null;
             ItemManager manager = collision.gameObject.GetComponentInParent<ItemManager>();

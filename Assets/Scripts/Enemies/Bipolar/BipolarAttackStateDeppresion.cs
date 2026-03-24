@@ -23,6 +23,7 @@ public class BipolarAttackStateDeppresion : AttackState
 
         for (int b = 0; b < burstCount; b++)
         {
+            AudioManager.Instance.PlaySFX("BipolarAttack");
             Vector2 rotatedDir = Quaternion.Euler(0, 0, Random.Range(-45f, 45f)) * baseDir;
 
             GameObject projObj = PoolManager.Instance.Get(enemy.projKey);

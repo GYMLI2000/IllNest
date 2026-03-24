@@ -92,6 +92,7 @@ public class AlzheimerAttackState : AttackState
         float alpha = 1f;
 
         // Fade out
+        AudioManager.Instance.PlaySFX("FadeOutAlzheimer");
         while (alpha > 0f)
         {
             alpha -= Time.deltaTime;
@@ -115,6 +116,7 @@ public class AlzheimerAttackState : AttackState
         Teleport();
 
         // Fade in
+        AudioManager.Instance.PlaySFX("FadeInAlzheimer");
         while (alpha < 1f)
         {
             alpha += Time.deltaTime;
@@ -170,6 +172,7 @@ public class AlzheimerAttackState : AttackState
     {
         if (!isFading)
         {
+            AudioManager.Instance.PlaySFX("AlzheimerAttack");
             Shoot();
         }
     }

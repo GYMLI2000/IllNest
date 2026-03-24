@@ -35,6 +35,7 @@ public class ControlRowUI : MonoBehaviour
             })
             .OnComplete(operation => {
                 FinishRebind();
+                if (_manager != null) _manager.ControlsChanged();
                 operation.Dispose();
             })
             .OnCancel(operation => {

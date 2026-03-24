@@ -8,9 +8,15 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private GameObject settings;
 
+    private void OnEnable()
+    {
+        AudioManager.Instance.PlayMusic("MainMenu");
+    }
+
     public void StartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+        AudioManager.Instance.PlayMusic("Game1");
     }
 
     public void QuitGame()

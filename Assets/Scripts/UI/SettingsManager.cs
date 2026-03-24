@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -7,11 +8,18 @@ using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
+    private bool controlsDirty = false;
+    public TMP_Text applyText;
+    [SerializeField]
+    private GameObject menu;
+    [SerializeField]
+    private GameObject confirmation;
 
     [Header("Panely")]
     public GameObject graphicsPanel;
     public GameObject audioPanel;
     public GameObject controlsPanel;
+
 
     [Header("Graphics")]
     public TextMeshProUGUI resolutionText;
@@ -38,9 +46,11 @@ public class SettingsManager : MonoBehaviour
     public AudioMixer mainMixer;
     public Slider musicSlider;
     public Slider sfxSlider;
+    public Slider masterSlider;
 
     private float activeMusicVol;
     private float activeSFXVol;
+    private float activeMasterVol;
 
     void Start()
     {
@@ -64,6 +74,38 @@ public class SettingsManager : MonoBehaviour
         OpenGraphics(); // Otevøe první grafiku
     }
 
+    private void Update()
+    {
+        RefreshApplyButtonVisuals();
+    }
+    public void ControlsChanged()
+    {
+        controlsDirty = true;
+    }
+    public void Exit(bool exit)
+    {
+        if (!RefreshApplyButtonVisuals() || exit)
+        {
+            ResetAll();
+            confirmation.SetActive(false);
+            if (menu != null)
+            {
+                menu.SetActive(true);
+            }
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log(confirmation);
+            confirmation.SetActive(true);
+        }
+    }
+
+    public void CloseConfirmation()
+    {
+        confirmation.SetActive(false);
+    }
+
     #region Pøepínání Panelù
     public void OpenGraphics() => ShowPanel(graphicsPanel);
     public void OpenAudio() => ShowPanel(audioPanel);
@@ -79,15 +121,27 @@ public class SettingsManager : MonoBehaviour
 
     public void ApplyAll()
     {
-        if(graphicsPanel.activeSelf) ApplyGraphics();
-        if (controlsPanel.activeSelf) SaveControls();
+        if (graphicsPanel.activeSelf) ApplyGraphics();
+
+        if (controlsPanel.activeSelf)
+        {
+            SaveControls();
+            controlsDirty = false;
+        }
+
         if (audioPanel.activeSelf) ApplyAudio();
     }
 
     public void ResetAll()
     {
         if (graphicsPanel.activeSelf) ResetGraphics();
-        if (controlsPanel.activeSelf) ResetControls();
+
+        if (controlsPanel.activeSelf)
+        {
+            ResetControls();
+            controlsDirty = false;
+        }
+
         if (audioPanel.activeSelf) ResetAudio();
     }
 
@@ -227,6 +281,11 @@ public class SettingsManager : MonoBehaviour
         ApplyVolumeToMixer("SFXVol", value);
     }
 
+    public void SetMasterVolume(float value)
+    {
+        ApplyVolumeToMixer("Master", value);
+    }
+
     private void ApplyVolumeToMixer(string parameter, float value)
     {
         float db = Mathf.Log10(Mathf.Max(0.0001f, value)) * 20;
@@ -237,31 +296,69 @@ public class SettingsManager : MonoBehaviour
     {
         activeMusicVol = musicSlider.value;
         activeSFXVol = sfxSlider.value;
+        activeMasterVol = masterSlider.value;
 
         PlayerPrefs.SetFloat("MusicVolume", activeMusicVol);
         PlayerPrefs.SetFloat("SFXVolume", activeSFXVol);
+        PlayerPrefs.SetFloat("Master", activeMasterVol);
         PlayerPrefs.Save();
+
+        ApplyVolumeToMixer("MusicVol", musicSlider.value);
+        ApplyVolumeToMixer("SFXVol", sfxSlider.value);
+        ApplyVolumeToMixer("Master", masterSlider.value);
     }
 
     public void ResetAudio()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
+        float music = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
+        float sfx = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
+        float master = PlayerPrefs.GetFloat("Master", 0.75f);
 
-        ApplyVolumeToMixer("MusicVol", musicSlider.value);
-        ApplyVolumeToMixer("SFXVol", sfxSlider.value);
+        musicSlider.value = music;
+        sfxSlider.value = sfx;
+        masterSlider.value = master;
+
+        activeMusicVol = music;
+        activeSFXVol = sfx;
+        activeMasterVol = master;
+
+        ApplyVolumeToMixer("MusicVol", music);
+        ApplyVolumeToMixer("SFXVol", sfx);
+        ApplyVolumeToMixer("Master", master);
     }
 
     public void LoadAudio()
     {
         activeMusicVol = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
         activeSFXVol = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
+        activeMasterVol = PlayerPrefs.GetFloat("Master", 0.75f);
 
         musicSlider.value = activeMusicVol;
         sfxSlider.value = activeSFXVol;
+        masterSlider.value = activeMasterVol;
 
         ApplyVolumeToMixer("MusicVol", activeMusicVol);
         ApplyVolumeToMixer("SFXVol", activeSFXVol);
+        ApplyVolumeToMixer("Master", activeMasterVol);
     }
     #endregion
+
+    public bool RefreshApplyButtonVisuals()
+    {
+        if (applyText == null) return false;
+
+        bool hasChanges = false;
+
+        if (selectedResIndex != activeResIndex) hasChanges = true;
+
+        if (!Mathf.Approximately(musicSlider.value, activeMusicVol)) hasChanges = true;
+        if (!Mathf.Approximately(sfxSlider.value, activeSFXVol)) hasChanges = true;
+        if (!Mathf.Approximately(masterSlider.value, activeMasterVol)) hasChanges = true;
+
+        if (controlsDirty) hasChanges = true;
+
+        applyText.color = hasChanges ? Color.green : Color.gray;
+
+        return hasChanges;
+    }
 }

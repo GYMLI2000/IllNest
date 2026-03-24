@@ -23,6 +23,8 @@ public class OCDAttackState : AttackState
 
         for (int b = 0; b < amount; b++)
         {
+            AudioManager.Instance.PlaySFX("OCDClick");
+
             Vector2 direction = enemy.target.transform.position - enemy.transform.position;
 
 

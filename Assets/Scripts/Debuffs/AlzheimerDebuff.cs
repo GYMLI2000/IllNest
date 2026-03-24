@@ -22,6 +22,8 @@ public class AlzheimerDebuff : Debuff
 
     public override void OnAdd(Player player)
     {
+        AudioManager.Instance.PlaySFX("AlzheimerEffect");
+
         fog = Camera.main.GetComponentInChildren<AlzheimerFogController>();
         player.passThrough++;
         if (fog != null)

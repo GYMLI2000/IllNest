@@ -149,6 +149,8 @@ public class Player : MonoBehaviour
 
         StartCoroutine(AttackEffect());
 
+        AudioManager.Instance.PlaySFX("PlayerAttack");
+
         GameObject projectile = PoolManager.Instance.Get(projectileKey);
         projectile.GetComponentInChildren<Projectile>().SetStats(
             firepoint.position
@@ -218,6 +220,9 @@ public class Player : MonoBehaviour
     {
         if (Time.time <= lastHit + invFrames) return false;
 
+        AudioManager.Instance.PlaySFX("PlayerHit");
+
+
         if (isInvincible) // tohle potom zmenit jenom pro ukazku abych neumiral
         {
             damage = 0;
@@ -249,6 +254,10 @@ public class Player : MonoBehaviour
         {
             s.color = Color.white;
         }
+
+        AudioManager.Instance.PlaySFX("Death");
+        AudioManager.Instance.PlayMusic("DeathMusic");
+
         DeathScreen.Instance.Show();
         rb.simulated = false;
         gloveSprite.rotation = Quaternion.Euler(0f, 90f, 0f);
@@ -347,10 +356,12 @@ public class Player : MonoBehaviour
         if (moveValue.magnitude > 0)
         {
             animator.SetBool("isWalking",true);
+            //AudioManager.Instance.LoopSound("Footsteps", true);
         }
         else
         {
             animator.SetBool("isWalking", false);
+            //AudioManager.Instance.LoopSound("Footsteps", false);
         }
 
         MoveFirePoint();

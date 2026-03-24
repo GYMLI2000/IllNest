@@ -189,6 +189,7 @@ public class RoomManager : MonoBehaviour
     public void ClearRoom(Room room)
     {
         room.ClearRoom();
+        AudioManager.Instance.PlaySFX("RoomClear");
         roomClear?.Invoke();
     }
 

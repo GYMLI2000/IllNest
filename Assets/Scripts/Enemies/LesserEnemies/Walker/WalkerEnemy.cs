@@ -22,4 +22,14 @@ public class WalkerEnemy : Enemy
 
     }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if (Random.Range(0, 150) == 1)
+        {
+            AudioManager.Instance.PlaySFX("WalkerScream");
+        }
+    }
+
 }

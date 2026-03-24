@@ -8,6 +8,7 @@ public class Pill : Projectile
     {
         poolKey = "PillProjectile";
         partPoolKey = "PillHit";
+        hitSound = "PillHit";
     }
 
     protected override void AI()

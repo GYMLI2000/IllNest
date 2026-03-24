@@ -62,6 +62,7 @@ public class BipolarEnemy : Enemy
             attackDuration = 1f;
             knockback = 1f;
 
+            AudioManager.Instance.PlaySFX("BipolarTransform");
         }
         else if (!isEnraged && Time.time > lastSwitchTime + switchCooldown && !isAttacking && !isCharging) //enraged state
         {
@@ -76,6 +77,7 @@ public class BipolarEnemy : Enemy
             attackDuration = 0.5f;
             knockback = 10f;
 
+            AudioManager.Instance.PlaySFX("BipolarTransform");
         }
 
         base.Update();
@@ -98,6 +100,19 @@ public class BipolarEnemy : Enemy
             else
             {
                 StartCoroutine(HitEffect(true));
+            }
+        }
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if (isEnraged)
+        {
+            if (Random.Range(0, 100) == 1)
+            {
+                AudioManager.Instance.PlaySFX("BipolarScream");
             }
         }
     }

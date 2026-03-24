@@ -38,6 +38,8 @@ public class LeaperAttackState : AttackState
 
     public override void Attack()
     {
+        AudioManager.Instance.PlaySFX("LeaperAttack");
+
         enemy.dashDirection =
                (enemy.target.transform.position - enemy.transform.position).normalized;
     }

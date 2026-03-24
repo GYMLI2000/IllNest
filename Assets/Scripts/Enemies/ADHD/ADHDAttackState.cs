@@ -72,6 +72,8 @@ public class ADHDAttackState : AttackState
             
             );
         }
+        AudioManager.Instance.PlaySFX("ADHDDash");
+
          enemy.dashDirection =
                 (enemy.target.transform.position - enemy.transform.position).normalized;
     }

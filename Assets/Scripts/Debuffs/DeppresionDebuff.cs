@@ -50,6 +50,8 @@ public class DeppresionDebuff : Debuff
 
     public override void OnAdd(Player player)
     {
+        AudioManager.Instance.PlaySFX("BipolarEffect") ;
+
         manic = false;
         currentColor = new Color(0, 204f/255f, 1);
         startTime = Time.time;

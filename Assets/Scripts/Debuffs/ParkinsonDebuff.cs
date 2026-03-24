@@ -13,6 +13,8 @@ public class ParkinsonDebuff : Debuff
 
     public override void OnAdd(Player player)
     {
+        AudioManager.Instance.PlaySFX("ParkinsonEffect");
+
         player.animator.SetBool("ParkinsonDebuff", true);
         if (player.atkCooldown - 0.2f > 0f)
         {

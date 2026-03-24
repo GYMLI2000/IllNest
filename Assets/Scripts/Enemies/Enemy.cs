@@ -207,7 +207,7 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (currentState != null)
         {

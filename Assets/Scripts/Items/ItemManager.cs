@@ -49,6 +49,8 @@ public class ItemManager : MonoBehaviour
     public void UseActiveItem()
     {
         if (activeItem == null) return;
+
+        AudioManager.Instance.PlaySFX("ActiveItem");
         activeItem.Use(player);
         ChangeActiveCharge?.Invoke(activeItem.currentCharge,activeItem.chargeRequired);
 
