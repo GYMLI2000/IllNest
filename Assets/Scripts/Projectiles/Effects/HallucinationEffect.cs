@@ -59,7 +59,7 @@ public class HallucinationEffect : IProjectileEffect
         linkedProjectiles.RemoveAll(proj => proj == null || !proj.isActiveAndEnabled);
     }
 
-    public void OnHit(Projectile p, Enemy enemy) { }
+    public void OnHit(Projectile p, HostileEntity enemy) { }
 
     public void OnCollide(Projectile p, Collider2D collision) { }
 

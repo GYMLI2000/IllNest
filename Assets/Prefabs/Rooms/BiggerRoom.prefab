@@ -83,6 +83,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 0}
   grid: {fileID: 6152136061836627750}
+  roomType: 0
+  worldPos: {x: 0, y: 0, z: 0}
+  width: 24
+  height: 16
 --- !u!1 &5345208480547821647
 GameObject:
   m_ObjectHideFlags: 0

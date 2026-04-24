@@ -421,9 +421,6 @@ MonoBehaviour:
   entryPoint: {fileID: 8391699104984703708}
   doorLock: {fileID: 3553099623411500123}
   doorAnimator: {fileID: 1403209248164188814}
-  doorSprites:
-  - {fileID: 21300000, guid: d7b44f91354c8484f84d99c64f662a15, type: 3}
-  - {fileID: 21300000, guid: cb98ae58a00f16a4c89a8e5bccceaa4a, type: 3}
   doorWall: {fileID: 0}
 --- !u!61 &3553099623411500123
 BoxCollider2D:

@@ -72,6 +72,7 @@ public class SettingsManager : MonoBehaviour
         UpdateResolutionUI();
         UpdateControlsUI();
         OpenGraphics(); // Otevøe první grafiku
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -143,6 +144,12 @@ public class SettingsManager : MonoBehaviour
         }
 
         if (audioPanel.activeSelf) ResetAudio();
+    }
+
+    public void LoadAll()
+    {
+        LoadControls();
+        LoadAudio();
     }
 
     #region Grafika (Apply/Reset)
@@ -289,6 +296,12 @@ public class SettingsManager : MonoBehaviour
     private void ApplyVolumeToMixer(string parameter, float value)
     {
         float db = Mathf.Log10(Mathf.Max(0.0001f, value)) * 20;
+
+        if (parameter == "MusicVol" || db > 15)
+        {
+            db -=15f;
+        }
+
         mainMixer.SetFloat(parameter, db);
     }
 

@@ -18,7 +18,7 @@ public class ParalysisEffect : IProjectileEffect
     public void OnCollide(Projectile p, Collider2D collision) { }
     public void OnDestroy(Projectile p) { 
     }
-    public void OnHit(Projectile p, Enemy enemy) { }
+    public void OnHit(Projectile p, HostileEntity enemy) { }
     public void OnSpawn(Projectile p) {
         duration = 3f;
     }

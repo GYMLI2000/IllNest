@@ -38,5 +38,9 @@ public class DebuffBar : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        debuffManager.changeDebuff -= UpdateDebuffIcons;
+    }
 
 }

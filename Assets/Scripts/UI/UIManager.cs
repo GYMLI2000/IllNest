@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager UM;
+
+
 
     [SerializeField]
     private Player player;
@@ -34,6 +37,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        UM = this;
         player.changeHp += UpdateHealth;
         player.changeMaxHp += UpdateMaxHealth;
         itemManager.PickupActive += UpdateActiveItemImage;
@@ -92,6 +96,14 @@ public class UIManager : MonoBehaviour
             Image heart = Instantiate(heartPrefab, healthBar.transform);
             heart.sprite = healthEmpty;
             hearts.Add(heart);
+        }
+    }
+
+    public void ChangeHealthColor(Color color)
+    {
+        foreach (var heart in hearts)
+        {
+            heart.color = color;
         }
     }
 }

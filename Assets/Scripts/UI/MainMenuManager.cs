@@ -16,7 +16,6 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
-        AudioManager.Instance.PlayMusic("Game1");
     }
 
     public void QuitGame()

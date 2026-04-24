@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] sfxClips;
 
     private Coroutine loopCoroutine;
+    private Coroutine musicManagerCoroutine;
 
     private void Awake()
     {
@@ -37,6 +38,11 @@ public class AudioManager : MonoBehaviour
 
         musicSource.clip = s.clip;
         musicSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
     }
 
     public void PlaySFX(string name)
@@ -80,6 +86,31 @@ public class AudioManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
     }
+    public void StartMusicSystem()
+    {
+        if (musicManagerCoroutine != null) StopCoroutine(musicManagerCoroutine);
+        musicManagerCoroutine = StartCoroutine(MusicPlaylistLoop());
+    }
+
+    public void StopMusicSystem()
+    {
+        if (musicManagerCoroutine != null)
+            StopCoroutine(musicManagerCoroutine);
+    }
+
+    private IEnumerator MusicPlaylistLoop()
+    {
+        while (true)
+        {
+            int randomIndex = Random.Range(1, 4); // zatim 3 ruzny st
+            string trackName = "Game" + randomIndex;
+
+            PlayMusic(trackName);
+
+            yield return new WaitForSeconds(musicSource.clip.length * Random.Range(2, 4));
+        }
+    }
+
 }
 
 [Serializable]

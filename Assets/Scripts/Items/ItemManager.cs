@@ -18,10 +18,10 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
-        Enemy.EnemyDeath += AddCharge;
+        HostileEntity.EntityDeath += AddCharge;
     }
 
-    private void AddCharge(Enemy e)
+    private void AddCharge(HostileEntity e)
     {
         if (activeItem !=null)
         {

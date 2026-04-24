@@ -174,13 +174,14 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            var enemy = collision.gameObject.GetComponent<Enemy>();
+            var enemy = collision.gameObject.GetComponent<HostileEntity>();
             TakeHit(enemy, enemy.damage, enemy.knockback);
         }
     }
 
-    public void TakeHit(Enemy enemy, int damage, float knockback)
+    public void TakeHit(HostileEntity enemy, int damage, float knockback)
     {
+        if (Time.time <= lastHit + invFrames) return;
         TakeDamage(damage);
 
         isStaggered = true;
@@ -218,7 +219,7 @@ public class Player : MonoBehaviour
 
     public bool TakeDamage(int damage)
     {
-        if (Time.time <= lastHit + invFrames) return false;
+        if ( damage < 0) return false;
 
         AudioManager.Instance.PlaySFX("PlayerHit");
 
@@ -243,6 +244,7 @@ public class Player : MonoBehaviour
 
         changeHp?.Invoke(currentHp);
         lastHit = Time.time;
+        if (Time.time <= lastHit + invFrames) return false;
         return damage > 0;
     }
 
@@ -255,6 +257,7 @@ public class Player : MonoBehaviour
             s.color = Color.white;
         }
 
+        AudioManager.Instance.StopMusicSystem();
         AudioManager.Instance.PlaySFX("Death");
         AudioManager.Instance.PlayMusic("DeathMusic");
 

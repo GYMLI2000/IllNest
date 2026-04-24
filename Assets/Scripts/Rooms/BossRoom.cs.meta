@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0d3484dab161e154f9406f281870fb6e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - enemySpawner: {instanceID: 0}
+  - grid: {instanceID: 0}
+  - spawnPos: {instanceID: 0}
+  - boss: {instanceID: 0}
+  - itemPedestalPrefab: {fileID: 9175860834042114035, guid: c6c3a16124727584bb72f4f079c6155c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

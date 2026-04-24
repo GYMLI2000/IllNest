@@ -148,7 +148,7 @@ public abstract class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && isHostile)
         {
             var player = collision.gameObject.GetComponent<Player>();
-            player.TakeHit(owner.GetComponent<Enemy>(),damage,knockBack);
+            player.TakeHit(owner.GetComponent<HostileEntity>(),damage,knockBack);
             if ( debuff != null && Random.Range(0f, 1f) <= 0.5f - player.diseaseImunity*0.1f)
             {
                 collision.gameObject.GetComponent<DebuffManager>().AddDebuff(debuff);
@@ -157,8 +157,8 @@ public abstract class Projectile : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy") && !isHostile)
         {
-            Enemy enemy;
-            if ((enemy = collision.gameObject.GetComponent<Enemy>()) != null)
+            HostileEntity enemy;
+            if ((enemy = collision.gameObject.GetComponent<HostileEntity>()) != null)
             {
                 enemy.TakeHit(owner.GetComponent<Player>(),damage,knockBack);
                 ProjectileHit?.Invoke(true);
@@ -177,7 +177,10 @@ public abstract class Projectile : MonoBehaviour
         {
             if (passThrough > 0 && collision.gameObject.layer != LayerMask.NameToLayer("Wall"))
             {
-                passThrough--;
+                if (passThrough != -1)
+                {
+                    passThrough--;
+                }
             }
             else
             {
@@ -192,7 +195,7 @@ public abstract class Projectile : MonoBehaviour
                         }
                     }
                 }
-                if (bounceAmount <= 0)
+                if (bounceAmount <= 0 && passThrough != -1)
                 {
                     DestroyProjectile();
                 }

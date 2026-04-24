@@ -50,6 +50,7 @@ public class DebuffManager : MonoBehaviour
             activeDebuffs.Add(debuff);
             debuff.isApplied = true;
             debuff.OnAdd(target);
+            debuff.manager = this;
             changeDebuff?.Invoke(activeDebuffs);
         }
     }
@@ -92,5 +93,11 @@ public class DebuffManager : MonoBehaviour
     public void ChangeDebuffs(bool enabled)
     {
         debuffEnabled = enabled;
+    }
+
+
+    public void DebuffChanged()
+    {
+        changeDebuff?.Invoke(activeDebuffs);
     }
 }

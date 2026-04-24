@@ -288,10 +288,10 @@ RectTransform:
   - {fileID: 1430857745}
   m_Father: {fileID: 9714993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 92, y: -28.1715}
-  m_SizeDelta: {x: 150, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &72414282
 MonoBehaviour:
@@ -693,10 +693,10 @@ RectTransform:
   - {fileID: 2100124128}
   m_Father: {fileID: 9714993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 408, y: -28.1715}
-  m_SizeDelta: {x: 150, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &184252033
 MonoBehaviour:
@@ -1146,10 +1146,10 @@ RectTransform:
   - {fileID: 922050424}
   m_Father: {fileID: 985347475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -70}
-  m_SizeDelta: {x: 120, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &388598054
 MonoBehaviour:
@@ -1785,10 +1785,10 @@ RectTransform:
   - {fileID: 859956420}
   m_Father: {fileID: 985347475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -20}
-  m_SizeDelta: {x: 120, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &648665305
 MonoBehaviour:
@@ -2459,10 +2459,10 @@ RectTransform:
   - {fileID: 697412514}
   m_Father: {fileID: 985347475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -120}
-  m_SizeDelta: {x: 120, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &889458477
 MonoBehaviour:
@@ -3614,10 +3614,10 @@ RectTransform:
   - {fileID: 1514914156}
   m_Father: {fileID: 9714993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -28.1715}
-  m_SizeDelta: {x: 150, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1119711803
 MonoBehaviour:
@@ -3995,10 +3995,16 @@ MonoBehaviour:
   musicTracks:
   - name: MainMenu
     clip: {fileID: 8300000, guid: c682b77fa52734c41a9185b9d331c05a, type: 3}
-  - name: Game1
-    clip: {fileID: 8300000, guid: cd4aa3846bc4e9d4cabe2c4314bc3b4b, type: 3}
   - name: DeathMusic
     clip: {fileID: 8300000, guid: 2678e818b8b39d942925fb1d39dbbec8, type: 3}
+  - name: Game1
+    clip: {fileID: 8300000, guid: cd4aa3846bc4e9d4cabe2c4314bc3b4b, type: 3}
+  - name: Game2
+    clip: {fileID: 8300000, guid: 4486367de6a68c64b90980ca71ffff3a, type: 3}
+  - name: Game3
+    clip: {fileID: 8300000, guid: 010157e862fa364499b033928274e1f6, type: 3}
+  - name: Boss1
+    clip: {fileID: 8300000, guid: 791be67a0e3258e429a35465bca3fd07, type: 3}
   sfxClips:
   - name: PlayerAttack
     clip: {fileID: 8300000, guid: 046280af60d8e0943b9b19b84bfe0d64, type: 3}
@@ -4052,6 +4058,28 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1dfd2cbe9c3518943bf085f22833ee8f, type: 3}
   - name: ActiveItem
     clip: {fileID: 8300000, guid: d278c18af3498ae458c77ca8c4bc5597, type: 3}
+  - name: EnemyDeath1
+    clip: {fileID: 8300000, guid: aa4ed38da3a2fb04ba5c22b40b9b7d4f, type: 3}
+  - name: LesserEnemyDeath1
+    clip: {fileID: 8300000, guid: 35e931150bacb4a46b0ee09c9d98350b, type: 3}
+  - name: ParkinsonAttack2
+    clip: {fileID: 8300000, guid: 7bc526c2e2011a14b9c8a5c6db9e8129, type: 3}
+  - name: CancerAttack
+    clip: {fileID: 8300000, guid: 690f245f2ba1b494cb0f96d5177ba00d, type: 3}
+  - name: CancerAbsorb
+    clip: {fileID: 8300000, guid: 131e82b6692ae684381089d857f597f3, type: 3}
+  - name: CancerDeath
+    clip: {fileID: 8300000, guid: bc989ff6c6677464b9f8e3f3db6b8533, type: 3}
+  - name: CancerSpawnMinion
+    clip: {fileID: 8300000, guid: 146e9a06b949a1649b67360cdd089ea0, type: 3}
+  - name: CancerSummonTumor
+    clip: {fileID: 8300000, guid: 0ef41f81eae938f4488b17d16795dede, type: 3}
+  - name: CancerLongScream
+    clip: {fileID: 8300000, guid: ec2a99694b4584043b66d912bcf2c6e2, type: 3}
+  - name: CancerShortScream
+    clip: {fileID: 8300000, guid: 684486990740def4a9e0183356b29f88, type: 3}
+  - name: CancerDebuff
+    clip: {fileID: 8300000, guid: d35fb593fcccadb438acd11f9ac0cb8b, type: 3}
 --- !u!1 &1232138638
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,7 +5440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1564612254
 MonoBehaviour:
   m_ObjectHideFlags: 0

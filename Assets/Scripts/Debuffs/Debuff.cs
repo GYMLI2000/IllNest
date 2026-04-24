@@ -8,6 +8,7 @@ public abstract class Debuff
     public int currentDuration = 0;
     protected float magnitude;
     public bool isApplied = false;
+    public DebuffManager manager;
 
 
 

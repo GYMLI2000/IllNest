@@ -18,7 +18,7 @@ public class ReflexEffect : IProjectileEffect
         p.bounceAmount = 3;
     }
     public void OnDestroy(Projectile p){}
-    public void OnHit(Projectile p, Enemy enemy) { }
+    public void OnHit(Projectile p, HostileEntity enemy) { }
     public bool OnRangeExpired(Projectile p) { return false; }
     public void OnUpdate(Projectile p) { }
 

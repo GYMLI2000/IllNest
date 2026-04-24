@@ -1,0 +1,59 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+
+public class Room : MonoBehaviour
+{
+    private List<Door> doorList;
+    public List<Door> DoorList => doorList;
+
+    public EnemySpawner enemySpawner;
+    public Transform grid;
+
+    public bool isCleared { get; private set; } = false;
+    public RoomType roomType;
+    public Vector3 worldPos;
+    [SerializeField] protected int width;
+    [SerializeField] protected int height;
+
+    private void Awake()
+    {
+        doorList = gameObject.GetComponentsInChildren<Door>().ToList<Door>();
+    }
+
+    public void ActivateRoom()
+    {
+        foreach (Door door in doorList)
+        {
+            if (door.connectedRoom != null)
+            {
+                door.ChangeLock(true);
+            }
+        }
+
+        if (enemySpawner != null)
+            enemySpawner.SpawnEnemies();
+    }
+
+    public void ClearRoom()
+    {
+        isCleared = true;
+        foreach (Door door in doorList)
+        {
+            door.ChangeLock(false);
+        }
+
+    }
+
+    public virtual void LeaveRoom()
+    {
+
+    }
+
+    public virtual void EnterRoom()
+    {
+
+    }
+}

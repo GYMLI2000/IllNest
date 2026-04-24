@@ -86,10 +86,9 @@ public class GameMenuManager : MonoBehaviour
     public void OpenSettings()
     {
         if (!settings.activeSelf)
-        {
-            menu.SetActive(false);
+        { 
             settings.SetActive(true);
-            
+            menu.SetActive(false);
         }
         else
         {

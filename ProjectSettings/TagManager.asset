@@ -24,7 +24,7 @@ TagManager:
   - MovementFlying
   - HightObstacle
   - GroundDamage
-  - 
+  - MovementGhost
   - 
   - 
   - 

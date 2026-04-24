@@ -1,1 +1,3 @@
-Dobrý ted jde o jinou věc ze to razeni spritu v tilemap je trosku goofy kvůli tomu ze to je jako jeden velkej objekt a nemaj svůj vlastní center ty objektym usi doresit yikes (ye reference??????)
+Dobrý ted jde o jinou věc ze to razeni spritu v tilemap je trosku goofy kvůli tomu ze to je jako jeden velkej objekt a nemaj svůj vlastní center ty objektym usi doresit yikes (ye reference??????) // nefixnul jsem ani picu ale prej to mam nechat bejt
+
+Celej script system projektilu je na nic a je to hroznej spaghetti code ale asi to nebudu opravovat. Možná na konci v červnu když budu mit cas a tak. Jako kvůli tomu jak to mam ted musim delat tak dalších 300 skriptu no nic.
