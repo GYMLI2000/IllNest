@@ -7,6 +7,8 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField]
     private GameObject settings;
+    [SerializeField]
+    private GameObject journal;
 
     private void OnEnable()
     {
@@ -42,6 +44,21 @@ public class MainMenuManager : MonoBehaviour
             else
             {
                 settings.SetActive(true);
+            }
+        }
+    }
+
+    public void ToggleJournal()
+    {
+        if (journal != null)
+        {
+            if (journal.activeSelf)
+            {
+                journal.SetActive(false);
+            }
+            else
+            {
+                journal.SetActive(true);
             }
         }
     }

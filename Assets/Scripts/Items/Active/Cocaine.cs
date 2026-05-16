@@ -16,6 +16,7 @@ public class Cocaine : ActiveItem
         activateTime = 0;
         currentCharge = 0;
         itemName = "Cocaine";
+        itemID = 4501;
     }
 
     private void OnEnable()

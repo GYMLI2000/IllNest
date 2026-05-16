@@ -7,6 +7,7 @@ public class SpitterEnemy : Enemy
     {
         poolKey = "SpitterEnemy";
         projKey = "SpitProjectile";
+        entityId = 3;
     }
 
     protected override void InitializeStats()

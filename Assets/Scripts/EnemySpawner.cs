@@ -44,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
         currentEnemies.RemoveAll(e => e == null || !e.isActiveAndEnabled);
         if (currentEnemies.Count <= 0)
         {
+            CompletionManager.Instance.CheckCompletion("3505", 1, 4);
             RoomManager.RM.ClearRoom(parentRoom);
             spawnedEnemies = false;
         }

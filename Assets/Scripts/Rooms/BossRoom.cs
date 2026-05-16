@@ -38,6 +38,11 @@ public class BossRoom : Room
         ClearRoom();
         currentBoss.BossDeath -= BossDied;
 
+        AudioManager.Instance.StopMusic();
+
+
+        AudioManager.Instance.StartMusicSystem();
+
         Instantiate(itemPedestalPrefab, spawnPos.position - new Vector3(0, 4), Quaternion.identity, grid);
         Instantiate(staircasePrefab, spawnPos.position, Quaternion.identity, grid);
     }

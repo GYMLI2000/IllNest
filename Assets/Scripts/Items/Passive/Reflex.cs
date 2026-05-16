@@ -8,6 +8,8 @@ public class Reflex : PassiveItem
     public Reflex()
     {
         itemName = "Reflex";
+        itemID = 3002;
+        isDefault = true;
     }
 
     public override void Effect(Player player)

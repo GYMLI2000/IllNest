@@ -15,6 +15,8 @@ public class Placebo : ActiveItem
         chargeRequired = 3;
         currentCharge = 0;
         itemName = "Placebo";
+        itemID = 4001;
+        isDefault = true;
     }
 
     private void OnEnable()

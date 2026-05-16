@@ -9,6 +9,7 @@ public class LeaperEnemy : Enemy
     protected override void SetPoolKeys()
     {
         poolKey = "LeaperEnemy";
+        entityId = 2;
     }
 
     protected override void InitializeStats()

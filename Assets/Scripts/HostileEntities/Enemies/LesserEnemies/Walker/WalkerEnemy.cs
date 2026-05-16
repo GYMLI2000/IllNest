@@ -7,6 +7,7 @@ public class WalkerEnemy : Enemy
     protected override void SetPoolKeys()
     {
         poolKey = "WalkerEnemy";
+        entityId = 4;
     }
 
     protected override void InitializeStats()

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class PassiveItem : Item
 {
-    public int itemID { protected set; get; }
     public override bool isPassive => true;
 
 

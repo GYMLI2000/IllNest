@@ -32,9 +32,13 @@ public class PoolManager : MonoBehaviour
         foreach (var p in pools)
         {
             var pool = new ObjectPool<GameObject>(
-                createFunc: () => Instantiate(p.prefab,p.poolParent),
+                createFunc: () => Instantiate(p.prefab, p.poolParent),
                 actionOnGet: (obj) => obj.SetActive(true),
-                actionOnRelease: (obj) => obj.SetActive(false),
+                actionOnRelease: (obj) =>
+                {
+                    obj.SetActive(false);
+                    if (p.poolParent != null) obj.transform.SetParent(p.poolParent);
+                },
                 actionOnDestroy: (obj) => Destroy(obj),
                 collectionCheck: false,
                 defaultCapacity: p.defaultCapacity,
@@ -59,6 +63,23 @@ public class PoolManager : MonoBehaviour
     public void Get(string key, float delay, System.Action<GameObject> callback)
     {
         StartCoroutine(GetAfterDelay(key, delay, callback));
+    }
+
+    public GameObject Get(string key, Transform parent)
+    {
+        if (!poolDictionary.ContainsKey(key))
+        {
+            Debug.LogError($"Pool '{key}' neexistuje!");
+            return null;
+        }
+        GameObject obj = poolDictionary[key].Get();
+
+        obj.transform.SetParent(parent, false);
+
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
+
+        return obj;
     }
 
     private IEnumerator GetAfterDelay(string key, float delay, System.Action<GameObject> callback)

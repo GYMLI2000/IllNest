@@ -27,7 +27,10 @@ public abstract class Debuff
         }
     }
 
-    public abstract void OnAdd(Player player);
+    public virtual void OnAdd(Player player)
+    {
+        CompletionManager.Instance.DiscoverEntry(debuffID + 2000);
+    }
 
     public abstract void Effect(Player player);
 

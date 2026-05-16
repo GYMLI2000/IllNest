@@ -241,10 +241,14 @@ public class Player : MonoBehaviour
             Die();
         }
 
+        if (damage > 0)
+        {
+            CompletionManager.Instance.ResetCompletionProgress("Vitamins");
+        }
+
 
         changeHp?.Invoke(currentHp);
         lastHit = Time.time;
-        if (Time.time <= lastHit + invFrames) return false;
         return damage > 0;
     }
 

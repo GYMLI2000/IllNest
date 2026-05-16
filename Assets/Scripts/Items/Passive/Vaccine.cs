@@ -7,6 +7,7 @@ public class Vaccine : PassiveItem
     public Vaccine()
     {
         itemName = "Vaccine";
+        itemID = 3502;
     }
 
     public override void Effect(Player player)

@@ -34,4 +34,9 @@ public class ItemPickupPanel : MonoBehaviour
             animator.SetTrigger("ItemPicked");
         }
     }
+
+    private void OnDisable()
+    {
+        itemManager.OnPickup -= ItemPickup;
+    }
 }

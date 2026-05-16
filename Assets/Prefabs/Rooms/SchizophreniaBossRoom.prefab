@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8757450104159982833}
   - component: {fileID: -6418537194624723307}
   m_Layer: 0
-  m_Name: BossRoom
+  m_Name: SchizophreniaBossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

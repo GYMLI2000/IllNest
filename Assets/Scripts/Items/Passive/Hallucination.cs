@@ -8,6 +8,7 @@ public class Hallucination : PassiveItem
     public Hallucination()
     {
         itemName = "Hallucination";
+        itemID = 3504;
     }
 
     public override void Effect(Player player) { }

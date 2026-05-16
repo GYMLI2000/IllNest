@@ -7,26 +7,27 @@ public class SchizophreniaClone : Enemy
     private float currentRealness = 0f;
     public SchizophreniaBoss boss;
 
-    public float dashPower;
-    public bool isDashing = false;
-    public Vector2 dashDirection;
 
 
     protected override void InitializeStats()
     {
-        killParticleColor = new Color(97f/255f, 128f/255f, 80f/255f, 0.2f);
+        killParticleColor = new Color(120f/255f, 152f/255f, 209f/255f, 0.2f);
         chaseRange =  5;
         damage = 1;
-        speed = 8;
+        speed = 3;
         health = 1;
         idleState = new IdleState(this);
         chaseState = new ChaseState(this);
+        attackState = new SchizophreniaCloneAttackState(this);
         attackDuration = 1f;
         chargeTime = 1.5f;
-        dashPower = 10;
+        realness = 0f;
+        currentRealness = -1f;
+        attackCooldown = 3f;
 
         knockback = 2f;
         isLesser = true;
+
     }
 
     protected override void Update()
@@ -47,6 +48,7 @@ public class SchizophreniaClone : Enemy
         if ( !isAttacking && !isCharging && currentRealness >= 1)
         {
             StartCoroutine(Clone());
+            realness = 0f;
         }
     }
 
@@ -54,36 +56,34 @@ public class SchizophreniaClone : Enemy
     {
         isAttacking = true;
         isCharging = true;
+        animator.SetTrigger("Clone");
+        yield return new WaitForSeconds(0.8f);
 
         PoolManager.Instance.Get("SchizophreniaClone", 0.05f, minionObj =>
         {
-            minionObj.transform.position = transform.position;
+            minionObj.transform.position = transform.position + ((target.transform.position.x - transform.position.x) > 0 ? Vector3.right : Vector3.left);
             var clone = minionObj.GetComponent<SchizophreniaClone>();
             clone.EnableEnemy();
-            boss.AddClone(clone);
+            //boss.AddClone(clone);
+
         });
 
         realness = 0f;
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         isAttacking = false;
         isCharging = false;
     }
 
-    public IEnumerator Dash()
+    public override void TakeHit(Player player, int damageAmount, float knockbackAmount)
     {
-        isDashing = true;
-        yield return new WaitForSeconds(1f);
-        isDashing = false;
+        realness += 0.2f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Kill()
     {
-        if(collision.CompareTag("Projectile") && !collision.gameObject.GetComponent<Projectile>().isHostile && collision.gameObject.GetComponent<Projectile>().isOriginal)
-        {
-            realness += 0.2f;
-        }
+        base.Die();
     }
 
     protected override void SetPoolKeys()

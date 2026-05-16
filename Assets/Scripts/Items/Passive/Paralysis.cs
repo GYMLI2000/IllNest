@@ -9,6 +9,8 @@ public class Paralysis : PassiveItem
     public Paralysis()
     {
         itemName = "Paralysis";
+        itemID = 3004;
+        isDefault = true;
     }
 
     public override void Effect(Player player) { }

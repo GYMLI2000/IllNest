@@ -67,6 +67,14 @@ public abstract class Boss : HostileEntity
     {
         if (target == null || isInPattern) return;
 
+        if (rb.linearVelocity.magnitude > 0.1f && !isInPattern)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
 
         rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, (target.transform.position - transform.position).normalized * speed, 0.1f);
         rb.position += rb.linearVelocity * Time.deltaTime;

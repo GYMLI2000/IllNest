@@ -25,7 +25,7 @@ public class OCDEnemy : Enemy
     {
         poolKey = "OCDEnemy";
         projKey = "OCDProjectile";
-
+        entityId = 204;
     }
 
     protected override void InitializeStats()

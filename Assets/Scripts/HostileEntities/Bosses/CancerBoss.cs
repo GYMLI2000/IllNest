@@ -59,12 +59,10 @@ public class CancerBoss : Boss
     private IEnumerator DeathCoroutine()
     {
         animator.SetTrigger("Death");
-        AudioManager.Instance.StopMusic();
 
         AudioManager.Instance.PlaySFX("CancerDeath");
         yield return new WaitForSeconds(6f);
 
-        AudioManager.Instance.StartMusicSystem();
         base.Die();
     }
 
@@ -251,6 +249,16 @@ public class CancerBoss : Boss
         yield return new WaitForSeconds(1f);
 
         AudioManager.Instance.PlaySFX("CancerAbsorb");
+
+
+        for (int i = minions.Count - 1; i >= 0; i--)
+        {
+            if (!minions[i].isActiveAndEnabled)
+            {
+                RemoveMinion(minions[i]);
+            }
+        }
+
         while (minions.Count > 0)
         {
             for (int i = minions.Count - 1; i >= 0; i--)
@@ -437,6 +445,7 @@ public class CancerBoss : Boss
     {
         poolKey = "CancerBoss";
         projKey = "CancerProjectile";
+        entityId = 602;
     }
 
 
@@ -488,6 +497,7 @@ public class CancerBoss : Boss
     {
         ClearMinions();
         StopAllCoroutines();
+        CompletionManager.Instance.CheckCompletion("3506", 1, 1);
         StartCoroutine(DeathCoroutine());
     }
 }

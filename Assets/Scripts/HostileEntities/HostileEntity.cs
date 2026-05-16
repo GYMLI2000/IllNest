@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class HostileEntity : MonoBehaviour
 {
+    protected int entityId;
+
     [Header("Health / Core Stats")]
     [HideInInspector] public int health;
     [HideInInspector] public float speed { get; protected set; }
@@ -106,7 +108,7 @@ public abstract class HostileEntity : MonoBehaviour
         }
     }
 
-    private void FlipTowards(float targetX)
+    protected virtual void FlipTowards(float targetX)
     {
         if (transform.position.x < targetX)
             transform.localScale = new Vector3(-1, 1, 1);
@@ -161,6 +163,7 @@ public abstract class HostileEntity : MonoBehaviour
     public virtual void Die()
     {
         EntityDeath?.Invoke(this);
+        CompletionManager.Instance.DiscoverEntry(entityId);
     }
 
     public virtual void Die(bool isByPlayer)

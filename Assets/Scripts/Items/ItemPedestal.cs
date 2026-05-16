@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemPedestal : MonoBehaviour
@@ -14,8 +16,25 @@ public class ItemPedestal : MonoBehaviour
 
     private void Start()
     {
-        item = RoomManager.RM.items[Random.Range(0,RoomManager.RM.items.Count)];
-        if (RoomManager.RM.items.Count > 1)
+        List<Item> allItems = RoomManager.RM.items;
+        List<Item> unlockedItems = new List<Item>();
+
+        foreach (Item currentItem in allItems)
+        {
+            if (CompletionManager.Instance.IsUnlocked(currentItem.itemID.ToString()) || currentItem.isDefault)
+            {
+                unlockedItems.Add(currentItem);
+            }
+        }
+        if (unlockedItems.Count == 0)
+        {
+            Debug.LogWarning("No unlocked items left in the pool!");
+            return;
+        }
+
+        item = unlockedItems[Random.Range(0, unlockedItems.Count)];
+
+        if (allItems.Count > 1)
         {
             RoomManager.RM.items.Remove(item);
         }

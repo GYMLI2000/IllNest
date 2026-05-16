@@ -23,6 +23,7 @@ public class CancerTumor : Enemy
     protected override void SetPoolKeys()
     {
         poolKey = "CancerTumor";
+        entityId = 403;
     }
 
     public override void EnableEnemy()

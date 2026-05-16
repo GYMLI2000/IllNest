@@ -8,6 +8,7 @@ public class Overdose : PassiveItem
     public Overdose()
     {
         itemName = "Overdose";
+        itemID = 3506;
     }
 
     public override void Effect(Player player) { }

@@ -6,6 +6,8 @@ public class Viagra : PassiveItem
     public Viagra()
     {
         itemName = "Viagra";
+        itemID = 3003;
+        isDefault = true;
     }
 
     public override void Effect(Player player)

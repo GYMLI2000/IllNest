@@ -21,7 +21,7 @@ public class BipolarEnemy : Enemy
     {
         poolKey = "BipolarEnemy";
         projKey = "BipolarProjectile";
-
+        entityId = 203;
     }
 
     protected override void InitializeStats()

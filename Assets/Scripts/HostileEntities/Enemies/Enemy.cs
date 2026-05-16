@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Enemy : HostileEntity
 {
     protected bool isLesser = false;
+    protected string deathAudio;
 
     [Header("Attack Runtime")]
     [HideInInspector] public float attackCooldown;
@@ -71,7 +72,9 @@ public abstract class Enemy : HostileEntity
         main.startColor = killParticleColor;
         particles.Play();
 
-        if (!isLesser)
+        if (deathAudio != null)
+            AudioManager.Instance.PlaySFX(deathAudio);
+        else if (!isLesser)
             AudioManager.Instance.PlaySFX("EnemyDeath1");
         else
             AudioManager.Instance.PlaySFX("LesserEnemyDeath1");
@@ -82,6 +85,11 @@ public abstract class Enemy : HostileEntity
         }
 
         StopAllCoroutines();
+
+        if (!isLesser)
+        {
+            CompletionManager.Instance.CheckCompletion("3501", 1, 10);
+        }
 
         PoolManager.Instance.Release(partPoolKey, particles.gameObject, 2f);
         PoolManager.Instance.Release(poolKey, gameObject);

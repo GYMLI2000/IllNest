@@ -41,6 +41,8 @@ public class CancerDebuff : Debuff
 
     public override void OnAdd(Player player)
     {
+        base.OnAdd(player);
+
         Enemy.EntityDeath += OnEnemyDeath;
         CancerBoss.OnCancerHit += OnCancerHit;
         currentDuration = duration/2;

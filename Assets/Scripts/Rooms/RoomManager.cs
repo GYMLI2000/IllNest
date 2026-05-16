@@ -18,7 +18,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] int roomGap = 6;
     [SerializeField] GameObject roomPrefab;
     [SerializeField] GameObject itemPedestalPrefab;
-    [SerializeField] GameObject bossRoomPrefab;
+    [SerializeField] List<GameObject> bossRoomPrefabs;
+    [SerializeField] GameObject currentBossRoomPrefab;
     [SerializeField] Sprite bossDoor;
     [SerializeField] List<GameObject> roomLayouts;
     public List<Enemy> lesserEnemies;
@@ -37,6 +38,7 @@ public class RoomManager : MonoBehaviour
 
     private void Start()
     {
+        currentBossRoomPrefab = bossRoomPrefabs[0];
         GenerateLayout();
         SpawnRooms();
         ConnectDoors();
@@ -130,7 +132,7 @@ public class RoomManager : MonoBehaviour
                 // but usually better to keep it on grid for ConnectDoors to work perfectly.
                 Vector3 arenaPos = worldPos + new Vector3(exitDir.x * (roomWidth + roomGap) *4, exitDir.y * (roomHeight + roomGap) * 4, 0);
 
-                BossRoom bossArena = Instantiate(bossRoomPrefab, arenaPos, Quaternion.identity, this.transform).GetComponent<BossRoom>();
+                BossRoom bossArena = Instantiate(currentBossRoomPrefab, arenaPos, Quaternion.identity, this.transform).GetComponent<BossRoom>();
                 bossArena.roomType = RoomType.Boss;
                 bossArena.worldPos = arenaPos;
 
@@ -342,6 +344,7 @@ public class RoomManager : MonoBehaviour
 
 
         // Difficulty increase ??
+        currentBossRoomPrefab = bossRoomPrefabs[Mathf.Min(bossRoomPrefabs.Count - 1, bossRoomPrefabs.IndexOf(currentBossRoomPrefab) + 1)];
         roomCount += 5;
         // end
 

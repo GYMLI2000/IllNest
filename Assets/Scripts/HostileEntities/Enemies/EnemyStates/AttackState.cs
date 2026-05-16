@@ -24,6 +24,7 @@ public abstract class AttackState : State
 
             enemy.isCharging = true;
             enemy.chargeStart = Time.time;
+            enemy.animator.SetBool("isWalking", false);
             enemy.animator.SetTrigger("Charge");
 
             OnCharge();
@@ -39,6 +40,7 @@ public abstract class AttackState : State
                 enemy.isCharging = false;
                 enemy.isAttacking = true;
                 enemy.lastAttack = Time.time;
+                enemy.animator.SetBool("isWalking", false);
                 enemy.animator.SetTrigger("Attack");
 
 

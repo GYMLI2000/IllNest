@@ -6,6 +6,7 @@ public class Vitamins : PassiveItem
     public Vitamins()
     {
         itemName = "Vitamins";
+        itemID = 3505;
     }
 
     public override void Effect(Player player) { }

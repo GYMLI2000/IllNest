@@ -19,6 +19,8 @@ public class GameMenuManager : MonoBehaviour
     private GameObject inventoryItemPrefab;
     [SerializeField]
     private GameObject settings;
+    [SerializeField]
+    private GameObject journal;
 
     private void Start()
     {
@@ -94,6 +96,20 @@ public class GameMenuManager : MonoBehaviour
         {
             menu.SetActive(true);
             settings.SetActive(false);
+        }
+    }
+
+    public void OpenJournal()
+    {
+        if (!journal.activeSelf)
+        {
+            journal.SetActive(true);
+            menu.SetActive(false);
+        }
+        else
+        {
+            menu.SetActive(true);
+            journal.SetActive(false);
         }
     }
 }

@@ -15,7 +15,7 @@ public class AlzheimerEnemy : Enemy
     {
         poolKey = "AlzheimerEnemy";
         projKey = "AlzheimerProjectile";
-
+        entityId = 202;
     }
 
     protected override void InitializeStats()

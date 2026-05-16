@@ -45,6 +45,15 @@ public class UIManager : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        player.changeHp -= UpdateHealth;
+        player.changeMaxHp -= UpdateMaxHealth;
+        itemManager.PickupActive -= UpdateActiveItemImage;
+        itemManager.ChangeActiveCharge -= UpdateActiveItemCharge;
+    }
+
+
     private void UpdateActiveItemImage(Sprite img)
     {
         if (!ActiveItemImg.isActiveAndEnabled)

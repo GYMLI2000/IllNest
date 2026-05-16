@@ -52,6 +52,11 @@ public class DebuffManager : MonoBehaviour
             debuff.OnAdd(target);
             debuff.manager = this;
             changeDebuff?.Invoke(activeDebuffs);
+
+            if (activeDebuffs.Count >= 3)
+            {
+                CompletionManager.Instance.CheckCompletion("3503", 1, 1);
+            }
         }
     }
 
@@ -71,6 +76,7 @@ public class DebuffManager : MonoBehaviour
 
             if (!debuff.isApplied)
             {
+                CompletionManager.Instance.CheckCompletion("3502", 1, 5);
                 RemoveDebuff(debuff);
             }
             else

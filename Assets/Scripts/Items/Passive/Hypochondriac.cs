@@ -9,6 +9,7 @@ public class Hypochondriac : PassiveItem
     public Hypochondriac()
     {
         itemName = "Hypochondriac";
+        itemID = 3503;
     }
 
     public override void Effect(Player player)

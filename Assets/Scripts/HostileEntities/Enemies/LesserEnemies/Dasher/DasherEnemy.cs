@@ -8,6 +8,7 @@ public class DasherEnemy : Enemy
     protected override void SetPoolKeys()
     {
         poolKey = "DasherEnemy";
+        entityId = 1;
     }
 
     protected override void InitializeStats()

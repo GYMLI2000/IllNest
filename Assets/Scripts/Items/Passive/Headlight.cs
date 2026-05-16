@@ -6,6 +6,8 @@ public class Headlight : PassiveItem
     public Headlight()
     {
         itemName = "Headlight";
+        itemID = 3001;
+        isDefault = true;
     }
 
     public override void Effect(Player player)

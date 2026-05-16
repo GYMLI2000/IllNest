@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debuffManager: {fileID: 160094290420818111}
   itemManager: {fileID: 2165727614162504683}
-  movementSpeed: 5
+  movementSpeed: 6
   invFrames: 1
   knockback: 10
   rb: {fileID: 0}

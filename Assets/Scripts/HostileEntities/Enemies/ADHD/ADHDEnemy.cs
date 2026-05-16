@@ -9,6 +9,7 @@ public class ADHDEnemy : Enemy
     public List<Enemy> clones;
     public float dashPower {get;private set;}
     public List<Material> enemyMaterial;
+    
 
     public override void EnableEnemy()
     {
@@ -23,6 +24,7 @@ public class ADHDEnemy : Enemy
     protected override void SetPoolKeys()
     {
         poolKey = "ADHDEnemy";
+        entityId = 201;
     }
 
     protected override void InitializeStats()
@@ -43,7 +45,6 @@ public class ADHDEnemy : Enemy
         chaseState = new ChaseState(this);
         dashPower = 20;
         knockback = 2f;
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

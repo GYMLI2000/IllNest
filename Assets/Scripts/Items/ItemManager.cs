@@ -21,6 +21,11 @@ public class ItemManager : MonoBehaviour
         HostileEntity.EntityDeath += AddCharge;
     }
 
+    private void OnDisable()
+    {
+        HostileEntity.EntityDeath -= AddCharge;
+    }
+
     private void AddCharge(HostileEntity e)
     {
         if (activeItem !=null)
@@ -32,6 +37,7 @@ public class ItemManager : MonoBehaviour
 
     public ActiveItem AddActiveItem(ActiveItem item)
     {
+        CompletionManager.Instance.DiscoverEntry(item.itemID);
 
         ActiveItem oldItem = activeItem;
         if (oldItem != null) oldItem.OnRemove();
@@ -58,6 +64,8 @@ public class ItemManager : MonoBehaviour
 
     public void AddItem(PassiveItem item)
     {
+        CompletionManager.Instance.DiscoverEntry(item.itemID);
+
         if (passiveItems.FirstOrDefault(d => d.GetType() == item.GetType()) != null)
         {
             //hrac uz ma item

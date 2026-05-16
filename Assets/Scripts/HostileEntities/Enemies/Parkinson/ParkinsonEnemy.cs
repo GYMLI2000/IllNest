@@ -7,7 +7,7 @@ public class ParkinsonEnemy : Enemy
     {
         poolKey = "ParkinsonEnemy";
         projKey = "ParkinsonProjectile";
-
+        entityId = 205;
     }
 
     protected override void InitializeStats()

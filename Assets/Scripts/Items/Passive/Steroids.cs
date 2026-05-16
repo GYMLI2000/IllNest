@@ -8,6 +8,7 @@ public class Steroids : PassiveItem
     public Steroids()
     {
         itemName = "Steroids";
+        itemID = 3504;
     }
 
     public override void Effect(Player player)
