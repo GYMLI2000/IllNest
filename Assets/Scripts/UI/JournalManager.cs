@@ -29,6 +29,8 @@ public class JournalManager : MonoBehaviour
     public TextMeshProUGUI descText;
     public TextMeshProUGUI statsText;
     public TextMeshProUGUI additionalText;
+    public Sprite undiscoveredImg;
+    public Sprite lockedImg;
 
     private void Start()
     {
@@ -126,19 +128,20 @@ public class JournalManager : MonoBehaviour
         {
             titleText.text = "Locked Item";
             entryImage.sprite = null;
-            descText.text = entry.descText; // Maybe they know what it is...
-            statsText.text = "Stats hidden. Complete the task to unlock!";
-            additionalText.text = "Task: " + entry.taskName;
+            descText.text = entry.taskText; // Maybe they know what it is...
+            statsText.text = "Complete the task to unlock";
+            entryImage.sprite = lockedImg; 
             return;
         }
         else if (!isDiscovered)
         {
             // Undiscovered State: Show almost nothing
-            titleText.text = "Unknown Entity";
+            titleText.text = "Unknown Entry";
             entryImage.sprite = null; // Or a silhouette/question mark sprite
             descText.text = "You have not encountered this yet.";
             statsText.text = "???";
             additionalText.text = "";
+            entryImage.sprite = undiscoveredImg;
             return;
         }
         else

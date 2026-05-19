@@ -16,7 +16,10 @@ MonoBehaviour:
   taskName: 3506_unlocked
   category: 2
   entryName: Overdose
-  descText: 
-  statsText: 
+  descText: Projectiles split into 3 with decreased damage
+  statsText: 'Item: Passive
+
+'
   additionalText: 
-  entryImage: {fileID: 0}
+  taskText: Defeat the Cancer boss
+  entryImage: {fileID: 21300000, guid: 3857449c450e5c6429183128e5953fc1, type: 3}

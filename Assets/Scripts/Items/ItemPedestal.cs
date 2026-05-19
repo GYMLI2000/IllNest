@@ -43,7 +43,7 @@ public class ItemPedestal : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponentInParent<ItemManager>() != null && !isPicked)
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponentInParent<ItemManager>() != null && !isPicked && item != null)
         {
             AudioManager.Instance.PlaySFX("Collect");
 

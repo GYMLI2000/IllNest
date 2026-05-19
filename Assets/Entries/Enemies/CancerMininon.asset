@@ -16,7 +16,18 @@ MonoBehaviour:
   taskName: 
   category: 0
   entryName: Cancer Minion
-  descText: 
-  statsText: 
+  descText: Tanky enemies that follow you. Kill them fast so the boss can't absorb
+    them for health.
+  statsText: 'Damage: 1
+
+    Health: 15
+
+    Speed: 3
+
+    Type: Melee/Minion
+
+    Knockback
+    reduction: 50%'
   additionalText: 
-  entryImage: {fileID: 0}
+  taskText: 
+  entryImage: {fileID: 5872108087052251924, guid: 632e09b90d6fb6349b5796a3a6cab9a2, type: 3}

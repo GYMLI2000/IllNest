@@ -16,7 +16,14 @@ MonoBehaviour:
   taskName: 
   category: 0
   entryName: Leaper
-  descText: 
-  statsText: 
+  descText: Hops toward the player like a frog.
+  statsText: 'Damage: 1
+
+    Health: 4
+
+    Speed: 4
+
+    Type: Melee/Lesser'
   additionalText: 
-  entryImage: {fileID: 0}
+  taskText: 
+  entryImage: {fileID: 21300000, guid: 65bc8a24e2f77d043b838aa0638b75df, type: 3}

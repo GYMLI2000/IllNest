@@ -16,7 +16,15 @@ MonoBehaviour:
   taskName: 
   category: 0
   entryName: ADHD
-  descText: 
-  statsText: 
+  descText: He's invincible as long as his clones are up. Focus on clearing out the
+    clones first, then you can damage the real one.
+  statsText: 'Damage: 1
+
+    Health: 7
+
+    Speed: 7
+
+    Type: Melee'
   additionalText: 
-  entryImage: {fileID: 0}
+  taskText: 
+  entryImage: {fileID: 21300000, guid: 296226b47f6141a4a9d931a9f2b8f7e8, type: 3}

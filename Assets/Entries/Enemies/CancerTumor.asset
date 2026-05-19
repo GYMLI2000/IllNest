@@ -16,7 +16,18 @@ MonoBehaviour:
   taskName: 
   category: 0
   entryName: Cancer Tumor
-  descText: 
-  statsText: 
+  descText: A stationary hazard that hurts if you touch it. Either kill it to clear
+    the way, or just walk around it.
+  statsText: 'Damage: 1
+
+    Health: 10
+
+    Speed: 0
+
+    Type: Contact/Minion
+
+    Knockback
+    reduction: 100%'
   additionalText: 
-  entryImage: {fileID: 0}
+  taskText: 
+  entryImage: {fileID: -2033837859, guid: 632e09b90d6fb6349b5796a3a6cab9a2, type: 3}

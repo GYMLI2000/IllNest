@@ -16,7 +16,16 @@ MonoBehaviour:
   taskName: 
   category: 0
   entryName: Parkinsons
-  descText: 
-  statsText: 
+  descText: He runs away and ruins your accuracy if you try to shoot while moving
+    with his debuff . To hit him, you have to stop and stand completely still to
+    steady your aim.
+  statsText: 'Damage: 1
+
+    Health: 5
+
+    Speed: 7
+
+    Type: Flying/Ranged/Debuff/Flee'
   additionalText: 
-  entryImage: {fileID: 0}
+  taskText: 
+  entryImage: {fileID: 21300000, guid: 2520cef5fd9b8694fb819639cb74bceb, type: 3}

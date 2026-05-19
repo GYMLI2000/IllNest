@@ -16,7 +16,18 @@ MonoBehaviour:
   taskName: 
   category: 0
   entryName: Cancer
-  descText: 
-  statsText: 
+  descText: "He spawns minions and eats them to heal. Kill the minions before he
+    can absorb them. Be careful\u2014the lower his health gets, the faster he attacks."
+  statsText: 'Damage: 2
+
+    Health: 500
+
+    Speed: 0
+
+    Type: Ranged/Boss/Debuff
+
+    Knockback
+    reduction: 100%'
   additionalText: 
-  entryImage: {fileID: 0}
+  taskText: 
+  entryImage: {fileID: 1965240177225604399, guid: 52e11834bbf94334da4e2aeabfa17b0a, type: 3}

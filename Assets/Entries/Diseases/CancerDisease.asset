@@ -16,7 +16,7 @@ MonoBehaviour:
   taskName: 
   category: 1
   entryName: Cancer Disease
-  descText: 
-  statsText: 
-  additionalText: 
-  entryImage: {fileID: 0}
+  descText: 'Cure: Increase time left by hitting Cancer boss or destroying his minions'
+  statsText: "Effect: \nPlayer dies when the timer hits 0"
+  additionalText: 'Applied by: Cancer Boss'
+  entryImage: {fileID: 1965240177225604399, guid: 52e11834bbf94334da4e2aeabfa17b0a, type: 3}

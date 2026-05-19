@@ -1,3 +1,4 @@
+using System.Collections; 
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,7 +10,12 @@ public class ItemUnlockPanel : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
+
+    [SerializeField]
+    private float animationDuration = 2.0f;
+
     private Queue<string> itemsUnlocked;
+    private bool isDisplaying = false; // Locks the queue while animating
 
     private void Start()
     {
@@ -30,11 +36,21 @@ public class ItemUnlockPanel : MonoBehaviour
 
     private void Update()
     {
-        if (itemsUnlocked.Count > 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (itemsUnlocked.Count > 0 && !isDisplaying)
         {
-            itemText.text = itemsUnlocked.Dequeue();
-            animator.SetTrigger("Show");
+            StartCoroutine(DisplayNextItem());
         }
+    }
+
+    private IEnumerator DisplayNextItem()
+    {
+        isDisplaying = true;
+        itemText.text = itemsUnlocked.Dequeue();
+        animator.SetTrigger("Show");
+
+        yield return new WaitForSeconds(animationDuration);
+
+        isDisplaying = false;
     }
 
     private void OnDisable()

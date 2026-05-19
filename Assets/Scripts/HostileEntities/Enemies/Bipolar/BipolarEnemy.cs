@@ -43,6 +43,7 @@ public class BipolarEnemy : Enemy
         knockback = 1f;
         isEnraged = false;
         lastSwitchTime = Time.time;
+        knockbackReduction = 0.5f;
     }
 
     protected override void Update()
@@ -61,6 +62,7 @@ public class BipolarEnemy : Enemy
             damage /= 2;
             attackDuration = 1f;
             knockback = 1f;
+            knockbackReduction = 0.5f;
 
             AudioManager.Instance.PlaySFX("BipolarTransform");
         }
@@ -76,6 +78,7 @@ public class BipolarEnemy : Enemy
             damage *= 2;
             attackDuration = 0.5f;
             knockback = 10f;
+            knockbackReduction = 0f;
 
             AudioManager.Instance.PlaySFX("BipolarTransform");
         }

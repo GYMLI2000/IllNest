@@ -16,7 +16,8 @@ MonoBehaviour:
   taskName: 
   category: 1
   entryName: Bipolar Disease
-  descText: 
-  statsText: 
-  additionalText: 
-  entryImage: {fileID: 0}
+  descText: 'Cure: Clear a room with each state'
+  statsText: "Effect: \nSwitch between 2 states\nDepression: Slower speed and projectile
+    speed\nManic: Faster speed and projectile speed"
+  additionalText: 'Applied By: Bipolar Enemy in Depression state'
+  entryImage: {fileID: 21300000, guid: 6ee17cd1d99b74e44a8bdfb9e00edd2a, type: 3}

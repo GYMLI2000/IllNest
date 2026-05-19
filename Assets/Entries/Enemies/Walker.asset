@@ -16,7 +16,14 @@ MonoBehaviour:
   taskName: 
   category: 0
   entryName: Walker
-  descText: 
-  statsText: 
+  descText: Just follows you around.
+  statsText: 'Damage: 1
+
+    Health: 4
+
+    Speed: 5
+
+    Type: Lesser/Melee'
   additionalText: 
-  entryImage: {fileID: 0}
+  taskText: 
+  entryImage: {fileID: 21300000, guid: af3bf3dd51e2d064ea6ab6c8b8028a14, type: 3}

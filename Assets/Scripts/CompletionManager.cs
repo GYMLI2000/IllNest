@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Threading;
 
 public class CompletionManager : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class CompletionManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        //ResetAllProgress();
     }
 
     public void ResetRunProgress()
@@ -91,10 +97,33 @@ public class CompletionManager : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log("Journal Entry Discovered: " + id);
         OnDiscover?.Invoke();
+        CheckWholeCompletion();
     }
 
     public bool IsUnlocked(string taskKey)
     {
         return PlayerPrefs.GetInt(taskKey + "_unlocked", 0) == 1;
+    }
+
+    public void ResetAllProgress()
+    {
+        PlayerPrefs.DeleteAll();
+        currentRunProgress.Clear();
+        Debug.Log("All completion progress reset.");
+    }
+
+    public void CheckWholeCompletion()
+    {
+        var uncompleteEntries = JournalManager.journalEntries.FindAll(entry => PlayerPrefs.GetInt(entry.entryID + "_unlocked", 0) == 0 || PlayerPrefs.GetInt(entry.entryID + "_discovered", 0) == 0);
+        if (uncompleteEntries.Count <= 1)
+        {
+            Debug.Log("Congratulations! You've completed the entire journal!");
+            PlayerPrefs.SetInt(4501 + "_unlocked", 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            Debug.Log($"You still have {uncompleteEntries.Count} entries to unlock/discover.");
+        }
     }
 }

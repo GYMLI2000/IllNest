@@ -17,6 +17,11 @@ MonoBehaviour:
   category: 2
   entryName: Vitamins
   descText: 
-  statsText: 
+  statsText: 'Disease immunity +10%
+
+    Max HP +2
+
+    Heal to max HP'
   additionalText: 
-  entryImage: {fileID: 0}
+  taskText: Clear 4 rooms without taking a hit
+  entryImage: {fileID: 21300000, guid: 50a40cb03d0c90142918dbafa54db60a, type: 3}

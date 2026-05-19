@@ -19,12 +19,16 @@ public class JournalEntry : ScriptableObject
     [Header("Content")]
     public string entryName;
     [TextArea(3, 10)]
-    public string descText;  
+    public string descText;
 
+    [TextArea(5, 10)]
     public string statsText; 
 
     [TextArea(2, 5)]
-    public string additionalText; 
+    public string additionalText;
+
+    [TextArea(2, 5)]
+    public string taskText;
 
     public Sprite entryImage;   
 }
