@@ -108,13 +108,15 @@ public class CompletionManager : MonoBehaviour
     public void ResetAllProgress()
     {
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
         currentRunProgress.Clear();
         Debug.Log("All completion progress reset.");
     }
 
     public void CheckWholeCompletion()
     {
-        var uncompleteEntries = JournalManager.journalEntries.FindAll(entry => PlayerPrefs.GetInt(entry.entryID + "_unlocked", 0) == 0 || PlayerPrefs.GetInt(entry.entryID + "_discovered", 0) == 0);
+        Debug.Log(JournalManager.journalEntries.Count);
+        var uncompleteEntries = JournalManager.journalEntries.FindAll(entry => PlayerPrefs.GetInt(entry.entryID + "_discovered", 0) == 0);
         if (uncompleteEntries.Count <= 1)
         {
             Debug.Log("Congratulations! You've completed the entire journal!");

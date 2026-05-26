@@ -9,7 +9,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource[] sfxSources;
+    private int sourceIndex = 0;
 
     [Header("Audio Data")]
     public Sound[] musicTracks;
@@ -50,10 +51,17 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sfxClips, x => x.name == name);
         if (s == null) return;
 
-        sfxSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
-        sfxSource.PlayOneShot(s.clip);
+        // Grab the next available AudioSource
+        AudioSource source = sfxSources[sourceIndex];
+
+        // Move to the next index, looping back to 0 if we hit the end
+        sourceIndex = (sourceIndex + 1) % sfxSources.Length;
+
+        source.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+        source.PlayOneShot(s.clip);
     }
 
+    /*
     public void LoopSound(string name, bool play)
     {
         Sound s = System.Array.Find(sfxClips, x => x.name == name);
@@ -86,6 +94,7 @@ public class AudioManager : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
     }
+    */
     public void StartMusicSystem()
     {
         if (musicManagerCoroutine != null) StopCoroutine(musicManagerCoroutine);

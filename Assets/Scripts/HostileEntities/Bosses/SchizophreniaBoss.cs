@@ -14,6 +14,7 @@ public class SchizophreniaBoss : Boss
 
     private bool clonesActive = false;
     private float clonesRealness = 0f;
+    private bool isDying = false;
 
     public void SpawnMirrorClones()
     {
@@ -21,18 +22,21 @@ public class SchizophreniaBoss : Boss
 
         AudioManager.Instance.PlaySFX("SchizoClone");
 
+        AnimatorStateInfo bossState = animator.GetCurrentAnimatorStateInfo(0);
+
         foreach (var clone in mirrorClones)
         {
-            if (clone != null)
+            if (clone != null && !clone.activeSelf)
             {
                 clone.SetActive(true);
             }
-
 
             Animator cloneAnim = clone.GetComponent<Animator>();
             if (cloneAnim != null)
             {
                 cloneAnimators.Add(cloneAnim);
+
+                cloneAnim.Play(bossState.fullPathHash, 0, bossState.normalizedTime);
             }
         }
         clonesActive = true;
@@ -101,6 +105,7 @@ public class SchizophreniaBoss : Boss
 
     public override void TakeDamage(int damageAmount)
     {
+        if (isDying) return;
         base.TakeDamage(damageAmount);
         clonesRealness = (float)health / (float)maxHP;
     }
@@ -300,6 +305,7 @@ public class SchizophreniaBoss : Boss
             yield return Dash(0.6f, 50f, dashDir);
         }
 
+        yield return new WaitForSeconds(0.5f);
         SyncAnimTrigger("Idle");
         yield return new WaitForSeconds(1f);
 
@@ -414,9 +420,15 @@ private IEnumerator Clone()
 
     public override void Die()
     {
+        if (isDying) return;
+        isDying = true;
+
         StopAllCoroutines();
         isInPattern = true;
         mirrorClones.Clear();
+
+        Collider2D bossCollider = GetComponent<Collider2D>();
+        if (bossCollider != null) bossCollider.enabled = false;
 
         SyncAnimBool("isWalking", false);
         SyncAnimBool("isShooting", false);

@@ -41,6 +41,7 @@ public class JournalManager : MonoBehaviour
     private void Awake()
     {
         journalEntries = allEntries;
+        gameObject.SetActive(false);
     }
 
     // --- BUTTON EVENT METHDOS ---

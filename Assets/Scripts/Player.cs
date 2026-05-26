@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [Header("Managers / Systems")]
     [SerializeField] public DebuffManager debuffManager;
     [SerializeField] public ItemManager itemManager;
+    [SerializeField] private MapManager map;
 
     [Header("Input")]
     public PlayerControls playerControls;
@@ -358,6 +359,16 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Invincibility toggled"); // tohle potom zmenit jenom pro ukazku abych neumiral
             isInvincible = !isInvincible; // tohle potom zmenit jenom pro ukazku abych neumiral
+        }
+
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            CompletionManager.Instance.ResetAllProgress();
+        }
+
+        if (Keyboard.current.mKey.wasPressedThisFrame)
+        {
+            map.ShowMap();
         }
 
         if (moveValue.magnitude > 0)

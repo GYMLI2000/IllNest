@@ -7,7 +7,7 @@ public class Staircase : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             CameraController.Instance.StopBossCamera();
-            RoomManager.RM.LoadNextFloor();
+            TransitionScene.Instance.TransitionToNextFloor();
         }
     }
 }

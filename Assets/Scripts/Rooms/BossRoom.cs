@@ -42,8 +42,17 @@ public class BossRoom : Room
 
         AudioManager.Instance.StartMusicSystem();
 
-        Instantiate(itemPedestalPrefab, spawnPos.position - new Vector3(0, 4), Quaternion.identity, grid);
-        Instantiate(staircasePrefab, spawnPos.position, Quaternion.identity, grid);
+        var rm = RoomManager.RM;
+
+        if (rm.currentFloor == rm.maxFloors)
+        {
+            WinScreenManager.Instance.Show();
+        }
+        else
+        {
+            Instantiate(itemPedestalPrefab, spawnPos.position - new Vector3(0, 4), Quaternion.identity, grid);
+            Instantiate(staircasePrefab, spawnPos.position, Quaternion.identity, grid);
+        }
     }
 
 }

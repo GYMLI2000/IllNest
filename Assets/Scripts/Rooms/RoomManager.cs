@@ -25,11 +25,18 @@ public class RoomManager : MonoBehaviour
     public List<Enemy> lesserEnemies;
     public List<Item> items;
 
+    [SerializeField] public int currentFloor { get; private set; } = 1;
+    [SerializeField] public int maxFloors { get; private set; } = 2;
+
     private Dictionary<Vector2Int, RoomNode> map = new();
     private Dictionary<Vector2Int, Room> spawnedRooms = new();
 
     public event Action roomClear;
     public event Action roomEnter;
+    public event Action floorEnter;
+
+    public event Action<Vector2Int> OnMapUpdated;
+    public Dictionary<Vector2Int, RoomNode> GetMap() => map;
 
     private void Awake()
     {
@@ -42,6 +49,8 @@ public class RoomManager : MonoBehaviour
         GenerateLayout();
         SpawnRooms();
         ConnectDoors();
+
+        UpdateMapDiscovery(Vector2Int.zero);
     }
 
     private void OnEnable()
@@ -107,6 +116,7 @@ public class RoomManager : MonoBehaviour
             Room room = Instantiate(roomPrefab, worldPos, Quaternion.identity, this.transform).GetComponent<Room>();
             room.roomType = node.roomType;
             room.worldPos = worldPos;
+            room.gridPos = gridPos;
             spawnedRooms[gridPos] = room;
 
             if (room.roomType == RoomType.Start)
@@ -135,6 +145,7 @@ public class RoomManager : MonoBehaviour
                 BossRoom bossArena = Instantiate(currentBossRoomPrefab, arenaPos, Quaternion.identity, this.transform).GetComponent<BossRoom>();
                 bossArena.roomType = RoomType.Boss;
                 bossArena.worldPos = arenaPos;
+                bossArena.gridPos = arenaGridPos;
 
                 // Important: Register the arena in dictionaries
                 spawnedRooms[arenaGridPos] = bossArena;
@@ -205,6 +216,16 @@ public class RoomManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public Vector2Int GetPlayerPos()
+    {
+        if (currentRoom != null)
+        {
+            Vector2Int playerPos = currentRoom.gridPos;
+            return playerPos;
+        }
+        return Vector2Int.zero;
     }
 
     private void AssignRoomTypes()
@@ -305,6 +326,7 @@ public class RoomManager : MonoBehaviour
 
         room.EnterRoom();
         currentRoom = room;
+        UpdateMapDiscovery(room.gridPos);
 
         if (!room.isCleared)
         {
@@ -323,6 +345,31 @@ public class RoomManager : MonoBehaviour
         room.ClearRoom();
         if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("RoomClear");
         roomClear?.Invoke();
+    }
+
+    private void UpdateMapDiscovery(Vector2Int currentPos)
+    {
+        if (map.TryGetValue(currentPos, out RoomNode currentNode))
+        {
+            // Mark current room as visited
+            currentNode.state = RoomState.Visited;
+
+            // Check adjacent rooms and mark them as discovered if they exist and are hidden
+            if (currentNode.up && map.ContainsKey(currentPos + Vector2Int.up))
+                if (map[currentPos + Vector2Int.up].state == RoomState.Hidden) map[currentPos + Vector2Int.up].state = RoomState.Discovered;
+
+            if (currentNode.down && map.ContainsKey(currentPos + Vector2Int.down))
+                if (map[currentPos + Vector2Int.down].state == RoomState.Hidden) map[currentPos + Vector2Int.down].state = RoomState.Discovered;
+
+            if (currentNode.left && map.ContainsKey(currentPos + Vector2Int.left))
+                if (map[currentPos + Vector2Int.left].state == RoomState.Hidden) map[currentPos + Vector2Int.left].state = RoomState.Discovered;
+
+            if (currentNode.right && map.ContainsKey(currentPos + Vector2Int.right))
+                if (map[currentPos + Vector2Int.right].state == RoomState.Hidden) map[currentPos + Vector2Int.right].state = RoomState.Discovered;
+        }
+
+        // Tell the UI to update
+        OnMapUpdated?.Invoke(currentPos);
     }
 
 
@@ -346,6 +393,7 @@ public class RoomManager : MonoBehaviour
         // Difficulty increase ??
         currentBossRoomPrefab = bossRoomPrefabs[Mathf.Min(bossRoomPrefabs.Count - 1, bossRoomPrefabs.IndexOf(currentBossRoomPrefab) + 1)];
         roomCount += 5;
+        currentFloor++;
         // end
 
         GenerateLayout();
@@ -375,7 +423,10 @@ public class RoomManager : MonoBehaviour
 
             startRoom.EnterRoom();
             currentRoom = startRoom;
-            
+
+            floorEnter?.Invoke();
+            UpdateMapDiscovery(Vector2Int.zero);
+
         }
         else
         {
@@ -394,6 +445,7 @@ public class RoomNode
     public bool right;
 
     public RoomType roomType = RoomType.Normal;
+    public RoomState state = RoomState.Hidden;
 }
 
 public enum RoomType
@@ -402,4 +454,11 @@ public enum RoomType
     Normal,
     Item,
     Boss
+}
+
+public enum RoomState
+{
+    Hidden,      // Not on map yet
+    Discovered,  // Adjacent to a visited room (shows unentered icon)
+    Visited      // Player has been inside (shows true room icon)
 }

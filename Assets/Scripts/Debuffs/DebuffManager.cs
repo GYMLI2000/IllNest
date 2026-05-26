@@ -8,6 +8,8 @@ using UnityEngine;
 public class DebuffManager : MonoBehaviour
 {
     public event Action<List<Debuff>> changeDebuff;
+    public static event Action cureDebuff;
+
     public List<Debuff> activeDebuffs { get; private set; } = new List<Debuff>();
     private bool debuffEnabled = true;
 
@@ -77,6 +79,7 @@ public class DebuffManager : MonoBehaviour
             if (!debuff.isApplied)
             {
                 CompletionManager.Instance.CheckCompletion("3502", 1, 5);
+                cureDebuff?.Invoke();
                 RemoveDebuff(debuff);
             }
             else

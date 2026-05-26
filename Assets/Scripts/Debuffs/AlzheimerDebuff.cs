@@ -6,9 +6,8 @@ public class AlzheimerDebuff : Debuff
     {
         this.duration = duration;
         this.magnitude = magnitude;
-        debuffID =3;
+        debuffID = 3;
     }
-
 
     AlzheimerFogController fog;
 
@@ -31,7 +30,8 @@ public class AlzheimerDebuff : Debuff
         if (fog != null)
         {
             fog.minRadius = minRadius;
-            fog.currentRadius = (fog.maxRadius-2f/duration) * (currentDuration+1f) + 2f;
+            // Set the target radius instead of the current radius
+            fog.targetRadius = (fog.maxRadius - 2f / duration) * (currentDuration + 1f) + 2f;
             fog.SetActive(true);
         }
     }
@@ -48,12 +48,14 @@ public class AlzheimerDebuff : Debuff
 
     public override void Effect(Player player)
     {
-        fog.currentRadius = (fog.maxRadius-2f/duration) * (currentDuration+1f) + 2f;
+        // Smoothly update the target radius instead of snapping
+        fog.targetRadius = (fog.maxRadius - 2f / duration) * (currentDuration + 1f) + 2f;
     }
 
     public override void OnEnterRoom()
     {
     }
+
     public override void OnClearRoom()
     {
         currentDuration++;

@@ -9,11 +9,14 @@ public class AlzheimerFogController : MonoBehaviour
     public float maxRadius = 2f;
     public float shrinkSpeed = 1f;
     public float expandSpeed = 2f;
-    //private bool canExpand = false;
 
     public float currentRadius;
+    public float targetRadius;
+    public float transitionSpeed = 15f;
+
     private Material fogMaterial;
     private bool active = false;
+    private bool isFadingOut = false; // Tracks if we are currently zooming out
 
     void Awake()
     {
@@ -22,10 +25,9 @@ public class AlzheimerFogController : MonoBehaviour
             enabled = false;
             return;
         }
-    
+
         fogMaterial = Instantiate(fogSprite.sharedMaterial);
         fogSprite.material = fogMaterial;
-
 
         float spriteHeight = fogSprite.sprite.bounds.size.y;
         float spriteWidth = fogSprite.sprite.bounds.size.x;
@@ -39,31 +41,28 @@ public class AlzheimerFogController : MonoBehaviour
         fogSprite.transform.localScale = new Vector3(scaleX, scaleY, 1f);
 
         currentRadius = maxRadius;
+        targetRadius = maxRadius;
         fogSprite.enabled = false;
     }
 
     void Update()
     {
-        /* Starej system
         if (!active) return;
 
-        if (currentRadius == minRadius)
+        // Smoothly glide currentRadius to the targetRadius
+        currentRadius = Mathf.Lerp(currentRadius, targetRadius, Time.deltaTime * transitionSpeed);
+
+        // If we are transitioning out and the circle is huge, disable everything
+        if (isFadingOut && currentRadius >= 29.5f)
         {
-            canExpand = true;
-            shrinkSpeed = 0.3f;
+            active = false;
+            fogSprite.enabled = false;
+            isFadingOut = false;
+            return;
         }
 
-        bool moving = player.GetComponent<Rigidbody2D>().linearVelocity.magnitude > 0.1f;
-
-        currentRadius += (moving && canExpand ? expandSpeed : -shrinkSpeed) * Time.deltaTime;
-        currentRadius = Mathf.Clamp(currentRadius, minRadius, maxRadius);
-        */
-
-        if (!active) return;
-
-        if (currentRadius == minRadius)
+        if (!isFadingOut && currentRadius <= minRadius + 0.01f)
         {
-            //canExpand = true;
             shrinkSpeed = 0.3f;
         }
 
@@ -78,8 +77,19 @@ public class AlzheimerFogController : MonoBehaviour
 
     public void SetActive(bool value)
     {
-        active = value;
-        fogSprite.enabled = value;
-        //canExpand = false;
+        if (value)
+        {
+            // Start the zoom-in transition
+            active = true;
+            isFadingOut = false;
+            fogSprite.enabled = true;
+            currentRadius = 30f;
+        }
+        else if (active && !isFadingOut)
+        {
+            // Start the zoom-out transition instead of instantly vanishing
+            isFadingOut = true;
+            targetRadius = 30f;
+        }
     }
 }

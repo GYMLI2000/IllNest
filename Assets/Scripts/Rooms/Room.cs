@@ -15,8 +15,10 @@ public class Room : MonoBehaviour
     public bool isCleared { get; private set; } = false;
     public RoomType roomType;
     public Vector3 worldPos;
+    public Vector2Int gridPos;
     [SerializeField] protected int width;
     [SerializeField] protected int height;
+
 
     private void Awake()
     {

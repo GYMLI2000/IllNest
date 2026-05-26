@@ -48,6 +48,7 @@ public class ItemManager : MonoBehaviour
         ChangeActiveCharge?.Invoke(activeItem.currentCharge, activeItem.chargeRequired);
 
         OnPickup?.Invoke(item.itemName);
+        WinScreenManager.Instance.CollectItem();
 
         return oldItem;
     }
@@ -75,6 +76,7 @@ public class ItemManager : MonoBehaviour
             passiveItems.Add(item);
             item.OnAdd(player);
             OnPickup?.Invoke(item.itemName);
+            WinScreenManager.Instance.CollectItem();
         }
     }
 
