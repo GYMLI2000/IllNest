@@ -87,7 +87,10 @@ public class SettingsManager : MonoBehaviour
     {
         if (!RefreshApplyButtonVisuals() || exit)
         {
-            ResetAll();
+            if (exit)
+            {
+                ResetAll();
+            }
             confirmation.SetActive(false);
             if (menu != null)
             {
@@ -214,6 +217,12 @@ public class SettingsManager : MonoBehaviour
                     break;
                 case "ActiveItem":
                     CreateRow(action, 0, "Active Item");
+                    break;
+                case "OpenMap":
+                    CreateRow(action, 0, "Open Map");
+                    break;
+                case "CursorAiming":
+                    CreateRow(action, 0, "Aim");
                     break;
             }
         }

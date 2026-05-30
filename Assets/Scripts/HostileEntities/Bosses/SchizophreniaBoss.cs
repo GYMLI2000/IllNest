@@ -116,7 +116,7 @@ public class SchizophreniaBoss : Boss
 
         clonesRealness = Mathf.Clamp01((float)health / maxHP);
 
-        // When HP is full (realness 1), alpha is 0.1f. As HP drops to 0, alpha goes to 1f.
+        
         float alpha = Mathf.Lerp(1f, 0.1f, clonesRealness);
 
         foreach (var clone in mirrorClones)

@@ -51,10 +51,10 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sfxClips, x => x.name == name);
         if (s == null) return;
 
-        // Grab the next available AudioSource
+
         AudioSource source = sfxSources[sourceIndex];
 
-        // Move to the next index, looping back to 0 if we hit the end
+        // Move to the next index, looping back to 0 if it hits the end
         sourceIndex = (sourceIndex + 1) % sfxSources.Length;
 
         source.pitch = UnityEngine.Random.Range(0.9f, 1.1f);

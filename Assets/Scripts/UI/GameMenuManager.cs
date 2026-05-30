@@ -49,6 +49,7 @@ public class GameMenuManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             player.enabled = false;
+            CursorManager.Instance.SetDefaultCursor();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             menu.SetActive(true);

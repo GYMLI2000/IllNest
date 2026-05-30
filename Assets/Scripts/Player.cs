@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private Vector2 moveValue;
     private bool isAttacking;
     private Vector2 aimDir;
+    private bool isAiming;
 
     [Header("Movement Stats")]
     public float movementSpeed;
@@ -125,8 +126,11 @@ public class Player : MonoBehaviour
         playerControls.Enable();
         playerControls.Player.Attack.performed += context => isAttacking = true;
         playerControls.Player.Attack.canceled += context => isAttacking = false;
+        playerControls.Player.CursorAiming.performed += context => { isAiming = true; CursorManager.Instance.SetAimCursor(); Cursor.visible = true; Cursor.lockState = CursorLockMode.None; };
+        playerControls.Player.CursorAiming.canceled += context => { isAiming = false; CursorManager.Instance.SetDefaultCursor(); Cursor.visible = false; Cursor.lockState = CursorLockMode.Confined; };
         playerControls.Player.ActiveItem.performed += OnActiveItem;
         playerControls.Player.OpenMenu.performed += OpenMenu;
+        playerControls.Player.OpenMap.performed += context => map.ShowMap();
 
     }
 
@@ -134,8 +138,12 @@ public class Player : MonoBehaviour
     {
         playerControls.Player.Attack.performed -= context => isAttacking = true;
         playerControls.Player.Attack.canceled -= context => isAttacking = false;
+        playerControls.Player.CursorAiming.performed -= context => { isAiming = true; CursorManager.Instance.SetAimCursor(); Cursor.visible = true; Cursor.lockState = CursorLockMode.None; };
+        playerControls.Player.CursorAiming.canceled -= context => { isAiming = false; CursorManager.Instance.SetDefaultCursor(); Cursor.visible = false; Cursor.lockState = CursorLockMode.Confined; };
         playerControls.Player.ActiveItem.performed -= OnActiveItem;
         playerControls.Player.OpenMenu.performed -= OpenMenu;
+        playerControls.Player.OpenMap.performed -= context => map.ShowMap();
+
 
         playerControls.Disable();
     }
@@ -192,10 +200,17 @@ public class Player : MonoBehaviour
 
     private void MoveFirePoint()
     {
-        Vector2 delta =  Mouse.current.delta.ReadValue() * 0.01f; // posun mysi
+        if (isAiming)
+        {
+            aimDir = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
+        }
+        else
+        {
+            Vector2 delta = Mouse.current.delta.ReadValue() * 0.01f; // posun mysi
 
-        aimDir += delta;
-        aimDir = aimDir.normalized; 
+            aimDir += delta;
+            aimDir = aimDir.normalized;
+        }
 
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
 
@@ -366,10 +381,6 @@ public class Player : MonoBehaviour
             CompletionManager.Instance.ResetAllProgress();
         }
 
-        if (Keyboard.current.mKey.wasPressedThisFrame)
-        {
-            map.ShowMap();
-        }
 
         if (moveValue.magnitude > 0)
         {

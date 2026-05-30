@@ -14,7 +14,7 @@ public class SchizophreniaHaunt : Enemy
         health = 1;
         idleState = new IdleState(this);
         chaseState = new ChaseState(this);
-        deathAudio = "SchizoHauntDeath";
+        deathAudio = "SchizoHauntDeath2";
 
         knockback = 2f;
         isLesser = true;

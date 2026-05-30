@@ -34,7 +34,7 @@ public class JournalManager : MonoBehaviour
 
     private void Start()
     {
-        // Hide details panel on start
+
         detailsPanel.SetActive(false);
     }
 
@@ -44,15 +44,14 @@ public class JournalManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // --- BUTTON EVENT METHDOS ---
-    // Link your 3 UI Buttons to these methods in the Inspector
+
     public void OnClickEnemiesTab() => PopulateList(JournalCategory.Enemy);
     public void OnClickDiseasesTab() => PopulateList(JournalCategory.Disease);
     public void OnClickItemsTab() => PopulateList(JournalCategory.Item);
 
     private void PopulateList(JournalCategory targetCategory)
     {
-        // 1. Clear the current list
+      
         foreach (Transform child in scrollListContentParent)
         {
             Destroy(child.gameObject);
@@ -60,26 +59,26 @@ public class JournalManager : MonoBehaviour
 
         detailsPanel.SetActive(false);
 
-        // 2. Instantiate buttons for the selected category
+    
         foreach (JournalEntry entry in allEntries)
         {
             if (entry.category == targetCategory)
             {
                 GameObject newButton = Instantiate(entryButtonPrefab, scrollListContentParent);
 
-                // Get the text component on your prefab to set the name
+     
                 TextMeshProUGUI buttonText = newButton.GetComponentInChildren<TextMeshProUGUI>();
                 Button btn = newButton.GetComponent<Button>();
 
                 bool isUnlocked = CheckUnlocked(entry);
 
-                // Check if it's discovered. If not, hide the name.
+         
                 bool isDiscovered = PlayerPrefs.GetInt(entry.entryID + "_discovered", 0) == 1;
                 buttonText.text = isDiscovered ? entry.entryName : "???";
 
                 if (!isUnlocked) buttonText.text = "Locked";
 
-                // Add click event to the button
+     
                 btn.onClick.AddListener(() => DisplayEntryDetails(entry));
             }
         }
@@ -118,10 +117,10 @@ public class JournalManager : MonoBehaviour
     {
         detailsPanel.SetActive(true);
 
-        // Fetch States
+
         bool isDiscovered = PlayerPrefs.GetInt(entry.entryID + "_discovered", 0) == 1;
 
-        // We use the CompletionManager from your previous code to check Unlocked status!
+
         bool isUnlocked = CompletionManager.Instance.IsUnlocked(entry.taskName);
 
 
@@ -129,16 +128,16 @@ public class JournalManager : MonoBehaviour
         {
             titleText.text = "Locked Item";
             entryImage.sprite = null;
-            descText.text = entry.taskText; // Maybe they know what it is...
+            descText.text = entry.taskText; 
             statsText.text = "Complete the task to unlock";
             entryImage.sprite = lockedImg; 
             return;
         }
         else if (!isDiscovered)
         {
-            // Undiscovered State: Show almost nothing
+            // Undiscovered
             titleText.text = "Unknown Entry";
-            entryImage.sprite = null; // Or a silhouette/question mark sprite
+            entryImage.sprite = null; 
             descText.text = "You have not encountered this yet.";
             statsText.text = "???";
             additionalText.text = "";
@@ -147,7 +146,7 @@ public class JournalManager : MonoBehaviour
         }
         else
         {
-            // Discovered AND Unlocked Item (Full Info)
+            // Discovered AND Unlocked
             titleText.text = entry.entryName;
             entryImage.sprite = entry.entryImage;
             descText.text = entry.descText;

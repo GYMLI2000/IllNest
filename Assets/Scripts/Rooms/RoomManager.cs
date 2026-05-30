@@ -138,8 +138,7 @@ public class RoomManager : MonoBehaviour
                 Vector2Int exitDir = GetBossExitDir(node);
                 Vector2Int arenaGridPos = gridPos + exitDir;
 
-                // Offset the arena significantly so it doesn't overlap visually if needed, 
-                // but usually better to keep it on grid for ConnectDoors to work perfectly.
+               
                 Vector3 arenaPos = worldPos + new Vector3(exitDir.x * (roomWidth + roomGap) *4, exitDir.y * (roomHeight + roomGap) * 4, 0);
 
                 BossRoom bossArena = Instantiate(currentBossRoomPrefab, arenaPos, Quaternion.identity, this.transform).GetComponent<BossRoom>();
@@ -147,7 +146,7 @@ public class RoomManager : MonoBehaviour
                 bossArena.worldPos = arenaPos;
                 bossArena.gridPos = arenaGridPos;
 
-                // Important: Register the arena in dictionaries
+                
                 spawnedRooms[arenaGridPos] = bossArena;
                 if (!map.ContainsKey(arenaGridPos))
                 {
