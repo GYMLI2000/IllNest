@@ -105,7 +105,6 @@ public class RoomManager : MonoBehaviour
     {
         AssignRoomTypes();
 
-        // Use a copy of the keys because we might add the Boss Arena to the map during the loop
         List<Vector2Int> keys = new List<Vector2Int>(map.Keys);
 
         foreach (var gridPos in keys)
@@ -139,7 +138,7 @@ public class RoomManager : MonoBehaviour
                 Vector2Int arenaGridPos = gridPos + exitDir;
 
                
-                Vector3 arenaPos = worldPos + new Vector3(exitDir.x * (roomWidth + roomGap) *4, exitDir.y * (roomHeight + roomGap) * 4, 0);
+                Vector3 arenaPos = worldPos + new Vector3(exitDir.x * (roomWidth + roomGap) *20, exitDir.y * (roomHeight + roomGap) * 20, 0);
 
                 BossRoom bossArena = Instantiate(currentBossRoomPrefab, arenaPos, Quaternion.identity, this.transform).GetComponent<BossRoom>();
                 bossArena.roomType = RoomType.Boss;
@@ -229,19 +228,19 @@ public class RoomManager : MonoBehaviour
 
     private void AssignRoomTypes()
     {
-        // 1. Set Start
+        // 1. nastavit startovní místnost
         map[Vector2Int.zero].roomType = RoomType.Start;
 
-        // 2. Get all rooms EXCEPT start, sorted by distance (furthest first)
+        // 2. všechny místnosti seøadit podle vzdálenosti od startovní (nejdál první)
         var potentialCandidates = map.Keys
             .Where(p => p != Vector2Int.zero)
             .OrderByDescending(p => Vector2Int.Distance(Vector2Int.zero, p))
             .ToList();
 
-        // 3. Try to find the best Boss Foyer
+        // 3. pokusit se najít nejlepší Boss Foyer
         Vector2Int? bossPos = null;
 
-        // First pass: Look for a Dead End (1 connection) that has space for an Arena
+        // najít místnost, která je dead end (jen 1 spojení) a zároveò má volné místo pro boss fight (neobsazený soused)
         foreach (var pos in potentialCandidates)
         {
             int connections = (map[pos].up ? 1 : 0) + (map[pos].down ? 1 : 0) +
@@ -254,7 +253,7 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        // Second pass: If no dead end with space, take ANY room with space (furthest first)
+        // pokud nenajdeme ideální dead-end, vezmeme prostì nejdál od startu, který má volné místo pro boss fight
         if (bossPos == null)
         {
             foreach (var pos in potentialCandidates)
@@ -267,26 +266,35 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        // Final Check: If we STILL haven't found a spot (extremely rare), regenerate the map
+        //pokud stále nenajdeme žádnou vhodnou místnost, musíme mapu vygenerovat znovu
         if (bossPos == null)
         {
             Debug.LogWarning("No room had space for a boss! Regenerating...");
             GenerateLayout();
             SpawnRooms();
-            return; // Exit this execution, the new call will handle it
+            return; 
         }
 
-        // Assign the Boss Foyer
         map[bossPos.Value].roomType = RoomType.Boss;
         potentialCandidates.Remove(bossPos.Value);
 
-        // 4. Assign Item Room (Take the next furthest available room)
-        if (potentialCandidates.Count > 0)
+        // item room
+        int itemsToSpawn = 2;
+        for (int i = 0; i < itemsToSpawn; i++)
         {
-            // Pick a random one from the remaining furthest rooms to keep it interesting
-            int index = Random.Range(0, Mathf.Min(3, potentialCandidates.Count));
-            Vector2Int itemPos = potentialCandidates[index];
-            map[itemPos].roomType = RoomType.Item;
+            if (potentialCandidates.Count > 0)
+            {
+                int index = Random.Range(0, Mathf.Min(3, potentialCandidates.Count));
+                Vector2Int itemPos = potentialCandidates[index];
+
+                map[itemPos].roomType = RoomType.Item;
+
+                potentialCandidates.RemoveAt(index);
+            }
+            else
+            {
+                Debug.LogWarning($"Not enough rooms to spawn item room number {i + 1}!");
+            }
         }
     }
 
@@ -298,7 +306,6 @@ public class RoomManager : MonoBehaviour
 
     private Vector2Int GetBossExitDir(RoomNode foyerNode)
     {
-        // Must return a direction that is NOT in the map to avoid collisions
         if (!map.ContainsKey(foyerNode.gridPos + Vector2Int.up)) return Vector2Int.up;
         if (!map.ContainsKey(foyerNode.gridPos + Vector2Int.down)) return Vector2Int.down;
         if (!map.ContainsKey(foyerNode.gridPos + Vector2Int.left)) return Vector2Int.left;
@@ -350,10 +357,10 @@ public class RoomManager : MonoBehaviour
     {
         if (map.TryGetValue(currentPos, out RoomNode currentNode))
         {
-            // Mark current room as visited
+
             currentNode.state = RoomState.Visited;
 
-            // Check adjacent rooms and mark them as discovered if they exist and are hidden
+
             if (currentNode.up && map.ContainsKey(currentPos + Vector2Int.up))
                 if (map[currentPos + Vector2Int.up].state == RoomState.Hidden) map[currentPos + Vector2Int.up].state = RoomState.Discovered;
 
@@ -367,7 +374,6 @@ public class RoomManager : MonoBehaviour
                 if (map[currentPos + Vector2Int.right].state == RoomState.Hidden) map[currentPos + Vector2Int.right].state = RoomState.Discovered;
         }
 
-        // Tell the UI to update
         OnMapUpdated?.Invoke(currentPos);
     }
 
@@ -457,7 +463,7 @@ public enum RoomType
 
 public enum RoomState
 {
-    Hidden,      // Not on map yet
-    Discovered,  // Adjacent to a visited room (shows unentered icon)
-    Visited      // Player has been inside (shows true room icon)
+    Hidden,    
+    Discovered, 
+    Visited      
 }

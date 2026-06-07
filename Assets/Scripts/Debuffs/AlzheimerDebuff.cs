@@ -30,7 +30,6 @@ public class AlzheimerDebuff : Debuff
         if (fog != null)
         {
             fog.minRadius = minRadius;
-            // Set the target radius instead of the current radius
             fog.targetRadius = (fog.maxRadius - 2f / duration) * (currentDuration + 1f) + 2f;
             fog.SetActive(true);
         }
@@ -48,7 +47,7 @@ public class AlzheimerDebuff : Debuff
 
     public override void Effect(Player player)
     {
-        // Smoothly update the target radius instead of snapping
+        
         fog.targetRadius = (fog.maxRadius - 2f / duration) * (currentDuration + 1f) + 2f;
     }
 

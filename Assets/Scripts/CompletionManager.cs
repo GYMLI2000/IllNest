@@ -38,7 +38,7 @@ public class CompletionManager : MonoBehaviour
     public void CheckCompletion(string taskKey, int addAmount, int targetAmount)
     {
 
-        if (PlayerPrefs.GetInt(taskKey + "_unlocked", 0) == 1)
+        if (PlayerPrefs.GetInt(taskKey + "_unlocked", 0) == 1) // pokud je uz odemceny tak nepokracuje
         {
             return;
         }

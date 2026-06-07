@@ -23,6 +23,7 @@ public abstract class ActiveItem : Item
 
         if (currentCharge < chargeRequired) return;
 
+        AudioManager.Instance.PlaySFX("ActiveItem");
         Activate(player);
         currentCharge = 0;
     }

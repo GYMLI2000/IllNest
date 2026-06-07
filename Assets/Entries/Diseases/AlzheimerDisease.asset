@@ -17,6 +17,8 @@ MonoBehaviour:
   category: 1
   entryName: Alzheimer Disease
   descText: 'Cure: Clear 3 rooms'
-  statsText: "Effect: \nForget the enviroment around you"
+  statsText: "Effect: \nForget the enviroment around you, makes your projectiles
+    go through obstacles."
   additionalText: 'Applied By: Alzheimer Enemy'
+  taskText: 
   entryImage: {fileID: 21300000, guid: 6bdfee5a04ea46e429b288ffa14986a3, type: 3}

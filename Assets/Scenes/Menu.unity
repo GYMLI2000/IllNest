@@ -7207,8 +7207,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294919168
-  m_fontColor: {r: 0, g: 0.26829147, b: 1, a: 1}
+    rgba: 4294946964
+  m_fontColor: {r: 0.57924527, g: 0.6914464, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14076,8 +14076,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294924544
-  m_fontColor: {r: 0, g: 0.3471055, b: 1, a: 1}
+    rgba: 4294947220
+  m_fontColor: {r: 0.5803922, g: 0.69411767, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14478,22 +14478,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6777244927362920001, guid: c7cada26599fcd941ac510ee8b21b171, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139783477557119676, guid: c7cada26599fcd941ac510ee8b21b171, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139783477557119676, guid: c7cada26599fcd941ac510ee8b21b171, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139783477557119676, guid: c7cada26599fcd941ac510ee8b21b171, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139783477557119676, guid: c7cada26599fcd941ac510ee8b21b171, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

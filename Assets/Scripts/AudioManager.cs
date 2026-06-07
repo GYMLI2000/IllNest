@@ -54,47 +54,13 @@ public class AudioManager : MonoBehaviour
 
         AudioSource source = sfxSources[sourceIndex];
 
-        // Move to the next index, looping back to 0 if it hits the end
+        // posunout index pro další pøehrávání, aby se støídaly zdroje
         sourceIndex = (sourceIndex + 1) % sfxSources.Length;
 
         source.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
         source.PlayOneShot(s.clip);
     }
 
-    /*
-    public void LoopSound(string name, bool play)
-    {
-        Sound s = System.Array.Find(sfxClips, x => x.name == name);
-        if (s == null) return;
-
-        if (play)
-        {
-            if (loopCoroutine != null) return;
-
-            loopCoroutine = StartCoroutine(LoopCoroutine(s));
-        }
-        else
-        {
-            if (loopCoroutine != null)
-            {
-                StopCoroutine(loopCoroutine);
-                loopCoroutine = null;
-            }
-        }
-    }
-
-    private IEnumerator LoopCoroutine(Sound s)
-    {
-        while (true)
-        {
-            sfxSource.pitch = Random.Range(0.9f, 1.1f);
-            sfxSource.PlayOneShot(s.clip);
-
-            float delay = s.clip.length * 0.85f; 
-            yield return new WaitForSeconds(delay);
-        }
-    }
-    */
     public void StartMusicSystem()
     {
         if (musicManagerCoroutine != null) StopCoroutine(musicManagerCoroutine);

@@ -18,7 +18,7 @@ public class Steroids : PassiveItem
     public override void OnAdd(Player player)
     {
         player.damage += 1;
-        player.damageMult += .65f;
+        player.damageMult += .6f;
         player.projSpeed += 3;
         player.maxHp -= 2;
         player.UpdateHp();

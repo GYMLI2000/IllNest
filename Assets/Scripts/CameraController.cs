@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -36,13 +37,13 @@ public class CameraController : MonoBehaviour
 
             // Check if room width is smaller than camera view
             if (maxX - minX < camWidth * 2)
-                finalX = (minX + maxX) / 2f; // Center it
+                finalX = (minX + maxX) / 2f; // Center 
             else
                 finalX = Mathf.Clamp(playerTransform.position.x, minX + camWidth, maxX - camWidth);
 
             // Check if room height is smaller than camera view
             if (maxY - minY < camHeight * 2)
-                finalY = (minY + maxY) / 2f; // Center it
+                finalY = (minY + maxY) / 2f; // Center 
             else
                 finalY = Mathf.Clamp(playerTransform.position.y, minY + camHeight, maxY - camHeight);
 
@@ -53,7 +54,7 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.MoveTowards(
             transform.position,
             new Vector3(targetPosition.x,targetPosition.y,-10),
-            cameraSpeed* Time.deltaTime
+            cameraSpeed* Time.deltaTime * (isBossMode? 5f : 1f)
             );
     }
 
@@ -80,5 +81,15 @@ public class CameraController : MonoBehaviour
     public void StopBossCamera()
     {
         isBossMode = false;
+        StartCoroutine(CameraSpeedRoutine());
     }
+
+    IEnumerator CameraSpeedRoutine()
+    {
+        float originalSpeed = cameraSpeed;
+        cameraSpeed *= 5f;
+        yield return new WaitForSeconds(2f); 
+        cameraSpeed = originalSpeed; 
+    }
+
 }

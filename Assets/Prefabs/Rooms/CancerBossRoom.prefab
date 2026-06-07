@@ -86,6 +86,7 @@ MonoBehaviour:
   grid: {fileID: 6152136061836627750}
   roomType: 3
   worldPos: {x: 0, y: 0, z: 0}
+  gridPos: {x: 0, y: 0}
   width: 28
   height: 28
   spawnPos: {fileID: 4107587277247786594}

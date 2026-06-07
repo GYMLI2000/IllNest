@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
     [SerializeField] public SpriteRenderer gloveClosed;
 
 
-
+    private bool mapOpened = false;
     private bool isInvincible = false;
 
     private void Start()
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
         playerControls.Player.CursorAiming.canceled += context => { isAiming = false; CursorManager.Instance.SetDefaultCursor(); Cursor.visible = false; Cursor.lockState = CursorLockMode.Confined; };
         playerControls.Player.ActiveItem.performed += OnActiveItem;
         playerControls.Player.OpenMenu.performed += OpenMenu;
-        playerControls.Player.OpenMap.performed += context => map.ShowMap();
+        playerControls.Player.OpenMap.performed += context => map.ShowMap(); mapOpened = !mapOpened;
 
     }
 
@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
         playerControls.Player.CursorAiming.canceled -= context => { isAiming = false; CursorManager.Instance.SetDefaultCursor(); Cursor.visible = false; Cursor.lockState = CursorLockMode.Confined; };
         playerControls.Player.ActiveItem.performed -= OnActiveItem;
         playerControls.Player.OpenMenu.performed -= OpenMenu;
-        playerControls.Player.OpenMap.performed -= context => map.ShowMap();
+        playerControls.Player.OpenMap.performed -= context => map.ShowMap(); mapOpened = !mapOpened;
 
 
         playerControls.Disable();
@@ -200,9 +200,10 @@ public class Player : MonoBehaviour
 
     private void MoveFirePoint()
     {
-        if (isAiming)
+        if (isAiming) // zamíøení myší
         {
-            aimDir = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            aimDir = (Camera.main.ScreenToWorldPoint(mousePos) - transform.position).normalized;
         }
         else
         {
@@ -343,7 +344,7 @@ public class Player : MonoBehaviour
 
     public void OpenMenu(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed /*&& !mapOpened*/)
         {
             openMenu?.Invoke();
         }
@@ -379,6 +380,12 @@ public class Player : MonoBehaviour
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             CompletionManager.Instance.ResetAllProgress();
+        }
+
+        if (Keyboard.current.hKey.wasPressedThisFrame)
+        {
+            currentHp = maxHp;
+            UpdateHp();
         }
 
 

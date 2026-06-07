@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TMPro; // Assuming you use TextMeshPro for UI
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +20,7 @@ public class JournalManager : MonoBehaviour
     public Image diseasesTabButton;
 
     public Transform scrollListContentParent;
-    public GameObject entryButtonPrefab; // A simple UI button with a Text component
+    public GameObject entryButtonPrefab;
 
     [Header("UI References - Details Panel")]
     public GameObject detailsPanel;

@@ -6,6 +6,7 @@ public abstract class Enemy : HostileEntity
 {
     protected bool isLesser = false;
     protected string deathAudio;
+    protected bool isDead = false;
 
     [Header("Attack Runtime")]
     [HideInInspector] public float attackCooldown;
@@ -35,7 +36,7 @@ public abstract class Enemy : HostileEntity
 
     public virtual void EnableEnemy()
     {
-        // Calls the base class setup (Rigidbody, Target, Sprites, Stats, Animator)
+        isDead = false;
         base.EnableEntity();
 
         isAttacking = false;
@@ -65,7 +66,9 @@ public abstract class Enemy : HostileEntity
 
     public override void Die()
     {
+        if (isDead) return; // Prevent multiple death triggers
         base.Die();
+        isDead = true;
         ParticleSystem particles = PoolManager.Instance.Get(partPoolKey).GetComponent<ParticleSystem>();
         particles.transform.position = transform.position;
         var main = particles.main;
@@ -97,7 +100,10 @@ public abstract class Enemy : HostileEntity
 
     public override void Die(bool isByPlayer)
     {
+        if (isDead) return; // Prevent multiple death triggers
+
         base.Die(isByPlayer);
+        isDead = true;
         ParticleSystem particles = PoolManager.Instance.Get(partPoolKey).GetComponent<ParticleSystem>();
         particles.transform.position = transform.position;
         var main = particles.main;

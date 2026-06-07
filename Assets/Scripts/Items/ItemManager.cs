@@ -50,14 +50,13 @@ public class ItemManager : MonoBehaviour
         OnPickup?.Invoke(item.itemName);
         WinScreenManager.Instance.CollectItem();
 
-        return oldItem;
+        return oldItem; // vrátí stary item zpatky a vymeni ho za novej
     }
 
     public void UseActiveItem()
     {
         if (activeItem == null) return;
 
-        AudioManager.Instance.PlaySFX("ActiveItem");
         activeItem.Use(player);
         ChangeActiveCharge?.Invoke(activeItem.currentCharge,activeItem.chargeRequired);
 
