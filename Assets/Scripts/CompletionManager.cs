@@ -1,7 +1,8 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Threading;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CompletionManager : MonoBehaviour
 {
@@ -25,6 +26,23 @@ public class CompletionManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Keyboard.current.oKey.wasPressedThisFrame)
+        {
+            Instance.ResetAllProgress();
+        }
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            //unlock and discover all for testing
+            foreach (var entry in JournalManager.journalEntries)
+            {
+                PlayerPrefs.SetInt(entry.entryID + "_unlocked", 1);
+                PlayerPrefs.SetInt(entry.entryID + "_discovered", 1);
+            }
+            PlayerPrefs.Save();
+        }
+    }
     private void Start()
     {
         //ResetAllProgress();

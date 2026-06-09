@@ -377,10 +377,6 @@ public class Player : MonoBehaviour
             isInvincible = !isInvincible; // tohle potom zmenit jenom pro ukazku abych neumiral
         }
 
-        if (Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            CompletionManager.Instance.ResetAllProgress();
-        }
         if (Keyboard.current.jKey.wasPressedThisFrame)
         {
             debuffManager.ClearDebuffs();
