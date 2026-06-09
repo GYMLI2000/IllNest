@@ -291,7 +291,7 @@ public class SchizophreniaBoss : Boss
         if (roll < 0.8f)
         {
             dashDir = ((target.transform.position- Vector3.down) - transform.position).normalized;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
             SyncAnimTrigger("Melee");
             AudioManager.Instance.PlaySFX("SchizoMelee2");
             yield return Dash(0.6f, 50f, dashDir);
@@ -299,7 +299,7 @@ public class SchizophreniaBoss : Boss
         if (roll < 0.6f)
         {
             dashDir = ((target.transform.position- Vector3.down) - transform.position).normalized;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
             SyncAnimTrigger("Melee");
             AudioManager.Instance.PlaySFX("SchizoMelee1");
             yield return Dash(0.6f, 50f, dashDir);

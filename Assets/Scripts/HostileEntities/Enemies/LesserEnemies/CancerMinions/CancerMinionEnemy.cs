@@ -11,7 +11,7 @@ public class CancerMinionEnemy : Enemy
         chaseRange =  -1;
         damage = 1;
         speed = 3;
-        health = 15;
+        health = 10;
         idleState = new IdleState(this);
         chaseState = new ChaseState(this);
         knockback = 2f;

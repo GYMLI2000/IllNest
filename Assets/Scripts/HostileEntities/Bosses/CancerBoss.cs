@@ -452,8 +452,8 @@ public class CancerBoss : Boss
     protected override void InitializeStats()
     {
         killParticleColor = new Color(97f/255f, 128f/255f, 80f/255f, 0.2f);
-        maxHP = 500;
-        health = 500;
+        maxHP = 350;
+        health = 350;
         damage = 2;
         speed = 7;
         knockback = 2f;

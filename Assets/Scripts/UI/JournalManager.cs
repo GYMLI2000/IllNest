@@ -49,6 +49,16 @@ public class JournalManager : MonoBehaviour
     public void OnClickDiseasesTab() => PopulateList(JournalCategory.Disease);
     public void OnClickItemsTab() => PopulateList(JournalCategory.Item);
 
+    private void OnEnable()
+    {
+        foreach (Transform child in scrollListContentParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        detailsPanel.SetActive(false);
+    }
+
     private void PopulateList(JournalCategory targetCategory)
     {
       

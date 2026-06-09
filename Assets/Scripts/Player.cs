@@ -381,6 +381,10 @@ public class Player : MonoBehaviour
         {
             CompletionManager.Instance.ResetAllProgress();
         }
+        if (Keyboard.current.jKey.wasPressedThisFrame)
+        {
+            debuffManager.ClearDebuffs();
+        }
 
         if (Keyboard.current.hKey.wasPressedThisFrame)
         {
